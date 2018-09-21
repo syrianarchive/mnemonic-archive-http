@@ -1,0 +1,52 @@
+a {
+  color: $accent-color;
+  &:hover{
+    color:$primary-color;
+  }
+}
+
+p a{
+    text-decoration: underline;
+}
+
+.contents .columns {
+  background-color: #ebeceb;
+}
+.frontstats .columns{
+  background-color: transparent;
+}
+
+.database{
+  background-color: #d5d5d5 !important;
+}
+.dbwrapper.columns, .stats.columns {
+  background-color: $background-color;
+}
+
+.top .columns{
+  background-color: rgba(0,20,0,.05);
+}
+.top {
+  background-color: #ffffff !important;
+}
+.footer .columns{
+  background-color: rgba(255,255,255,.05);
+}
+
+.title .columns{
+  background-color: rgba(0,0,0,.1);
+  @include breakpoint(medium){
+    background-color: transparent;
+    min-height: 0vh !important;
+  }
+}
+
+
+.btn-orange{
+  border: .1rem solid $primary-color;
+  color: $primary-color;
+  &:hover{
+    background-color:$primary-color;
+    color:white;
+  }
+}

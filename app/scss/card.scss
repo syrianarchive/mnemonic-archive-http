@@ -1,0 +1,95 @@
+
+.card{
+  margin:2rem;
+}
+
+.card{
+  background-color:white;
+  border: 0rem solid black;
+  font-size: 1rem;
+  margin:0rem;
+  margin-bottom:2rem;
+
+  &:after{
+    border: 0;
+    height: 1px;
+    /* background: #333; */
+    background-image: linear-gradient(to right, $primary-color, $accent-color, $primary-color);
+    /* position: relative; */
+    content: "";
+    /* margin-bottom: -2rem; */
+    display: block;
+    opacity:.3;
+  }
+
+  .card-header, .card-body{
+    padding-top:0rem;
+        z-index:4;
+
+  }
+  a{
+    color: black;
+    text-decoration: none;
+    .card-title{
+      .tcontent {
+        background-color: white;
+        color: black;
+        display: inline;
+        padding-top:.4rem;
+        padding-bottom:.3rem;
+        border-bottom: 4px solid $primary-color;
+        letter-spacing:.03em;
+        line-height:1.4em;
+        opacity:1;
+	@include breakpoint(medium){
+	  line-height: 2rem;
+	}
+      }
+      margin-top: -3rem;
+      margin-left:-.3rem;
+      position:relative;
+      z-index:6;
+      display: block;
+      font-size: 2rem;
+      @include breakpoint(medium){
+        font-size:1rem;
+      }
+      margin-bottom:0px;
+      font-family: 'Merriweather';
+    }
+  }
+  .card-body {
+    font-size: 1.5rem;
+    color: $dark-color;
+    @include breakpoint(medium){
+        font-size:1rem;
+      }
+    small{
+      display:block;
+      color:#666;
+      padding-top:.8rem;
+          }
+  }
+  .card-image{
+    max-height:20rem;
+    padding:0;
+    margin:0;
+    overflow: hidden;
+    z-index:3;
+    background: linear-gradient(white, black);;
+    position:relative;
+    img{
+      border: 0px solid red !important;
+      opacity:.8;
+      z-index:2;
+      margin-bottom:0 !important;
+    }
+
+  }
+
+}
+
+.card .card-image:first-child img {
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+    }

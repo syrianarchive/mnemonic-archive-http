@@ -1,0 +1,137 @@
+
+.padright{
+  padding-right: 2rem;
+  @include breakpoint(medium){
+    padding-right: 0;
+  }
+}
+
+.padrightextra{
+  padding-right: 4rem;
+  @include breakpoint(medium) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.margright{
+  margin-right: 2rem;
+}
+
+.nopad{
+  padding: 0 !important;
+}
+.nopadvertical{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+}
+.maintext{
+  background-color:white;
+  padding: 2rem;
+  margin-left:-2rem;
+  margin-right:2rem;
+  height: 100%;
+  @include breakpoint(medium){
+    margin-left: 0;
+  }
+}
+
+.container{
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.flx{
+  column-count: 2;
+  column-gap: 2rem;
+  @include breakpoint(medium){
+    column-count: 1;
+    float: none;
+    .navbar-section{
+      display:inline;
+    }
+  }
+  .fl{
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    break-inside: avoid;
+    box-sizing: border-box;
+  }
+  .fll{
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    box-sizing: border-box;
+    display:block;
+  }
+}
+
+.flxx{
+  column-count: 4;
+  column-gap: 2rem;
+  @include breakpoint(medium){
+    column-count: 1;
+    float: none;
+    .navbar-section{
+      display:inline;
+    }
+  }
+  .fll{
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    box-sizing: border-box;
+    display:block;
+  }
+}
+
+
+img {
+  max-width:100%;
+}
+
+.columns {
+  max-width:1400px;
+  margin: 0 auto;
+  padding: 4rem;
+@include breakpoint(medium){
+    padding:1rem;
+  }
+}
+
+
+body{
+  line-height: 1.4;
+  background-color: #fbfbfb;
+}
+
+html.fixmod{
+  overflow: hidden;
+}
+
+
+.footer {
+  background-color:$dark-color;
+  a {
+    color:#999 !important;
+  }
+}
+.footer{
+  border-top: 2px solid $primary-color;
+}
+
+.none{display:none}
+
+.navbar .navbar-section{
+  @include breakpoint(medium){
+    display: inline;
+  }
+}
+
+.col-6{
+  @include breakpoint(medium){
+    width: 100%;
+  }
+}

@@ -1,0 +1,177 @@
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Droid Arabic Naskh' !important;
+  p, h1, h2, h3, h4, h5, h6{
+    font-family: 'Droid Arabic Naskh' !important;
+  }
+  article{
+    p, h1, h2, h3, h4, h5, h6{
+      font-family: 'Droid Arabic Naskh' !important;
+    }
+  }
+  ol, ul {margin: 2rem 2rem 2rem 2rem};
+
+  article.contents ul li:before {
+    content: '◀';
+    margin-right: -1.5em;
+    margin-left: 0em;
+  }
+
+  .investigations .col-5 p {
+    padding: 2em;
+    background-color: #333;
+    margin-right: -2em;
+    margin-left: 0em;
+  }
+
+  .modal-container{
+    text-align: right;
+  }
+
+}
+
+.card a .card-title {
+  font-family: 'Droid Arabic Naskh' !important;
+}
+
+.home .intro .investigations .columns{
+  padding:0;
+  .card{
+    margin-left:2rem;
+    margin-right:0px;
+  }
+}
+
+
+.home .flx .card{
+  margin-left:2rem;
+  margin-right:0px;
+}
+
+.investigation {
+  margin-left:2rem;
+  margin-right:-2rem;
+  @include breakpoint(medium) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.investigations .supercard .card a .card-title .tcontent {
+  font-size:3rem;
+  line-height: 2;
+  @include breakpoint(medium){
+    font-size: 1.2rem;
+  }
+} 
+
+.card a .card-title .tcontent {
+  font-size: 2rem;
+  @include breakpoint(medium){
+    font-size: 1.1rem;
+  }
+}
+
+.maintext{
+  margin-left:2rem;
+  margin-right:-2rem;
+}
+
+.padright{
+  padding-right: 0rem;
+  padding-left: 2rem;
+  @include breakpoint(medium) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.margright{
+  margin-left: 2rem;
+}
+
+.clist {
+  .col-6:nth-child(even) {
+    padding-right: 0rem;
+    padding-left: 2rem;
+  }
+}
+
+
+a.hb.btn.btn-link {
+  margin-left:0rem;
+  margin-right:-.9rem;
+
+}
+
+.filters .filter{
+  padding-right:0rem;
+  padding-left:4rem;
+
+}
+
+td li {
+  margin-left: 0;
+  margin-right: 25px;
+}
+
+td {
+  text-align: right;
+}
+
+@include breakpoint(medium) {
+  .home-page-link:after{
+  }
+  .menu-button {
+    right: auto;
+    top: auto;
+    left: 2.3rem;
+  }
+  .ar_page .title {
+    height: 4.5rem;
+  }
+  .top a, .top .btn.btn-link {
+    text-align: right;
+  }
+  .frontstats .statcol h6 {
+    line-height: 2.3;
+  }
+  .columns {
+    padding: 1rem;
+  }
+  .maintext {
+    margin-right: 0 !important;
+  }
+  article h4 {
+    line-height: 1.5;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  
+
+  .clist {
+    .col-6:nth-child(even) {
+      @include breakpoint(medium){
+	padding-left: 0;
+      }
+    }
+  }
+
+  html.ar .investigation {
+    margin-right: 0;
+  }
+
+  .intro .columns h3 {
+    bottom: .7rem;
+  }
+  
+  td:nth-of-type(1):before { content: "اسم الحقل: "; }
+  td:nth-of-type(2):before { content: "آلية العمل: "; }
+  td:nth-of-type(3):before { content: "نوع الحقل: "; }
+  td:nth-of-type(4):before { content: "طريقة الجمع :"; }
+  td:nth-of-type(5):before { content: "الغرض: "; }
+}

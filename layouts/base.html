@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="{{locale}} {% block htmlclass %}{% endblock %}">
+<head>
+  <title>{{title}} | {{sitename}} | {{locale}}</title>
+
+  <meta charset="utf-8">
+  <meta name="robots" content="index, follow, noodp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <meta name="description" content="{{title}} - {{desc}}">
+
+  <meta name="twitter:card" content='{{desc}} | {{ "Site Name" | t(locale)}}'>
+  <meta name="twitter:site" content="{{ "Twitter Username" |t(locale)}}">
+  <meta name="twitter:creator" content="{{ "Twitter Username" |t(locale)}}">
+  <meta name="twitter:url" content="{{ "Site URL" |t(locale)}}{{url}}">
+  <meta name='twitter:image' content="{{ "Site URL" |t(locale)}}{{image}}">
+  <meta property="og:url" content="{{ "Site URL" |t(locale)}}{{url}}">
+  <meta property="og:title" content="{{title}} | {{ "Site Name" |t(locale)}}">
+  <meta property="og:description" content="{{desc}} | {{ "Site Name" |t(locale)}}">
+  <meta property="og:image" content="{{ "Site URL" |t(locale)}}{{image}}">
+
+  <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
+  {% if locale === "ar"%}
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/droid-arabic-naskh" type="text/css"/>
+  {%endif%}
+
+  <script type="text/javascript">
+    const locale = "{{locale}}";
+    {% block extraheadjs %}
+    {% endblock %}
+  </script>
+
+  <link rel='stylesheet'  href='/assets/styles.bundle.css' />
+</head>
+<body class="{{name}}page">
+
+  <div class="container top" id="menuBox">
+    <div class="columns">
+      <div class="col-12 nav">
+        <header class="navbar">
+
+          <section class="navbar-section">
+            <a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/about">{{ "About" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/tools_methods">{{ "Tools and Methods" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/investigations">{{ "Investigations" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/database">{{ "Database" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/about/press">{{ "Press" |t(locale)}}</a>
+          </section>
+
+          <section class="navbar-section">
+          </section>
+          <section class="navbar-section">
+          </section>
+
+          <section class="navbar-section">
+            <!-- <a href="/">
+              <img src="/assets/syrian_archive_logo_landscape.png" />
+            </a> -->
+          </section>
+
+          <section class="navbar-section">
+          </section>
+          <section class="navbar-section">
+            <a class="btn btn-link supportlink" href="/{{locale}}/about/support">{{ "Donate" |t(locale)}}</a>
+          </section>
+
+          <section class="navbar-section">
+            <a class="btn btn-link" href="{{ url | l('ar')}}">
+              {% if locale === "ar"%}<b>{%endif%}
+              ع
+              {% if locale === "ar"%}</b>{%endif%}
+            </a>
+            <a class="btn btn-link" href="{{ url | l('en')}}">
+              {% if locale === "en"%}<b>{%endif%}
+              en
+              {% if locale === "en"%}</b>{%endif%}
+            </a>
+          </section>
+
+        </header>
+      </div>
+    </div>
+  </div>
+
+{% block titlecontainer %}
+  <div class="container title {% if image %}imaged{% endif %}" style="{% if image %}background-image:url({{image}}){% endif %}">
+    <div class="columns">
+      <div class="col-12">
+        {% block title %}
+        <h1>{{ title }}<i class="fa fa-bars menu-button" id="menuButton"></i></h1>
+        <div class="desc">
+            {{desc}}
+          </div>
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+  <article class="contents">
+    {% block jstop %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+  </article>
+
+
+  {% block jsbottom %}
+    <div id="js-root"></div>
+  {% endblock %}
+
+
+
+  <div class="container footer">
+    <div class="columns">
+      <div class="col-12 nav">
+        <header class="navbar">
+
+          <section class="navbar-section">
+	    <a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}} / </a>
+            <a class="btn btn-link" href="/{{locale}}/about/contact">{{ "Contact" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/about/legal/terms_of_use.html">{{ "Terms of Use" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/about/legal/privacy_policy.html">{{ "Privacy Policy" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/about/legal/copyright.html">{{ "Copyright" |t(locale)}}</a>
+            <a class="btn btn-link" href="/{{locale}}/about/legal/disclaimer.html">{{ "Disclaimer" |t(locale)}}</a>
+          </section>
+
+          <section class="navbar-section">
+          </section>
+
+          <section class="navbar-section">
+            <a class="btn btn-link" href="https://www.patreon.com/syrianarchive">{{ "Donate" |t(locale)}}</a>
+            <a class="btn btn-link" href="{{ "Facebook URL" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
+            <a class="btn btn-link" href="{{ "Twitter URL" |t(locale)}}">{{ "Twitter" |t(locale)}}</a>
+          </section>
+        </header>
+      </div>
+    </div>
+  </div>
+
+  {% block bundlejs %}
+    <script src="/assets/app.bundle.js"></script>
+  {% endblock %}
+
+<script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57419459-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

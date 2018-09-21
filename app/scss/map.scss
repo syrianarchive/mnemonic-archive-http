@@ -1,0 +1,16 @@
+
+html.mapc{
+  position:fixed;
+  height:100%;
+  width:100%;
+}
+
+#map{
+  background-color: black;
+}
+
+#map iframe{
+  height:100vh;
+  margin-top:10rem;
+  border: 0px solid black;
+}

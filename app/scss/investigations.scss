@@ -1,0 +1,81 @@
+
+.investigation{
+    margin-top: -10em;
+    background-color: white;
+    padding: 2rem;
+    margin-left:-2rem;
+    margin-right:2rem;
+    z-index:30;
+    height: 100%;
+    @include breakpoint(medium){
+      margin-top: 0;
+      margin-left: 0;
+    }
+}
+
+.inves-page .title {
+  box-shadow: none;
+  @include breakpoint(medium){
+    box-shadow: inset 0 -220px 220px -20px rgba(0,0,0,.5);
+  }
+}
+
+.investigations{
+  background-color: $background-color;
+  color: white;
+  .col-5 p{
+    padding:2em;
+    background-color:#333;
+  }
+  .card{
+    .card-title{
+      font-size: 3rem;
+      @include breakpoint(medium){
+        font-size:1rem;
+      }
+    }
+  }
+
+
+  .clist > .col-6:first-child{
+    display:none;
+  }
+
+  .clist {
+    .col-6:nth-child(even) {
+      padding-right:2rem;
+      @include breakpoint(medium){
+	padding-right: 0;
+      }
+    }
+  }
+
+  .supercard .card a .card-title .tcontent{
+    font-size:4rem;
+    @include breakpoint(medium){
+      font-size: 1.2rem;
+    }
+  }
+
+  .supercard .card .card-body{
+    font-size:2rem;
+    @include breakpoint(medium){
+      font-size: 1rem;
+    }
+  }
+
+  .supercard .card-image{
+    max-height:40rem;
+  }
+
+  .supercard img{
+    width:100%;
+  }
+
+}
+
+iframe, object, embed {
+  @include breakpoint(medium){
+    max-width: 100%;
+  }
+}

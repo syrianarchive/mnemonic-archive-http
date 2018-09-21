@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block htmlclass %}
+inves-page
+{% endblock %}
+
+{% block title %}
+<h1>{{ title }} <i class="fa fa-bars menu-button" id="menuButton"></i> </h1>
+
+<div class="desc">
+</div>
+{% endblock %}
+
+
+  {% block content %}
+
+    <div class="container maincontent">
+      <div class="columns">
+        <div class="col-8 col-sm-12 investigation">
+          {% include 'includes/breadcrumbs.html' %}
+          <h1>{{ title }}</h1>
+          <i><small>{{date|string|truncate(15, false, '') }}</small></i>
+          
+          <div class="desc">
+            {{desc}}
+          </div>
+
+          <hr />
+
+          {{ contents|safe }}
+        </div>
+
+        <div class="col-1 col-sm-12"></div>
+
+        <div class="col-3 col-sm-12 sidebar">
+          {% include 'includes/cardlist.html' %}
+        </div>
+      </div>
+    </div>
+  {% endblock %}

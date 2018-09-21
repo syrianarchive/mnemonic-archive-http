@@ -1,0 +1,173 @@
+
+.container.title{
+  .columns{
+    position:relative;
+    min-height: 50vh;
+    .col-12{
+      position: absolute;
+      color:white;
+      bottom:  2rem;
+      z-index: 1;
+      @include breakpoint(medium){
+	bottom: 0;
+	top: 1.1rem;
+      }
+    }
+  }
+}
+
+.en_investigations_page
+.container.title
+.columns,
+.en_database_page
+  .container.title
+  .columns,
+.ar_investigations_page
+  .container.title
+  .columns,
+.ar_database_page
+  .container.title
+  .columns,
+{
+  min-height: 27rem;
+}
+
+.top{
+  position: absolute;
+  background-color: #ffffff;
+  z-index: 40;
+  position: fixed;
+  border-top: 3px solid $primary-color;
+
+  .columns {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  a, .btn.btn-link{
+    color: $dark-color;
+    @include breakpoint(medium){
+      display: block;
+      text-align: left;
+    }
+  }
+
+  @include breakpoint(medium){
+    display: none;
+    /* position: relative; */
+    background-color: $background-color;
+    a{
+      font-size: 1rem;
+      font-size: 1rem;
+      padding: 0rem;
+      line-height: 1rem;
+      margin: 0rem;
+      height: 2.5rem;
+      font-weight: bold;
+    }
+    .navbar-section{
+      display:inline;
+    }
+  }
+}
+
+a.home-page-link:hover,
+a.home-page-link:link,
+a.home-page-link:visited,
+a.home-page-link:active
+{
+    color: #fff;
+    text-decoration: none; 
+}
+
+.menu-button{
+  display: none;
+  @include breakpoint(medium){
+    display: inline;
+    position: absolute;
+    right: 2.3rem;
+    top: 5px;
+  }
+}
+
+.en_page .menu-button{
+  
+}
+
+.home .desc {
+  @include breakpoint(medium) {
+    display: none;    
+  }
+}
+
+.desc {
+  @include breakpoint(medium) {
+    font-size: 1.4rem;
+  }
+}
+
+.menu-box{
+  display: block;
+  position: absolute;
+  top: 4rem;
+  border-bottom: 1px solid $primary-color;
+}
+
+.title{
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/assets/main_back.jpg');
+  box-shadow: inset 0 -220px 220px -20px rgba(50,50,50,.9);
+  @include breakpoint(medium){
+    height: 8rem;
+  }
+  h1{
+    color: white;
+    @include breakpoint(medium){
+      font-size:1.8rem;
+      width: 85%;
+    }
+  }
+  .desc{
+    color:white;
+    margin-bottom: 3rem;
+    @include breakpoint(medium){
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+
+
+a.hb.btn.btn-link {
+  color:  $primary-color;
+  // font-family: 'Merriweather', serif;
+  font-size: 1em;
+  // text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+  font-weight: bold;
+  text-transform:uppercase;
+  margin-left:-.9rem;
+  @include breakpoint(medium){
+    display: none;
+  }
+}
+
+.btn.btn-link.supportlink {
+  border: 2px solid $primary-color;
+  line-height: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $primary-color;
+  @include breakpoint(medium){
+    display: none;
+  }
+}
+
+.btn.btn-link.donate-mobile{
+  display: none;
+  @include breakpoint(medium){
+    display: inline;
+    color: $primary-color
+  }
+}

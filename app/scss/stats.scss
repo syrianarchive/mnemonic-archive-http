@@ -1,0 +1,86 @@
+
+.frontstats{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  box-shadow: inset 0 -10px 10px -10px rgba(0,0,0,.05);
+  background-image:url(/assets/aaa.jpg);
+  .columns{
+    align-items: center;
+  }
+  .statcol {
+    padding: 2rem;
+    text-align: center;
+    
+    > * {
+      color:black;
+      padding:.2em 0em .2em 0em;
+      display: inline;
+      @media screen and (max-width: 750px) {
+	padding:.1em 0em .1em 0em;
+      }
+    }
+    h6 {
+      font-size: 1.4rem;
+      background-color: $highlight-color;
+      color:$dark-color;
+      @include breakpoint(medium){
+	line-height: 1.7;
+      }
+    }
+    @include breakpoint(medium){
+      /* padding: 1rem; */
+      padding: 0.3rem;
+      text-align: inherit;
+    }
+    
+  }
+
+
+  .vvv{
+    h5 {
+      color:black;
+      margin: 0 0 0 .5rem;
+    }
+    @include breakpoint(medium){
+      margin-top: 1rem;
+      width: auto;
+    }
+    
+  }
+
+  .frontvio{
+    display: inline-block;
+
+    h6 {
+      display: inline-block;
+      margin: .3rem;
+      padding: .3rem;
+      font-size: 1.2rem;
+      background-color: $highlight-color;
+
+      &:hover {
+        background-color:white;
+      }
+      a {
+        color:$dark-color;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  @include breakpoint(medium){
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.arrow{
+  font-size:4rem;
+  text-align: center;
+  color: #eee;
+  @include breakpoint(medium){
+    display: none;
+  }
+}

@@ -1,0 +1,87 @@
+
+.filters{
+
+  .filter{
+    padding-top:2rem;
+    padding-bottom:2rem;
+    padding-right:4rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+
+    h5{
+      font-size: 1.3rem;
+      padding: .4rem;
+      margin: 0;
+      padding-left: 1rem;
+      font-family: sans-serif;
+      color: #666;
+    }
+
+    input[type=text], .Select-control{
+      background-color: #fff;
+      border-color: #d9d9d9 #ccc #b3b3b3;
+      border-radius: 0px;
+      border: 0px solid;
+      color: #333;
+      cursor: default;
+      display: table;
+      border-spacing: 0;
+      border-collapse: separate;
+      height: 36px;
+      outline: none;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding-left: 1rem;
+      border-bottom: 1px dashed #aaa;
+      &:focus{
+        background-color: $highlight-color;
+        border-bottom: 1px solid $primary-color;
+      }
+    }
+
+
+    input:not([value=""]), .Select.has-value .Select-value{
+       background-color: $highlight-color !important;
+       border-bottom: 4px solid $accent-color !important;
+    }
+
+    input, .input-container, .react-datepicker__input-container, .react-datepicker-wrapper {
+      width: 100%;
+    }
+
+    /* the code bellow enlarge the datapiker calender */
+    /* for more see this: https://github.com/Hacker0x01/react-datepicker/issues/624 */
+    .react-datepicker {
+      font-size: 1em;
+    }
+    .react-datepicker__header {
+      padding-top: 0.8em;
+    }
+    .react-datepicker__month {
+      margin: 0.4em 1em;
+    }
+    .react-datepicker__day-name, .react-datepicker__day {
+      width: 1.9em;
+      line-height: 1.9em;
+      margin: 0.166em;
+    }
+    .react-datepicker__current-month {
+      font-size: 1em;
+    }
+    .react-datepicker__navigation {
+      top: 1em;
+      line-height: 1.7em;
+      border: 0.45em solid transparent;
+    }
+    .react-datepicker__navigation--previous {
+      border-right-color: #ccc;
+      left: 1em;
+    }
+    .react-datepicker__navigation--next {
+      border-left-color: #ccc;
+      right: 1em;
+    }
+
+  }
+}
