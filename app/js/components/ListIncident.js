@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {size} from 'lodash/fp';
-import {location} from '../containers/helpers';
+import {location, incidentTitle} from '../containers/helpers';
 
 export default class ListEvidence extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class ListEvidence extends Component {
       >
         <div className="columns">
           <div className="col-12 col-sm-12">
-            <h5>{i.title_en || 'Chemical Attack'}</h5>
+            <h5>{incidentTitle(i) || 'Chemical Attack'}</h5>
           </div>
         </div>
         <div className="columns metameta">

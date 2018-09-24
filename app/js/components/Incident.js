@@ -4,8 +4,7 @@ import Promise from 'bluebird';
 import Unit from './Unit';
 import CardUnit from './CardUnit';
 import t from '../../../translations';
-import {location} from '../containers/helpers';
-
+import {location, incidentTitle, incidentSummary} from '../containers/helpers';
 
 import {api} from '../api';
 
@@ -84,8 +83,8 @@ export default class Incident extends Component {
         />
 
         <div className="col-7 incidentcol col-sm-12">
-          <button className="btn btn-orange" onClick={this.props.clear}>
-             ← back to database
+          <button className="btn btn-orange back-button" onClick={this.props.clear}>
+            ← {t('back to database')}
           </button>
 
           <br /><br />
@@ -93,7 +92,7 @@ export default class Incident extends Component {
 
           <span className="lbl">{i.incident_code}</span>
 
-          <h3>{i.title_en || 'Chemical Attack'}</h3>
+          <h3>{incidentTitle(i) || 'Chemical Attack'}</h3>
           <h6>{i.incident_date} {i.incident_time}</h6>
 
           <hr />
@@ -117,7 +116,7 @@ export default class Incident extends Component {
           </div>
 
           <div className="incidentsummary">
-            <p>{i.summary_en}</p>
+            <p>{incidentSummary(i)}</p>
           </div>
 
           <div>

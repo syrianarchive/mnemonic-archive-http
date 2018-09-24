@@ -15,7 +15,7 @@ const translations = merge(basic, custom);
 
 const t = (s, l = locale) => {
   try {
-    return translations[l][s] ? translations[l][s] : s;
+    return translations[l][s.toLowerCase()] ? translations[l][s.toLowerCase()] : s;
   } catch (e) {
     return s;
   }

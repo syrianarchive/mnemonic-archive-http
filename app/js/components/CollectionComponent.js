@@ -14,6 +14,7 @@ import locations from '../../../../locations.json';
 import CollectionMapComponent from './CollectionMapComponent';
 import Slider from './CollectionRangeComponent';
 
+import translator from '../../../translations';
 
 export default class DatabaseComponent extends Component {
   constructor(props) {
@@ -80,20 +81,20 @@ export default class DatabaseComponent extends Component {
     }, 30);
   }
 
-    updateFrontentView() { // eslint-disable-line
-      const ii = document.getElementsByClassName('scrolltome')[0];
-      const t = document.getElementsByClassName('top')[0];
-      const s = document.getElementsByClassName('subheader')[0];
-      const p = ii ? ii.offsetTop : 0;
-      const v = t ? t.offsetHeight : 0;
-      const y = s ? s.offsetHeight : 0; // offsetheight
-      // window.scrollTo(0, p - v - y); // eslint-disable-line
-      window.scrollTo({
-        top: p - v - y,
-        left: 0,
-        behavior: 'smooth'
-      });
-    }
+  updateFrontentView() { // eslint-disable-line
+    const ii = document.getElementsByClassName('scrolltome')[0];
+    const t = document.getElementsByClassName('top')[0];
+    const s = document.getElementsByClassName('subheader')[0];
+    const p = ii ? ii.offsetTop : 0;
+    const v = t ? t.offsetHeight : 0;
+    const y = s ? s.offsetHeight : 0; // offsetheight
+    // window.scrollTo(0, p - v - y); // eslint-disable-line
+    window.scrollTo({
+      top: p - v - y,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
 
   render() {
     const updating = this.props.updating || this.state.typing;
@@ -111,28 +112,28 @@ export default class DatabaseComponent extends Component {
     const nolocationIncidents = filter(i => !i.latitude && !i.longitude, incidents);
 
     const visiblebymap = size(visible) > 0
-        ? intersectionBy('incident_code', incidents, visible)
-        : locationIncidents;
+          ? intersectionBy('incident_code', incidents, visible)
+          : locationIncidents;
 
     const visibleIncidents = filter((d) =>
-            (moment(d.incident_date) >= moment(this.state.range[0])
-            && moment(d.incident_date) <= moment(this.state.range[1])), visiblebymap);
+                                    (moment(d.incident_date) >= moment(this.state.range[0])
+                                     && moment(d.incident_date) <= moment(this.state.range[1])), visiblebymap); // eslint-disable-line
 
     const invisibleIncidents = size(visible) > 0
-        ? uniqBy('incident_code', concat(xorBy('incident_code', incidents, visible), nolocationIncidents))
-        : nolocationIncidents;
+          ? uniqBy('incident_code', concat(xorBy('incident_code', incidents, visible), nolocationIncidents))
+          : nolocationIncidents;
 
     const makeIncidents = (is) => map(i =>
-      <div // eslint-disable-line
-        onMouseEnter={() => this.hover(i)}
-        onMouseLeave={() => this.hover(false)}
-      >
-        <ListIncident
-          incident={i}
-          selector={() => this.props.selectIncident(i)}
-        />
-      </div>
-      , is);
+                                      <div // eslint-disable-line
+                                        onMouseEnter={() => this.hover(i)}
+                                        onMouseLeave={() => this.hover(false)}
+                                      >
+                                        <ListIncident
+                                          incident={i}
+                                          selector={() => this.props.selectIncident(i)}
+                                        />
+                                      </div>
+                                      , is);
 
     const sort = (l) => {
       const by = this.state.sort;
@@ -205,7 +206,7 @@ export default class DatabaseComponent extends Component {
             id="incidentlist"
           >
             <div className="collectionsearch">
-              <input placeholder="Type to Search..." value={this.state.searchterm} type="text" onChange={this.search} />
+              <input placeholder={translator('Type to Search...')} value={this.state.searchterm} type="text" onChange={this.search} />
             </div>
 
             <Slider
@@ -216,41 +217,41 @@ export default class DatabaseComponent extends Component {
               <span>
                 <i className="fa fa-map-marker" />
                 <a href="#onmap">
-                  {` ${size(vlist)} results on map`}
+                  {` ${size(vlist)} ${translator('results on map')}`}
                 </a>
                 <a href="#offmap">
-                  {size(ilist) > 0 ? ` / ${size(ilist)} off map ` : ' '}
+                  {size(ilist) > 0 ? ` / ${size(ilist)} ${translator('off map')} ` : ' '}
                 </a>
               </span>
               <span>
-                {' | Sort: '}
+                | {translator('Sort')}:
                 <span // eslint-disable-line
                   onClick={() => this.setSort('date')}
                   className={this.state.sort === 'date' ? 'boldme clickme' : 'clickme'}
                 >
                   <icon className="fa fa-calendar" />
-                  {' Date '}
+                  {translator('Date')}
                 </span>
                 <span // eslint-disable-line
                   onClick={() => this.setSort('observationcount')}
                   className={this.state.sort === 'observationcount' ? 'boldme clickme' : 'clickme'}
                 >
                   <icon className="fa fa-video-camera" />
-                  {' Observations '}
+                  {translator('Observations')}
                 </span>
                 <span // eslint-disable-line
                   onClick={() => this.setSort('relevance')}
                   className={this.state.sort === 'relevance' ? 'boldme clickme' : 'clickme'}
                 >
                   <icon className="fa fa-list-ol" />
-                  {' Search Relevance '}
+                  {translator('Search Relevance')}
                 </span>
                 <span // eslint-disable-line
                   onClick={() => this.setSort('confidence')}
                   className={this.state.sort === 'confidence' ? 'boldme clickme' : 'clickme'}
                 >
                   <icon className="fa fa-bullseye" />
-                  {' Confidence '}
+                  {translator('Confidence')}
                 </span>
               </span>
             </div>
@@ -260,8 +261,8 @@ export default class DatabaseComponent extends Component {
             </div>
             <div style={{textAlign: 'center', color: '#aaa', padding: '3rem'}} >
               <div>▲</div>
-              <div>On Map</div>
-              <div>Off Map</div>
+              <div>{translator('On Map')}</div>
+              <div>{translator('Off Map')}</div>
               <div>▼</div>
             </div>
             <div id="offmap" className="invisibleincidents" style={updating ? {opacity: '.3'} : {}}>

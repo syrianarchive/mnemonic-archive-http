@@ -164,6 +164,17 @@ a.hb.btn.btn-link {
   }
 }
 
+.footer .btn.btn-link.supportlink {
+  @include breakpoint(tiny) {
+    padding: .3rem;
+    font-size: 1.1rem;
+  }
+  @include breakpoint(medium){
+    display: inline;
+    border: none;
+  }
+}
+
 .btn.btn-link.donate-mobile{
   display: none;
   @include breakpoint(medium){

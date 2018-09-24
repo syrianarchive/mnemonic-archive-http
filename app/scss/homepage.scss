@@ -127,3 +127,33 @@
 .home .flx .card{
   margin-left:0;
 }
+
+.mailing-list {
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-bottom: 0;
+  @include breakpoint(medium) {
+    padding-top: 0;
+    padding-left: .35rem;
+    padding-right: 0; 
+  }
+}
+.mailing-list label {
+  color: #999;
+}
+.mailing-list .email {
+  line-height: 1.9;
+}
+.mailing-list #mc_embed_signup_scroll {
+  padding-top: .5rem;
+}
+.mailing-list .btn {
+  margin-top: -.3rem;
+}
+.btn.btn-link.supportlink {
+  
+}
+.footer-nav {
+  padding-top: 0;
+  padding-bottom: 2rem;
+}

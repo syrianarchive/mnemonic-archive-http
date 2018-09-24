@@ -4,6 +4,8 @@ import noUiSlider from 'nouislider';
 
 import {timeMeOut} from '../containers/helpers';
 
+import t from '../../../translations';
+
 // Add a range slider
 let slider = document.getElementById('slider');
 
@@ -69,9 +71,9 @@ export default class CollectionRangeComponent extends Component {
       <div className="sliderarea">
         <div className="rangemeta">
           <i className="fa fa-clock-o" />
-          {' From: '}
+          {t('From')}:
           <b>{moment(this.state.selectedStartDate).format('MMM Do YYYY')}</b>
-          {' To: '}
+          {t('To')}:
           <b>{moment(this.state.selectedEndDate).format('MMM Do YYYY')}</b>
         </div>
         <div className="slider" id="slider" />

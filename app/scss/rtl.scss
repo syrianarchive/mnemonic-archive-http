@@ -64,6 +64,11 @@ body {
   @include breakpoint(medium){
     font-size: 1.2rem;
   }
+}
+
+.resultsMeta {
+  padding-right: 4rem;
+  padding-left: 0;
 } 
 
 .card a .card-title .tcontent {
@@ -151,8 +156,6 @@ td {
     text-align: right;
   }
 
-  
-
   .clist {
     .col-6:nth-child(even) {
       @include breakpoint(medium){
@@ -175,3 +178,32 @@ td {
   td:nth-of-type(4):before { content: "طريقة الجمع :"; }
   td:nth-of-type(5):before { content: "الغرض: "; }
 }
+
+.footer-nav {
+  padding-left: 2rem;
+}
+.mailing-list {
+  padding-left: 0;
+  padding-right: 3rem;
+  @include breakpoint(medium) {
+    padding-right: 0;
+  }
+}
+.mailing-list .btn {
+  margin-top: .35rem;
+} 
+
+.resultsMeta .fa {
+  padding-left: .25rem;
+}
+.collection .collectionsearch input[type="text"] { 
+  padding-right: 4rem;
+  padding-left: 0;
+}
+
+.collection .collectionsearch::after {
+  right: 0;
+  left: auto;
+  padding-right: 1.5rem;
+  padding-left: 0;
+} 

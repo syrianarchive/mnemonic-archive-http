@@ -9,11 +9,11 @@
 
   <meta name="description" content="{{title}} - {{desc}}">
 
-  <meta name="twitter:card" content='{{desc}} | {{ "Site Name" | t(locale)}}'>
+  <meta name="twitter:card" content="{{desc}} | {{ "Site Name" |t(locale)}}">
   <meta name="twitter:site" content="{{ "Twitter Username" |t(locale)}}">
   <meta name="twitter:creator" content="{{ "Twitter Username" |t(locale)}}">
   <meta name="twitter:url" content="{{ "Site URL" |t(locale)}}{{url}}">
-  <meta name='twitter:image' content="{{ "Site URL" |t(locale)}}{{image}}">
+  <meta name="twitter:image" content="{{ "Site URL" |t(locale)}}{{image}}">
   <meta property="og:url" content="{{ "Site URL" |t(locale)}}{{url}}">
   <meta property="og:title" content="{{title}} | {{ "Site Name" |t(locale)}}">
   <meta property="og:description" content="{{desc}} | {{ "Site Name" |t(locale)}}">
@@ -32,7 +32,7 @@
     {% endblock %}
   </script>
 
-  <link rel='stylesheet'  href='/assets/styles.bundle.css' />
+  <link rel="stylesheet"  href="/assets/styles.bundle.css" />
 </head>
 <body class="{{name}}page">
 
@@ -56,9 +56,7 @@
           </section>
 
           <section class="navbar-section">
-            <!-- <a href="/">
-              <img src="/assets/syrian_archive_logo_landscape.png" />
-            </a> -->
+            
           </section>
 
           <section class="navbar-section">
@@ -68,12 +66,12 @@
           </section>
 
           <section class="navbar-section">
-            <a class="btn btn-link" href="{{ url | l('ar')}}">
+            <a class="btn btn-link" href="{{ url | l("ar")}}">
               {% if locale === "ar"%}<b>{%endif%}
               ع
               {% if locale === "ar"%}</b>{%endif%}
             </a>
-            <a class="btn btn-link" href="{{ url | l('en')}}">
+            <a class="btn btn-link" href="{{ url | l("en")}}">
               {% if locale === "en"%}<b>{%endif%}
               en
               {% if locale === "en"%}</b>{%endif%}
@@ -116,26 +114,59 @@
 
 
   <div class="container footer">
-    <div class="columns">
+    <!-- Begin MailChimp Signup Form -->
+    <div class="columns mailing-list">
+      <div class="column">
+	<div id="mc_embed_signup">
+	  {% if locale === "ar"%}
+	  <form action="https://syrianarchive.us15.list-manage.com/subscribe/post?u=90e84d0165f6b3bb843951047&amp;id=5f22f184a1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	    <label for="mce-EMAIL">اشترك بقائمتنا البريدية</label>
+	    <div id="mc_embed_signup_scroll">
+	      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="بريدك الإلكتروني" required>
+	      <input type="submit" value="اشترك" name="subscribe" id="mc-embedded-subscribe" class="btn btn-link supportlink">
+	      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_90e84d0165f6b3bb843951047_5f22f184a1" tabindex="-1" value=""></div>
+	    </div>
+	  </form>
+	  
+	  {% else %}
+	  
+	  <form action="https://syrianarchive.us15.list-manage.com/subscribe/post?u=90e84d0165f6b3bb843951047&amp;id=5f22f184a1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	    <label for="mce-EMAIL">Subscribe to our mailing list</label>
+	    <div id="mc_embed_signup_scroll">
+	      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+	      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-link supportlink">
+	      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_90e84d0165f6b3bb843951047_5f22f184a1" tabindex="-1" value=""></div>
+	    </div>
+	  </form>
+	  {% endif %}
+	</div>
+      </div>
+    </div>
+    <!--End mc_embed_signup-->
+    
+    
+    <div class="columns footer-nav">
       <div class="col-12 nav">
         <header class="navbar">
-
           <section class="navbar-section">
 	    <a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}} / </a>
+
             <a class="btn btn-link" href="/{{locale}}/about/contact">{{ "Contact" |t(locale)}}</a>
+
             <a class="btn btn-link" href="/{{locale}}/about/legal/terms_of_use.html">{{ "Terms of Use" |t(locale)}}</a>
             <a class="btn btn-link" href="/{{locale}}/about/legal/privacy_policy.html">{{ "Privacy Policy" |t(locale)}}</a>
             <a class="btn btn-link" href="/{{locale}}/about/legal/copyright.html">{{ "Copyright" |t(locale)}}</a>
             <a class="btn btn-link" href="/{{locale}}/about/legal/disclaimer.html">{{ "Disclaimer" |t(locale)}}</a>
+
           </section>
 
           <section class="navbar-section">
           </section>
 
           <section class="navbar-section">
-            <a class="btn btn-link" href="https://www.patreon.com/syrianarchive">{{ "Donate" |t(locale)}}</a>
-            <a class="btn btn-link" href="{{ "Facebook URL" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
-            <a class="btn btn-link" href="{{ "Twitter URL" |t(locale)}}">{{ "Twitter" |t(locale)}}</a>
+            <a class="btn btn-link" href="{{"donate url" |t(locale)}}">{{ "Donate" |t(locale)}}</a>
+            <a class="btn btn-link" href="{{"facebook url" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
+            <a class="btn btn-link" href="{{"Twitter URL" |t(locale) }}">{{ "Twitter" |t(locale)}}</a>
           </section>
         </header>
       </div>
@@ -147,13 +178,13 @@
   {% endblock %}
 
 <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
 
-  ga('create', 'UA-57419459-1', 'auto');
-  ga('send', 'pageview');
+  ga("create", "UA-57419459-1", "auto");
+  ga("send", "pageview");
 
 </script>
 

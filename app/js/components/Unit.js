@@ -43,7 +43,7 @@ export default class Unit extends Component {
           </video>
           }
 
-          <h6><br /><a href={fixurl(i.filename || '')} download>{t('Download file ↓')}</a></h6>
+          <h6><br /><a href={fixurl(i.filename || '')} download>{t('Download file')} ↓</a></h6>
 
           <small>
             {t('Online Link')}

@@ -8,6 +8,9 @@ export const unitTitle = u =>
   u[`online_title_${locale}`] ||
   u.description;
 
+export const incidentTitle = i => i[`title_${locale}`];
+export const incidentSummary = i => i[`summary_${locale}`];
+
 let timeout = null;
 export const timeMeOut = (func, time = 500) => {
   clearTimeout(timeout);
