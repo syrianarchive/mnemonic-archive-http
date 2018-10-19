@@ -14,10 +14,6 @@ export const updateCollection = units => ({type: 'UPDATE_COLLECTION', units});
 
 const callApi = (path, filters, dispatch, requestFunc, updateFunc) => {
   dispatch(requestFunc(true));
-  dispatch({
-    type: 'UPDATE_FILTERS',
-    filters,
-  });
 
   return api.post(path, filters)
     .then(r => {
@@ -32,14 +28,34 @@ export const updateFilters = filters =>
   dispatch => {
     const current = store.getState();
     const f = merge(current.database.filters, filters);
+    dispatch({
+      type: 'UPDATE_FILTERS',
+      filters: f,
+    });
     // only ping the api if the filters have changed.
     if (!isEqual(f, current.database.filters) || isEmpty(current.database.ds)) {
       callApi('units', f, dispatch, requestUnits, updateUnits);
     }
-    if (!isEqual(f, current.database.filters) || isEmpty(current.database.ds)) {
-      callApi('incidents', pick('term', f), dispatch, requestCollection, updateCollection);
+  };
+
+export const updateIncidentFilters = filters =>
+  dispatch => {
+    const current = store.getState();
+    const f = merge(current.collection.filters, filters);
+    dispatch({
+      type: 'UPDATE_FILTERS',
+      filters: pick(['term'], f),
+    });
+    dispatch({
+      type: 'UPDATE_INCIDENT_FILTERS',
+      filters: f,
+    });
+
+    if (!isEqual(f, current.collection.filters) || isEmpty(current.collection.ds)) {
+      callApi('incidents', f, dispatch, requestCollection, updateCollection);
     }
   };
+
 
 export const resetFilters = () =>
   dispatch => api.post('units', {})
