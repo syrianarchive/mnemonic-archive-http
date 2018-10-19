@@ -79,7 +79,7 @@ export default class Incident extends Component {
         <Unit
           unit={this.props.unit}
           clear={this.props.clearUnit}
-          subtitle={`Incident ${i.incident_code} - ${i.title_en}`}
+          subtitle={`Incident ${i.id} - ${i.annotations.title_en}`}
         />
 
         <div className="col-7 incidentcol col-sm-12">

@@ -5,9 +5,13 @@ import {location, incidentTitle} from '../containers/helpers';
 export default class ListEvidence extends Component {
   render() {
     const i = this.props.incident;
+    if (i.annotations === undefined) {
+      console.log('aaaaaaaaaaaa');
+      console.log(i);
+    }
     return (
       <div // eslint-disable-line
-        className={`listincident item confidence-${i.confidence}`}
+        className={`listincident item confidence-${i.annotations.confidence}`}
         onClick={this.props.selector}
       >
         <div className="columns">
@@ -18,17 +22,17 @@ export default class ListEvidence extends Component {
         <div className="columns metameta">
           <div className="col-3 col-sm-12" >
             <small>
-              {i.incident_code}
+              {i.id}
             </small>
           </div>
 
           <div className="col-5 col-sm-12">
             <small>
-              {location(i.location)}
+              {location(i.annotations.location)}
             </small>
           </div>
           <div className="col-2 col-sm-12">
-            <small>{i.incident_date}</small>
+            <small>{i.annotations.incident_date}</small>
           </div>
           <div className="col-2 col-sm-12 countu">
             {size(i.units) > 0 ?

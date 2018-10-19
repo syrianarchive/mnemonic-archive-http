@@ -83,8 +83,8 @@ export default class CollectionMapComponent extends Component {
     });
     const makemarkers = (ms, visible = true) => mapW((i, n) =>
       (<Marker
-        key={i.incident_code}
-        position={[i.latitude || 34.8021, i.longitude || 38.9968]}
+        key={i.aid}
+        position={[i.lat, i.lon]}
         ref={`marker${n}`} // eslint-disable-line
         icon={visible ? image : noimage}
         onClick={() => this.props.selector(i)}
@@ -97,17 +97,19 @@ export default class CollectionMapComponent extends Component {
       </Marker>)
     , ms);
 
-    const markers = makemarkers(uniqBy('incident_code', this.props.incidents), false);
-    const visiblemarkers = makemarkers(uniqBy('incident_code', this.props.visibleIncidents));
+    const markers = makemarkers(uniqBy('id', this.props.incidents), false);
+    const visiblemarkers = makemarkers(uniqBy('id', this.props.visibleIncidents));
 
     return (
       <div id="mapcol" className="mapcol">
         <Map
-          markerData={map(i => ({
-            lat: i.latitude || 34.8021,
-            lon: i.longitude || 38.9968,
-            incident_code: i.incident_code,
-          }), this.props.incidents)}
+          markerData={this.props.incidents
+          //   map(i => ({
+          //   lat: i.lat,
+          //   lon: i.lon,
+          //   incident_code: i.incident_code,
+          // }), this.props.incidents)
+          }
           onViewportChanged={this.onViewportChanged}
           visible={this.props.visible}
           updateFrontentView={this.props.updateFrontentView}
@@ -121,7 +123,7 @@ export default class CollectionMapComponent extends Component {
 
           {!isEmpty(this.props.hoverUnit) ?
             <CircleMarker
-              center={[this.props.hoverUnit.latitude, this.props.hoverUnit.longitude]}
+              center={[this.props.hoverUnit.lat, this.props.hoverUnit.lat]}
               color="teal" fillColor="teal" radius={24}
             />
           : ''}

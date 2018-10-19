@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {map, intersectionBy, size, uniqBy, concat, isEmpty, filter, xorBy, merge, sortBy, get, find, reverse} from 'lodash/fp';
+import {map, intersectionBy, size, uniqBy, concat, isEmpty, filter, xorBy, sortBy, reverse} from 'lodash/fp';
 import moment from 'moment';
 
 import {params} from '../params';
@@ -8,8 +8,6 @@ import {timeMeOut} from '../containers/helpers';
 // import Filters from './Filters';
 import ListIncident from './ListIncident';
 import Incident from './Incident';
-
-import locations from '../../../../locations.json';
 
 import CollectionMapComponent from './CollectionMapComponent';
 import Slider from './CollectionRangeComponent';
@@ -99,28 +97,23 @@ export default class DatabaseComponent extends Component {
   render() {
     const updating = this.props.updating || this.state.typing;
     const visible = this.state.visibleMarkers;
-    const incidents = map(i => merge(i, {
-      latitude: isEmpty(i.latitude)
-        ? get('lat', find(z => z.name_ar === i.location, locations))
-        : i.latitude,
-      longitude: isEmpty(i.longitude)
-        ? get('lon', find(z => z.name_ar === i.location, locations))
-        : i.longitude
-    }))(this.props.incidents);
 
-    const locationIncidents = filter(i => i.latitude && i.longitude, incidents);
-    const nolocationIncidents = filter(i => !i.latitude && !i.longitude, incidents);
+    const incidents = this.props.incidents;
+
+    const locationIncidents = filter(i => i.lat && i.lon, incidents);
+    const nolocationIncidents = filter(i => !i.lat && !i.lon, incidents);
 
     const visiblebymap = size(visible) > 0
-          ? intersectionBy('incident_code', incidents, visible)
+          ? intersectionBy('id', incidents, visible)
           : locationIncidents;
 
-    const visibleIncidents = filter((d) =>
-                                    (moment(d.incident_date) >= moment(this.state.range[0])
-                                     && moment(d.incident_date) <= moment(this.state.range[1])), visiblebymap); // eslint-disable-line
+    const visibleIncidents =
+      filter((d) =>
+        (moment(d.annotations.incident_date) >= moment(this.state.range[0])
+        && moment(d.annotations.incident_date) <= moment(this.state.range[1])), visiblebymap); // eslint-disable-line
 
     const invisibleIncidents = size(visible) > 0
-          ? uniqBy('incident_code', concat(xorBy('incident_code', incidents, visible), nolocationIncidents))
+          ? uniqBy('id', concat(xorBy('id', incidents, visible), nolocationIncidents))
           : nolocationIncidents;
 
     const makeIncidents = (is) => map(i =>
@@ -145,15 +138,18 @@ export default class DatabaseComponent extends Component {
         return sortBy(i => size(i.units), l);
       }
       if (by === 'date') {
-        return sortBy('incident_date', l);
+        return sortBy('annotations.incident_date', l);
       }
       if (by === 'confidence') {
-        return sortBy('confidence', l);
+        return sortBy('annotations.confidence', l);
       }
     };
 
     const vlist = makeIncidents(reverse(sort(visibleIncidents)));
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
+
+    console.log('visible', size(vlist));
+    console.log('invisible', size(ilist));
 
     const leafletMap = (
       <CollectionMapComponent
