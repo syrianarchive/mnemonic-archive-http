@@ -22,6 +22,9 @@ const defaultDb = {
 const defaultCollection = {
   updating: true,
   ds: [],
+  filters: {
+    collections: [],
+  }
 };
 
 
@@ -48,6 +51,8 @@ const collection = (state = defaultCollection, action) => {
   switch (action.type) {
     case 'INITIATE':
       return {};
+    case 'UPDATE_INCIDENT_FILTERS':
+      return merge(state, {filters: action.filters});
     case 'UPDATE_COLLECTION':
       return set('ds', action.units, state);
     case 'REQUEST_COLLECTION':
