@@ -4,7 +4,7 @@ import {isEmpty, map, compact} from 'lodash/fp';
 import t from '../../../translations';
 
 import {unitTitle, location} from '../containers/helpers';
-import {mediaUrl} from '../../../../env';
+// import {mediaUrl} from '../../../../env';
 
 const mapW = map.convert({cap: false});
 // const mapW = map.convert({cap: false});
@@ -12,7 +12,7 @@ const mapW = map.convert({cap: false});
 //   <div><b>{k}</b>: {String(v)}</div>
 // , omit('type_of_violation', i))}
 
-const fixurl = url => url.replace('/var/www/files', mediaUrl);
+// const fixurl = url => url.replace('/var/www/files', mediaUrl);
 
 export default class Unit extends Component {
   componentDidMount() {
@@ -36,14 +36,14 @@ export default class Unit extends Component {
             <small className="warning"> {t('Warning: this video may contain graphic content')} </small>
           }
 
-          {i.filename && (i.filename.includes('.mp4') || i.filename.includes('.webm') || i.filename.includes('.ogv')) &&
-          <video src={fixurl(i.filename || '')} controls>
+          {i.annotations.filename && (i.annotations.filename.includes('.mp4') || i.annotations.filename.includes('.webm') || i.annotations.filename.includes('.ogv')) &&
+          <video src={(i.annotations.sa_link || '')} controls>
             {`Sorry, your browser doesnt support embedded videos, but dont worry, you can <a href="videofile.webm">download it</a>
              and watch it with your favorite video player!`}
           </video>
           }
 
-          <h6><br /><a href={fixurl(i.filename || '')} download>{t('Download file')} ↓</a></h6>
+          <h6><br /><a href={(i.annotations.sa_link || '')} download>{t('Download file')} ↓</a></h6>
 
           <small>
             {t('Online Link')}
@@ -61,7 +61,7 @@ export default class Unit extends Component {
           <small>
             {t('Online Title')}:
           </small>
-          <h6>{i[`online_title_${locale}`]}</h6>
+          <h6>{i.annotations[`online_title_${locale}`]}</h6>
 
           <small>
             {t('Summary')}
@@ -78,7 +78,7 @@ export default class Unit extends Component {
             {t('Location')}:
           </small>
           <h6>
-            {location(i.location)}
+            {location(i.clusters.locations)}
           </h6>
 
           <small>
