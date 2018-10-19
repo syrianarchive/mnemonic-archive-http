@@ -90,10 +90,10 @@ export default class Incident extends Component {
           <br /><br />
 
 
-          <span className="lbl">{i.incident_code}</span>
+          <span className="lbl">{i.id}</span>
 
           <h3>{incidentTitle(i) || 'Chemical Attack'}</h3>
-          <h6>{i.incident_date} {i.incident_time}</h6>
+          <h6>{i.annotations.incident_date} {i.annotations.incident_time}</h6>
 
           <hr />
 
@@ -102,7 +102,7 @@ export default class Incident extends Component {
               {t('Confidence')}:
             </small>
             <h5>
-              {confidence(i.confidence)}
+              {confidence(i.annotations.confidence)}
             </h5>
           </div>
 
@@ -111,7 +111,7 @@ export default class Incident extends Component {
               {t('Location')}:
             </small>
             <h5>
-              {location(i.location)}
+              {location(i.clusters.locations)}
             </h5>
           </div>
 
@@ -124,7 +124,7 @@ export default class Incident extends Component {
               {t('Precise Location')}:
             </small>
             <h5>
-              {i.latitude} {i.longitude}
+              {i.annotations.latitude} {i.annotations.longitude}
             </h5>
           </div>
 
@@ -133,7 +133,7 @@ export default class Incident extends Component {
               {t('Weapons Used')}:
             </small>
             <h5>
-              {compact(i.weapons_used).join(', ')}
+              {compact(i.clusters.weapons).join(', ')}
             </h5>
           </div>
 
@@ -142,7 +142,7 @@ export default class Incident extends Component {
               {t('Collections')}:
             </small>
             <h5>
-              {compact(i.collections).join(', ')}
+              {compact(i.clusters.collections).join(', ')}
             </h5>
           </div>
 
@@ -151,12 +151,12 @@ export default class Incident extends Component {
               {t('Type of Violation')}:
             </small>
             <h5>
-              {compact(mapW((k, v) => (k ? t(v) : ''), i.type_of_violation)).join(', ')}
+              {compact(mapW((k, v) => (k ? t(v) : ''), i.annotations.type_of_violation)).join(', ')}
             </h5>
           </div>
 
 
-          {!isEmpty(i.fr_title) ?
+          {!isEmpty(i.annotations.fr_title) ?
             <div>
               <small>
                 {t('Dataset')}:
@@ -167,12 +167,12 @@ export default class Incident extends Component {
                 Foreign Affairs
               </p>
               <p>
-                {i.fr_title}
+                {i.annotations.fr_title}
               </p>
             </div>
           : ''}
 
-          {!isEmpty(i.un_title) ?
+          {!isEmpty(i.annotations.un_title) ?
             <div>
               <small>
                 {t('Dataset')}:
@@ -184,7 +184,7 @@ export default class Incident extends Component {
                 Arab Republic
               </p>
               <p>
-                {i.un_title}
+                {i.annotations.un_title}
               </p>
             </div>
           : ''}
@@ -199,8 +199,8 @@ export default class Incident extends Component {
           {map(u =>
             <CardUnit
               unit={u}
-              key={u.reference_code}
-              get={() => this.props.getUnit(u.reference_code)}
+              key={u.aid}
+              get={() => this.props.getUnit(u.aid)}
             />
           , us)}
 
