@@ -32,10 +32,7 @@ export const updateFilters = filters =>
       type: 'UPDATE_FILTERS',
       filters: f,
     });
-    // only ping the api if the filters have changed.
-    if (!isEqual(f, current.database.filters) || isEmpty(current.database.ds)) {
-      callApi('units', f, dispatch, requestUnits, updateUnits);
-    }
+    callApi('units', f, dispatch, requestUnits, updateUnits);
   };
 
 export const updateIncidentFilters = filters =>
