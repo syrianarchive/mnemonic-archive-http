@@ -83,8 +83,8 @@ export default class CollectionMapComponent extends Component {
     });
     const makemarkers = (ms, visible = true) => mapW((i, n) =>
       (<Marker
-        key={i.incident_code}
-        position={[i.latitude || 34.8021, i.longitude || 38.9968]}
+        key={i.aid}
+        position={[i.lat || 34.8021, i.lon || 38.9968]}
         ref={`marker${n}`} // eslint-disable-line
         icon={visible ? image : noimage}
         onClick={() => this.props.selector(i)}
@@ -97,15 +97,16 @@ export default class CollectionMapComponent extends Component {
       </Marker>)
     , ms);
 
-    const markers = makemarkers(uniqBy('incident_code', this.props.incidents), false);
-    const visiblemarkers = makemarkers(uniqBy('incident_code', this.props.visibleIncidents));
+    const markers = makemarkers(uniqBy('id', this.props.incidents), false);
+    const visiblemarkers = makemarkers(uniqBy('id', this.props.visibleIncidents));
 
     return (
       <div id="mapcol" className="mapcol">
+        {console.time('mapincidents2')}
         <Map
           markerData={map(i => ({
-            lat: i.latitude || 34.8021,
-            lon: i.longitude || 38.9968,
+            lat: i.lat || 34.8021,
+            lon: i.lon || 38.9968,
             incident_code: i.incident_code,
           }), this.props.incidents)}
           onViewportChanged={this.onViewportChanged}
@@ -114,6 +115,7 @@ export default class CollectionMapComponent extends Component {
           scrollWheelZoom={false}
           ref="map" // eslint-disable-line
         >
+          {console.timeEnd('mapincidents2')}
           <TileLayer
             attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

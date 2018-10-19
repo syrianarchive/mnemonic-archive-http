@@ -8,8 +8,8 @@ export const unitTitle = u =>
   u[`annotations.online_title_${locale}`] ||
   u.annotations.description;
 
-export const incidentTitle = i => i[`title_${locale}`];
-export const incidentSummary = i => i[`summary_${locale}`];
+export const incidentTitle = i => i.annotations[`title_${locale}`];
+export const incidentSummary = i => i.annotations[`summary_${locale}`];
 
 let timeout = null;
 export const timeMeOut = (func, time = 500) => {
