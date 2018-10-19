@@ -1,5 +1,5 @@
 // import Promise from 'bluebird';
-import {merge, isEqual, isEmpty, pick} from 'lodash/fp';
+import {merge, isEqual, isEmpty, pick, set} from 'lodash/fp';
 
 import {store} from '../store';
 
@@ -32,25 +32,29 @@ export const updateFilters = filters =>
       type: 'UPDATE_FILTERS',
       filters: f,
     });
-    callApi('units', f, dispatch, requestUnits, updateUnits);
+    // only ping the api if the filters have changed.
+    if (!isEqual(f, current.database.filters) || isEmpty(current.database.ds)) {
+      callApi('units', f, dispatch, requestUnits, updateUnits);
+    }
   };
 
 export const updateIncidentFilters = filters =>
   dispatch => {
     const current = store.getState();
-    const f = merge(current.collection.filters, filters);
+    let f = merge(current.collection.filters, filters);
+    if (filters.collections) {
+      f = set('collections', filters.collections, f);
+    }
     dispatch({
       type: 'UPDATE_FILTERS',
       filters: pick(['term'], f),
     });
+
     dispatch({
       type: 'UPDATE_INCIDENT_FILTERS',
       filters: f,
     });
-
-    if (!isEqual(f, current.collection.filters) || isEmpty(current.collection.ds)) {
-      callApi('incidents', f, dispatch, requestCollection, updateCollection);
-    }
+    callApi('incidents', f, dispatch, requestCollection, updateCollection);
   };
 
 

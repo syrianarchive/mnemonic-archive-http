@@ -119,6 +119,10 @@ export default class DatabaseComponent extends Component {
 
     const incidents = this.props.incidents;
 
+    console.log('ppppppppppppppp');
+    console.log(size(incidents));
+    console.log(incidents[10]);
+
     const locationIncidents = filter(i => i.lat && i.lon, incidents);
     const nolocationIncidents = filter(i => !i.lat && !i.lon, incidents);
 
@@ -128,8 +132,8 @@ export default class DatabaseComponent extends Component {
 
     const visibleIncidents =
       filter((d) =>
-        (moment(d.annotations.incident_date) >= moment(this.state.range[0])
-        && moment(d.annotations.incident_date) <= moment(this.state.range[1])), visiblebymap); // eslint-disable-line
+      (moment(d.annotations.incident_date || d.annotations.ru_upload) >= moment(this.state.range[0])
+        && moment(d.annotations.incident_date || d.annotations.ru_upload) <= moment(this.state.range[1])), visiblebymap); // eslint-disable-line
 
     const invisibleIncidents = size(visible) > 0
           ? uniqBy('id', concat(xorBy('id', incidents, visible), nolocationIncidents))
