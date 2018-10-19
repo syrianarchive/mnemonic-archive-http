@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {map, intersectionBy, size, uniqBy, concat, isEmpty, filter, xorBy, merge, sortBy, get, find, reverse, getOr} from 'lodash/fp';
+import {map, intersectionBy, size, uniqBy, concat, isEmpty, filter, xorBy, sortBy, reverse} from 'lodash/fp';
 import moment from 'moment';
 
 import {params} from '../params';
@@ -8,8 +8,6 @@ import {timeMeOut} from '../containers/helpers';
 // import Filters from './Filters';
 import ListIncident from './ListIncident';
 import Incident from './Incident';
-
-import locations from '../../../../locations.json';
 
 import CollectionMapComponent from './CollectionMapComponent';
 import Slider from './CollectionRangeComponent';
@@ -100,19 +98,7 @@ export default class DatabaseComponent extends Component {
     const updating = this.props.updating || this.state.typing;
     const visible = this.state.visibleMarkers;
 
-    console.time('mapincidents');
-    const incidents = map(i => merge(i, {
-      lat: isEmpty(i.annotations.latitude)
-        ? getOr(undefined, 'lat', find(z => z.search_name_ar === get('clusters.locations.0', i), locations))
-        : i.annotations.latitude,
-      lon: isEmpty(i.annotations.longitude)
-        ? getOr(undefined, 'lon', find(z => z.search_name_ar === get('clusters.locations.0', i), locations))
-        : i.annotations.longitude,
-      incident_code: i.id
-    }))(this.props.incidents);
-    console.timeEnd('mapincidents');
-    console.log('bbbbbbbbbbbbbbbbb');
-    console.log(incidents[10]);
+    const incidents = this.props.incidents;
 
     const locationIncidents = filter(i => i.lat && i.lon, incidents);
     const nolocationIncidents = filter(i => !i.lat && !i.lon, incidents);

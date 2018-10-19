@@ -35,19 +35,19 @@ const line = d3.line()
 .y((d) => y(d.counts));
 
 const cleanData = incidentData => {
-  let units = incidentData.filter((obj) => obj.incident_date !== '');
+  let units = incidentData.filter((obj) => obj.annotations.incident_date !== '');
   units.forEach((d) => {
-    const formatedDate = moment(d.incident_date).format('YYYY-MM-DD');
+    const formatedDate = moment(d.annotations.incident_date).format('YYYY-MM-DD');
     if (formatedDate === 'Invalid date') {
-      d.incident_date = moment(d.incident_date, 'DD-MM-YYYY').format('YYYY-MM-DD'); // eslint-disable-line
+      d.annotations.incident_date = moment(d.annotations.incident_date, 'DD-MM-YYYY').format('YYYY-MM-DD'); // eslint-disable-line
     } else {
-      d.incident_date = formatedDate; // eslint-disable-line
+      d.annotations.incident_date = formatedDate; // eslint-disable-line
     }
   });
 
   // group incidents by dates
   units = _.groupBy(units, (value) =>
-    value.incident_date
+    value.annotations.incident_date
   );
 
   // build a data array
