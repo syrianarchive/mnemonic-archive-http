@@ -48,12 +48,12 @@ export default class Unit extends Component {
           <small>
             {t('Online Link')}
           </small>
-          <h6><a href={i.online_link}>{i.online_link}</a></h6>
+          <h6><a href={i.annotations.online_link}>{i.annotations.online_link}</a></h6>
 
           <small>
             {t('Meta')}
           </small>
-          <h6>md5 {i.md5_hash} - {t('acquired')} {i.date_of_acquisition}</h6>
+          <h6>md5 {i.annotations.md5_hash} - {t('acquired')} {i.annotations.date_of_acquisition}</h6>
 
         </div>
         <div className="col-6 col-sm-12 meta">
@@ -71,8 +71,8 @@ export default class Unit extends Component {
           <small>
             {t('Incident Occurred at')}:
           </small>
-          <h4>{i.incident_date}</h4>
-          <h5>{i.incident_time}</h5>
+          <h4>{i.annotations.incident_date}</h4>
+          <h5>{i.annotations.incident_time}</h5>
 
           <small>
             {t('Location')}:
@@ -85,35 +85,35 @@ export default class Unit extends Component {
             {t('Precise Location')}:
           </small>
           <h6>
-            {i.latitude} {i.longitude}
+            {i.annotations.latitude} {i.annotations.longitude}
           </h6>
 
           <small>
             {t('Acquired From')}:
           </small>
           <h6>
-            {i.acquired_from}
+            {i.annotations.acquired_from}
           </h6>
 
           <small>
             {t('Weapons Used')}:
           </small>
           <h6>
-            {compact(i.weapons_used).join(', ')}
+            {compact(i.clusters.weapons).join(', ')}
           </h6>
 
           <small>
             {t('Collections')}:
           </small>
           <h6>
-            {compact(i.collections).join(', ')}
+            {compact(i.clusters.collections).join(', ')}
           </h6>
 
           <small>
             {t('Type of Violation')}:
           </small>
           <h6>
-            {compact(mapW((k, v) => (k ? t(v) : ''), i.type_of_violation)).join(', ')}
+            {compact(mapW((k, v) => (k ? t(v) : ''), i.annotations.type_of_violation)).join(', ')}
           </h6>
 
 
@@ -129,7 +129,7 @@ export default class Unit extends Component {
           <div className="modal-body">
             <div className="modal-header">
               <button onClick={this.props.clear} className="btn btn-clear float-right" />
-              {t('Verified Observation')}: {i.reference_code} /
+              {t('Verified Observation')}: {i.annotations.reference_code} /
               <a href="/">{t('Syrian Archive')}</a>
               {this.props.subtitle ?
                 <span>

@@ -4,9 +4,9 @@ import locations from '../../../../locations.json';
 
 
 export const unitTitle = u =>
-  u[`summary_${locale}`] ||
-  u[`online_title_${locale}`] ||
-  u.description;
+  u[`annotations.summary_${locale}`] ||
+  u[`annotations.online_title_${locale}`] ||
+  u.annotations.description;
 
 export const incidentTitle = i => i[`title_${locale}`];
 export const incidentSummary = i => i[`summary_${locale}`];
