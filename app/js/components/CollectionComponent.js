@@ -67,12 +67,10 @@ export default class DatabaseComponent extends Component {
     }
   }
 
-
   shouldComponentUpdate(nextProps, nextState) {
     const a = pick(['selectedIncident', 'incidents', 'updating']);
     return !(isEqual(a(nextProps), a(this.props)) && isEqual(this.state, nextState));
   }
-
 
   setSort(field) {
     this.setState({sort: field});
