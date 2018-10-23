@@ -246,14 +246,14 @@ export default class DatabaseComponent extends Component {
         updateRange={this.range}
       />);
 
-    const singleMap = (
-      <CollectionMapComponent
-        incidents={[this.props.selectedIncident]}
-        visibleIncidents={[this.props.selectedIncident]}
-        visible={() => {}}
-        updateFrontentView={() => {}}
-        updateRange={() => {}}
-      />);
+    // const singleMap = (
+    //   <CollectionMapComponent
+    //     incidents={[this.props.selectedIncident]}
+    //     visibleIncidents={[this.props.selectedIncident]}
+    //     visible={() => {}}
+    //     updateFrontentView={() => {}}
+    //     updateRange={() => {}}
+    //   />);
 
 
     if (!isEmpty(this.props.selectedIncident)) {
@@ -271,7 +271,7 @@ export default class DatabaseComponent extends Component {
               />
             </div>
             <div className="col-4 col-sm-12">
-              {singleMap}
+              {leafletMap}
             </div>
           </div>
 
