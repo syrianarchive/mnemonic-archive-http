@@ -42,6 +42,8 @@ export default class DatabaseComponent extends Component {
       locationIncidents: [],
       visiblebyrange: [],
       visiblebymap: [],
+      visible: [],
+      invisible: [],
       searchterm: params.filters.term || this.props.filters.term,
       typing: false,
       hoverUnit: false,
@@ -85,12 +87,21 @@ export default class DatabaseComponent extends Component {
   componentWillReceiveProps(nextProps) {
   // You don't have to do this check first, but it can help prevent an unneeded render
     if (nextProps.incidents !== this.state.incidents) {
+      const visiblebyrange = filterByRange(this.state.locationIncidents, this.state.range);
+      const visiblebymap =
+        filterByMapVisible(this.state.locationIncidents, this.state.visibleMarkers);
+      const locationIncidents = filter(i => i.lat && i.lon, nextProps.incidents);
+      const nolocationIncidents = filter(i => !i.lat && !i.lon, nextProps.incidents);
       this.setState({
         incidents: nextProps.incidents,
-        locationIncidents: filter(i => i.lat && i.lon, nextProps.incidents),
-        nolocationIncidents: filter(i => !i.lat && !i.lon, nextProps.incidents),
-        visiblebyrange: filterByRange(this.state.locationIncidents, this.state.range),
-        visiblebymap: filterByMapVisible(this.state.locationIncidents, this.state.visibleMarkers)
+        locationIncidents,
+        nolocationIncidents,
+        visiblebyrange,
+        visiblebymap,
+        visible: intersectionBy('id', visiblebyrange, visiblebymap),
+        invisible: (size(this.state.visibleMarkers) > 0
+              ? uniqBy('id', concat(xorBy('id', nextProps.incidents, visiblebymap), nolocationIncidents))
+              : nolocationIncidents)
       });
     }
   }
@@ -123,9 +134,14 @@ export default class DatabaseComponent extends Component {
     const visible = this.state.visibleMarkers;
     if (codes !== visible) {
       console.log('updating visiblebymaaaappppppp');
+      const visiblebymap = filterByMapVisible(this.state.locationIncidents, codes);
       this.setState({
         visibleMarkers: codes,
-        visiblebymap: filterByMapVisible(this.state.locationIncidents, codes),
+        visiblebymap,
+        visible: intersectionBy('id', this.state.visiblebyrange, visiblebymap),
+        invisible: (size(codes) > 0
+              ? uniqBy('id', concat(xorBy('id', this.props.incidents, visiblebymap), this.state.nolocationIncidents))
+              : this.state.nolocationIncidents)
       });
     }
   }
@@ -134,9 +150,14 @@ export default class DatabaseComponent extends Component {
   range(range) {
     if (range !== this.state.range) {
       console.log('updating raaaannngggeeeeeeee');
+      const visiblebyrange = filterByRange(this.state.locationIncidents, range);
       this.setState({
         range,
-        visiblebyrange: filterByRange(this.state.locationIncidents, range),
+        visiblebyrange,
+        visible: intersectionBy('id', visiblebyrange, this.state.visiblebymap),
+        invisible: (size(this.state.visibleMarkers) > 0
+              ? uniqBy('id', concat(xorBy('id', this.state.incidents, this.state.visiblebymap), this.state.nolocationIncidents))
+              : this.state.nolocationIncidents)
       });
     }
   }
@@ -144,7 +165,7 @@ export default class DatabaseComponent extends Component {
   hover(unit) {
     timeMeOut(() => {
       this.setState({hoverUnit: unit});
-    }, 30);
+    }, 1);
   }
 
   updateFrontentView() { // eslint-disable-line
@@ -165,25 +186,19 @@ export default class DatabaseComponent extends Component {
   render() {
     const updating = this.props.updating || this.state.typing;
 
-    const incidents = this.state.incidents;
+    // const incidents = this.state.incidents;
     const locationIncidents = this.state.locationIncidents;
-    const nolocationIncidents = this.state.nolocationIncidents;
+    // const nolocationIncidents = this.state.nolocationIncidents;
 
-    const visible = this.state.visibleMarkers;
+    // const visible = this.state.visibleMarkers;
+    //
+    //
+    // const visiblebyrange = this.state.visiblebyrange;
+    // const visiblebymap = this.state.visiblebymap;
 
+    const visibleIncidents = this.state.visible;
 
-    const visiblebyrange = this.state.visiblebyrange;
-    const visiblebymap = this.state.visiblebymap;
-
-    console.time('genviz');
-    const visibleIncidents = intersectionBy('id', visiblebyrange, visiblebymap);
-    console.timeEnd('genviz');
-
-    console.time('geninviz');
-    const invisibleIncidents = size(visible) > 0
-          ? uniqBy('id', concat(xorBy('id', incidents, visible), nolocationIncidents))
-          : nolocationIncidents;
-    console.timeEnd('geninviz');
+    const invisibleIncidents = this.state.invisible;
 
 
     const makeIncidents = (is) => map(i =>

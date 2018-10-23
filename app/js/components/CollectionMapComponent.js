@@ -87,6 +87,7 @@ export default class CollectionMapComponent extends Component {
 
 
   render() {
+    console.log('rendermaaaapppppppppppppp');
     const makemarkers = (ms, visible = true) => mapW((i, n) =>
       (<Marker
         key={i.aid}
@@ -103,8 +104,11 @@ export default class CollectionMapComponent extends Component {
       </Marker>)
     , ms);
 
+    console.time('making markers');
     const markers = makemarkers(uniqBy('id', this.props.incidents), false);
     const visiblemarkers = makemarkers(uniqBy('id', this.props.visibleIncidents));
+    console.timeEnd('making markers');
+
 
     return (
       <div id="mapcol" className="mapcol">
