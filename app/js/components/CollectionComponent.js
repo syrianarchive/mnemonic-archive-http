@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {map, intersectionBy, size, uniqBy, concat, isEmpty, filter, xorBy, sortBy, reverse} from 'lodash/fp';
+import {map, intersectionBy, size, pick, isEqual, uniqBy, concat, isEmpty, filter, xorBy, sortBy, reverse} from 'lodash/fp';
 import moment from 'moment';
 
 import {params} from '../params';
@@ -36,6 +36,7 @@ export default class DatabaseComponent extends Component {
     };
   }
 
+
   componentWillMount() {
     const collection = this.props.match.params.collection;
     let cols = [];
@@ -65,6 +66,13 @@ export default class DatabaseComponent extends Component {
       this.props.clearIncident();
     }
   }
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const a = pick(['selectedIncident', 'incidents', 'updating']);
+    return !(isEqual(a(nextProps), a(this.props)) && isEqual(this.state, nextState));
+  }
+
 
   setSort(field) {
     this.setState({sort: field});
@@ -119,10 +127,6 @@ export default class DatabaseComponent extends Component {
 
     const incidents = this.props.incidents;
 
-    console.log('ppppppppppppppp');
-    console.log(size(incidents));
-    console.log(incidents[10]);
-
     const locationIncidents = filter(i => i.lat && i.lon, incidents);
     const nolocationIncidents = filter(i => !i.lat && !i.lon, incidents);
 
@@ -170,9 +174,6 @@ export default class DatabaseComponent extends Component {
 
     const vlist = makeIncidents(reverse(sort(visibleIncidents)));
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
-
-    console.log('visible', size(vlist));
-    console.log('invisible', size(ilist));
 
     const leafletMap = (
       <CollectionMapComponent

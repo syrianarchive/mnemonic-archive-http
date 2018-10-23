@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
-import { map, size, filter, isEmpty, uniqBy, isEqual } from 'lodash/fp';
+import { map, size, filter, isEmpty, uniqBy, isEqual, pick } from 'lodash/fp';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 // // Import JS from Leaflet and plugins.
 // import 'leaflet/dist/leaflet';
@@ -21,6 +21,21 @@ const DEFAULT_VIEWPORT = {
   zoom: 1,
 };
 
+const image = new L.Icon({
+  iconUrl: '/assets/leafleticon.png',
+  iconSize: [30, 30], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
+  popupAnchor: [0, -0]// point from which the popup should open relative to the iconAnchor
+});
+const noimage = new L.Icon({
+  iconSize: [1, 1], // size of the icon
+  iconUrl: '/assets/leafleticon.png',
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
+  popupAnchor: [0, -0]// point from which the popup should open relative to the iconAnchor
+});
+
 
 export default class CollectionMapComponent extends Component {
   constructor(props) {
@@ -30,6 +45,11 @@ export default class CollectionMapComponent extends Component {
     this.state = {
       viewport: DEFAULT_VIEWPORT
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const p = pick(['visibleIncidents', 'hoverUnit', 'incidents']);
+    return !(isEqual(p(nextProps), p(this.props)) && isEqual(this.state, nextState));
   }
 
 
@@ -67,20 +87,6 @@ export default class CollectionMapComponent extends Component {
 
 
   render() {
-    const image = new L.Icon({
-      iconUrl: '/assets/leafleticon.png',
-      iconSize: [30, 30], // size of the icon
-      shadowSize: [0, 0], // size of the shadow
-      iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, -0]// point from which the popup should open relative to the iconAnchor
-    });
-    const noimage = new L.Icon({
-      iconSize: [1, 1], // size of the icon
-      iconUrl: '/assets/leafleticon.png',
-      shadowSize: [0, 0], // size of the shadow
-      iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, -0]// point from which the popup should open relative to the iconAnchor
-    });
     const makemarkers = (ms, visible = true) => mapW((i, n) =>
       (<Marker
         key={i.aid}
@@ -123,7 +129,7 @@ export default class CollectionMapComponent extends Component {
 
           {!isEmpty(this.props.hoverUnit) ?
             <CircleMarker
-              center={[this.props.hoverUnit.lat, this.props.hoverUnit.lat]}
+              center={[this.props.hoverUnit.lat, this.props.hoverUnit.lon]}
               color="teal" fillColor="teal" radius={24}
             />
           : ''}
