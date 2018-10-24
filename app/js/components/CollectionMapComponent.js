@@ -14,6 +14,7 @@ import {VisibleCluster, InvisibleCluster} from './CollectionMapClusterComponent'
 let tmap;
 let a = true;
 let humanchange = false;
+let humanviewport = false;
 
 
 const DEFAULT_VIEWPORT = {
@@ -26,30 +27,29 @@ let zoomedvp = DEFAULT_VIEWPORT;
 let individual = false;
 
 export default class CollectionMapComponent extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.updateBounds = this.updateBounds.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.updateBounds = this.updateBounds.bind(this);
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     const p = pick(['visibleIncidents', 'hoverUnit', 'incidents', 'individual']);
     individual = nextProps.individual;
     if (a || !isEqual(nextProps.hoverUnit, this.props.hoverUnit)) {
-      humanchange = false;
+      humanviewport = false;
       // this.updateBounds('visiblemarkers');
-      a = false;
     }
     return !(isEqual(p(nextProps), p(this.props)) && isEqual(this.state, nextState));
   }
 
-  //
-  // componentDidUpdate(prevProps) {
-  //   if (a || !isEqual(prevProps.hoverUnit, this.props.hoverUnit)) {
-  //     humanchange = false;
-  //     // this.updateBounds('visiblemarkers');
-  //     a = false;
-  //   }
-  // }
+
+  componentDidUpdate(prevProps) {
+    if (a || !isEqual(prevProps.incidents, this.props.incidents)) {
+      humanchange = false;
+      this.updateBounds('visiblemarkers');
+      a = false;
+    }
+  }
 
 
   onViewportChanged(nvp) {
@@ -64,20 +64,21 @@ export default class CollectionMapComponent extends Component {
       this.updateFrontentView();
     }
     humanchange = true;
+    humanviewport = true;
   }
 
 
-  // updateBounds(ref) {
-  //   const map = this.refs.map.leafletElement;//eslint-disable-line
-  //   tmap = map;
-  //   if (this.refs[ref]) { // eslint-disable-line
-  //     const markers = this.refs[ref].leafletElement;//eslint-disable-line
-  //     map.fitBounds(markers.getBounds());
-  //   } else if (this.refs.marker0) { // eslint-disable-line
-  //     const marker = this.refs.marker0.leafletElement;//eslint-disable-line
-  //     map.setView(marker.getLatLng(), 14);
-  //   }
-  // }
+  updateBounds(ref) {
+    const map = this.refs.map.leafletElement;//eslint-disable-line
+    tmap = map;
+    if (this.refs[ref]) { // eslint-disable-line
+      const markers = this.refs[ref].leafletElement;//eslint-disable-line
+      map.fitBounds(markers.getBounds());
+    } else if (this.refs.marker0) { // eslint-disable-line
+      const marker = this.refs.marker0.leafletElement;//eslint-disable-line
+      map.setView(marker.getLatLng(), 14);
+    }
+  }
 
 
   render() {
@@ -106,7 +107,7 @@ export default class CollectionMapComponent extends Component {
     //
 
 
-    if (!humanchange && this.props.individual && this.props.hoverUnit) {
+    if (!humanviewport && this.props.individual && this.props.hoverUnit) {
       zoomedvp = {
         center: [this.props.hoverUnit.lat, this.props.hoverUnit.lon],
         zoom: 14
