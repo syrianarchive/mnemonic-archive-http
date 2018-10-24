@@ -25,7 +25,7 @@ export default class Incident extends Component {
       this.props.clear();
     };
     this.props.scroll();
-    if (isEmpty(this.state.units) && this.props.incident && !isEmpty(this.props.incident.units)) {
+    if (this.props.incident && !isEmpty(this.props.incident.units)) {
       Promise.each(
         this.props.incident.units,
         (uid) => api.get(`units/${uid}`)
@@ -35,6 +35,24 @@ export default class Incident extends Component {
             })
       )
       .catch(console.log);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+  // You don't have to do this check first, but it can help prevent an unneeded render
+    console.log('receiviiiiinnggg proooopss');
+    if (nextProps.incident !== this.props.incident) {
+      this.setState({units: []}, () =>
+        Promise.each(
+          this.props.incident.units,
+          (uid) => api.get(`units/${uid}`)
+              .then(u => this.setState({units: concat(this.state.units, u)}))
+              .catch(() => {
+                console.log(`failed retrieving ${uid}`);
+              })
+        )
+        .catch(console.log)
+      );
     }
   }
 

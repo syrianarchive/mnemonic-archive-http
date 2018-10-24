@@ -107,7 +107,7 @@ export default class DatabaseComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const a = pick(['selectedIncident', 'updating']);
+    const a = pick(['selectedIncident', 'updating', 'selectedUnit']);
     return !(isEqual(a(nextProps), a(this.props)) && isEqual(this.state, nextState));
   }
 
@@ -235,15 +235,22 @@ export default class DatabaseComponent extends Component {
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
     console.timeEnd('makeincidents');
 
+    const hoverunit = (!isEmpty(this.props.selectedIncident) ?
+      this.props.selectedIncident :
+      this.state.hoverUnit);
+
+    const individual = !isEmpty(this.props.selectedIncident);
+
     const leafletMap = (
       <CollectionMapComponent
         incidents={locationIncidents}
         visible={this.visible}
         visibleIncidents={visibleIncidents}
-        hoverUnit={this.state.hoverUnit}
+        hoverUnit={hoverunit}
         updateFrontentView={this.updateFrontentView}
         selector={this.props.selectIncident}
         updateRange={this.range}
+        individual={individual}
       />);
 
     // const singleMap = (

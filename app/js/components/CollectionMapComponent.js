@@ -15,40 +15,49 @@ let tmap;
 let a = true;
 let humanchange = false;
 
+
 const DEFAULT_VIEWPORT = {
   center: [34.7000, 38.9968],
   zoom: 7,
 };
 
+let vp = DEFAULT_VIEWPORT;
+let zoomedvp = DEFAULT_VIEWPORT;
+let individual = false;
 
 export default class CollectionMapComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.updateBounds = this.updateBounds.bind(this);
-
-    this.state = {
-      viewport: DEFAULT_VIEWPORT,
-    };
-  }
-
+  // constructor(props) {
+  //   super(props);
+  //   this.updateBounds = this.updateBounds.bind(this);
+  // }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const p = pick(['visibleIncidents', 'hoverUnit', 'incidents']);
+    const p = pick(['visibleIncidents', 'hoverUnit', 'incidents', 'individual']);
+    individual = nextProps.individual;
+    if (a || !isEqual(nextProps.hoverUnit, this.props.hoverUnit)) {
+      humanchange = false;
+      // this.updateBounds('visiblemarkers');
+      a = false;
+    }
     return !(isEqual(p(nextProps), p(this.props)) && isEqual(this.state, nextState));
   }
 
+  //
+  // componentDidUpdate(prevProps) {
+  //   if (a || !isEqual(prevProps.hoverUnit, this.props.hoverUnit)) {
+  //     humanchange = false;
+  //     // this.updateBounds('visiblemarkers');
+  //     a = false;
+  //   }
+  // }
 
-  componentDidUpdate(prevProps) {
-    if (a || !isEqual(prevProps.incidents, this.props.incidents)) {
-      humanchange = false;
-      this.updateBounds('visiblemarkers');
 
-      a = false;
+  onViewportChanged(nvp) {
+    if (!individual) {
+      vp = nvp;
+    } else {
+      zoomedvp = nvp;
     }
-  }
-
-
-  onViewportChanged() {
     if (tmap && humanchange) {
       const visible = filter(m => tmap.getBounds().contains(m), this.markerData);
       this.visible(visible);
@@ -58,17 +67,17 @@ export default class CollectionMapComponent extends Component {
   }
 
 
-  updateBounds(ref) {
-    const map = this.refs.map.leafletElement;//eslint-disable-line
-    tmap = map;
-    if (this.refs[ref]) { // eslint-disable-line
-      const markers = this.refs[ref].leafletElement;//eslint-disable-line
-      map.fitBounds(markers.getBounds());
-    } else if (this.refs.marker0) { // eslint-disable-line
-      const marker = this.refs.marker0.leafletElement;//eslint-disable-line
-      map.setView(marker.getLatLng(), 14);
-    }
-  }
+  // updateBounds(ref) {
+  //   const map = this.refs.map.leafletElement;//eslint-disable-line
+  //   tmap = map;
+  //   if (this.refs[ref]) { // eslint-disable-line
+  //     const markers = this.refs[ref].leafletElement;//eslint-disable-line
+  //     map.fitBounds(markers.getBounds());
+  //   } else if (this.refs.marker0) { // eslint-disable-line
+  //     const marker = this.refs.marker0.leafletElement;//eslint-disable-line
+  //     map.setView(marker.getLatLng(), 14);
+  //   }
+  // }
 
 
   render() {
@@ -96,6 +105,16 @@ export default class CollectionMapComponent extends Component {
     // console.timeEnd('making markers');
     //
 
+
+    if (!humanchange && this.props.individual && this.props.hoverUnit) {
+      zoomedvp = {
+        center: [this.props.hoverUnit.lat, this.props.hoverUnit.lon],
+        zoom: 14
+      };
+    }
+
+    const viewport = this.props.individual ? zoomedvp : vp;
+
     return (
       <div id="mapcol" className="mapcol">
         <Map
@@ -108,7 +127,7 @@ export default class CollectionMapComponent extends Component {
           }
           onViewportChanged={this.onViewportChanged}
           visible={this.props.visible}
-          viewport={this.state.viewport}
+          viewport={viewport}
           updateFrontentView={this.props.updateFrontentView}
           scrollWheelZoom={false}
           ref="map" // eslint-disable-line
