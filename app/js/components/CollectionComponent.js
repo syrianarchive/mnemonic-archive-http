@@ -133,7 +133,6 @@ export default class DatabaseComponent extends Component {
   visible(codes) {
     const visible = this.state.visibleMarkers;
     if (codes !== visible) {
-      console.log('updating visiblebymaaaappppppp');
       const visiblebymap = filterByMapVisible(this.state.locationIncidents, codes);
       this.setState({
         visibleMarkers: codes,
@@ -149,7 +148,6 @@ export default class DatabaseComponent extends Component {
 
   range(range) {
     if (range !== this.state.range) {
-      console.log('updating raaaannngggeeeeeeee');
       const visiblebyrange = filterByRange(this.state.locationIncidents, range);
       this.setState({
         range,
@@ -230,10 +228,8 @@ export default class DatabaseComponent extends Component {
       }
     };
 
-    console.time('makeincidents');
     const vlist = makeIncidents(reverse(sort(visibleIncidents)));
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
-    console.timeEnd('makeincidents');
 
     const hoverunit = (!isEmpty(this.props.selectedIncident) ?
       this.props.selectedIncident :

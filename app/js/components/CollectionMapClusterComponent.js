@@ -50,14 +50,7 @@ export class InvisibleCluster extends Component {
       </Marker>)
     , ms);
 
-    console.time('making markers 3');
     const markers = makemarkers(uniqBy('id', this.props.incidents), false);
-    console.timeEnd('making markers 3');
-
-    console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-    console.log(this.props.incidents);
-    console.log(markers);
-
 
     if (size(markers) > 1) {
       return (
@@ -74,6 +67,7 @@ export class InvisibleCluster extends Component {
         </MarkerClusterGroup>
       );
     }
+    if (size(markers) === 1) return markers[0];
     return isEmpty(markers) ? null : markers;
   }
 }
@@ -104,13 +98,7 @@ export class VisibleCluster extends Component { // eslint-disable-line
       </Marker>)
     , ms);
 
-    console.time('making markers');
     const visiblemarkers = makemarkers(uniqBy('id', this.props.visibleIncidents));
-    console.timeEnd('making markers');
-
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-    console.log(this.props.visibleIncidents);
-    console.log(visiblemarkers);
 
     if (size(visiblemarkers) > 1) {
       return (
@@ -118,15 +106,12 @@ export class VisibleCluster extends Component { // eslint-disable-line
           showCoverageOnHover={false}
           maxClusterRadius={20}
           ref="visiblemarkers" // eslint-disable-line
-          // iconCreateFunction={(cluster) =>
-          //   L.divIcon({ html: `<div><span>${cluster.getChildCount()}</span></div>`,
-          // className: 'marker-cluster marker-cluster-small clusterhidden' })
-          // }
         >
           {visiblemarkers}
         </MarkerClusterGroup>
       );
     }
+    if (size(visiblemarkers) === 1) return visiblemarkers[0];
     return isEmpty(visiblemarkers) ? null : visiblemarkers;
   }
 }

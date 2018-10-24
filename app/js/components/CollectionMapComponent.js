@@ -82,7 +82,6 @@ export default class CollectionMapComponent extends Component {
 
 
   render() {
-    console.log('rendermaaaapppppppppppppp');
     // const makemarkers = (ms, visible = true) => mapW((i, n) =>
     //   (<Marker
     //     key={i.aid}
