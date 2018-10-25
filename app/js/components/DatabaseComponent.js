@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import {map, isEmpty} from 'lodash/fp';
 
-import ListEvidence from './ListEvidence';
+import ListObservation from './ListObservation';
 import Unit from './Unit';
 import Filters from './Filters';
 
@@ -45,7 +45,7 @@ export default class DatabaseComponent extends Component {
     } = this.props;
 
     const us = map(i =>
-      <ListEvidence unit={i} selector={() => selectUnit(i)} />
+      <ListObservation unit={i} selector={() => selectUnit(i)} />
       , units);
 
     return (
