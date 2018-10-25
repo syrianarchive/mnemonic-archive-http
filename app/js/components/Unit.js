@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {isEmpty, map, compact} from 'lodash/fp';
 import t from '../../../translations';
 
-import {unitTitle, location} from '../containers/helpers';
+import {unitTitle, unitLoc} from '../containers/helpers';
 // import {mediaUrl} from '../../../../env';
 
 const mapW = map.convert({cap: false});
@@ -78,7 +78,7 @@ export default class Unit extends Component {
             {t('Location')}:
           </small>
           <h6>
-            {location(i.clusters.locations)}
+            {unitLoc(i)}
           </h6>
 
           <small>

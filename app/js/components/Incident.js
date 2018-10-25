@@ -4,7 +4,7 @@ import Promise from 'bluebird';
 import Unit from './Unit';
 import CardUnit from './CardUnit';
 import t from '../../../translations';
-import {location, incidentTitle, incidentSummary} from '../containers/helpers';
+import {unitLoc, incidentTitle, incidentSummary} from '../containers/helpers';
 
 import {api} from '../api';
 
@@ -129,7 +129,7 @@ export default class Incident extends Component {
               {t('Location')}:
             </small>
             <h5>
-              {location(i.clusters.locations)}
+              {unitLoc(i)}
             </h5>
           </div>
 

@@ -26,4 +26,11 @@ const finda = a =>
 export const location = (arloc) =>
   (locale === 'ar' ? arloc : finda(arloc));
 
-export default {unitTitle, timeMeOut, location};
+export const unitLoc = i => {
+  console.log(i);
+  return i.location_info.readable_location[`${locale}`] ||
+    i.clusters.locations[0];
+};
+
+
+export default {unitTitle, timeMeOut, location, unitLoc};
