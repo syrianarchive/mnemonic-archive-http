@@ -1,5 +1,5 @@
 /* global locale */
-import {find} from 'lodash/fp';
+import {find, getOr} from 'lodash/fp';
 import locations from '../../../../locations.json';
 
 
@@ -28,8 +28,8 @@ export const location = (arloc) =>
 
 export const unitLoc = i => {
   console.log(i);
-  return i.location_info.readable_location[`${locale}`] ||
-    i.clusters.locations[0];
+  return getOr(undefined, `location_info.readable_location.${locale}`, i) ||
+    getOr(undefined, 'clusters.locations.0', i);
 };
 
 
