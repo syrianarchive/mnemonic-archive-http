@@ -1,3 +1,5 @@
+/* global locale */
+
 import React, { Component } from 'react';
 import moment from 'moment';
 
@@ -6,10 +8,8 @@ import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 
 import t from '../../../translations';
-import {timeMeOut, location} from '../containers/helpers';
+import {timeMeOut} from '../containers/helpers';
 import {params} from '../params';
-
-import {violationtypes} from '../violationtypes';
 
 export default class DatabaseComponent extends Component {
   constructor(props) {
@@ -70,8 +70,12 @@ export default class DatabaseComponent extends Component {
     const {
       filters,
       reset,
-      meta,
+      // meta,
+      possibilities
     } = this.props;
+
+    console.log('psadpawjdiwajdliwajdiwadjiawdjadw');
+    console.log(this.props.possibilities);
 
     return (
       <div>
@@ -86,7 +90,7 @@ export default class DatabaseComponent extends Component {
           <Select
             name="type_of_violation"
             value={filters.type_of_violation}
-            options={violationtypes}
+            options={map(f => ({label: t(f), value: f}), possibilities.type_of_violation)}
             onChange={this.typechange}
           />
         </div>
@@ -96,7 +100,7 @@ export default class DatabaseComponent extends Component {
           <Select
             name="collection"
             value={filters.collection}
-            options={map(f => ({label: f, value: f}), meta.collections)}
+            options={map(f => ({label: f, value: f}), possibilities.collections)}
             onChange={this.collectionchange}
           />
         </div>
@@ -124,7 +128,9 @@ export default class DatabaseComponent extends Component {
           <Select
             name="location"
             value={filters.location}
-            options={map(w => ({value: w, label: location(w)}), meta.locations)}
+            options={map(w => ({
+              value: w.search_name_ar,
+              label: w.readable_location[locale]}), possibilities.locations)}
             onChange={v => this.selectchange('location', v)}
           />
         </div>
@@ -134,7 +140,7 @@ export default class DatabaseComponent extends Component {
           <Select
             name="weapons_used"
             value={filters.weapons_used}
-            options={map(w => ({value: w, label: w}), meta.weapons)}
+            options={map(w => ({value: w, label: w}), possibilities.weapons)}
             onChange={v => this.selectchange('weapons_used', v)}
           />
         </div>

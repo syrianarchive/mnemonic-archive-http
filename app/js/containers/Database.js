@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   filters: state.database.filters,
   stats: state.database.stats,
   updating: state.database.updating,
+  possibilities: state.database.possibilities,
   units: state.database.ds,
   meta: state.meta,
   selectedUnit: state.unit.meat,

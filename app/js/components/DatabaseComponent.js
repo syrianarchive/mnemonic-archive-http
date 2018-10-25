@@ -71,6 +71,7 @@ export default class DatabaseComponent extends Component {
               filters={this.props.filters}
               meta={this.props.meta}
               reset={this.props.reset}
+              possibilities={this.props.possibilities}
             />
           </div>
 

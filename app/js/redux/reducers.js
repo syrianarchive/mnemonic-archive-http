@@ -8,6 +8,12 @@ import {params} from '../params';
 const defaultDb = {
   updating: true,
   ds: [],
+  possibilities: {
+    type_of_violation: [],
+    locations: [],
+    collections: [],
+    weapons: [],
+  },
   filters: params.filters || {
     term: '',
     type_of_violation: '',
@@ -39,7 +45,10 @@ const database = (state = defaultDb, action) => {
     case 'UPDATE_UNITS':
       return set('ds', action.units, state);
     case 'UPDATE_STATS':
-      return merge(state, {stats: action.stats});
+      return merge(state, {
+        stats: action.stats.stats,
+        possibilities: action.stats.possibilities,
+      });
     case 'REQUEST_UNITS':
       return merge(state, {updating: action.received});
     default:

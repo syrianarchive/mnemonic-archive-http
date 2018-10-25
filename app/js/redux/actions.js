@@ -18,7 +18,10 @@ const callApi = (path, filters, dispatch, requestFunc, updateFunc) => {
   return api.post(path, filters)
     .then(r => {
       dispatch(updateFunc(r.units));
-      dispatch(updateStats(r.stats));
+      dispatch(updateStats({
+        stats: r.stats,
+        possibilities: r.possibilities
+      }));
       dispatch(requestFunc(false));
       return r;
     });

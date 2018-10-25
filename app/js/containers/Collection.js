@@ -8,6 +8,7 @@ import {updateIncidentFilters, resetFilters, unsetUnit, selectIncident, retrieve
 const mapStateToProps = (state) => ({
   filters: state.database.filters,
   stats: state.database.stats,
+  possibilities: state.database.possibilities,
   updating: state.collection.updating,
   incidents: state.collection.ds,
   meta: state.meta,
