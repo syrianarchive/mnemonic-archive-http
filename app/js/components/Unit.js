@@ -59,6 +59,22 @@ export default class Unit extends Component {
         <div className="col-6 col-sm-12 meta">
 
           <small>
+            {t('Incidents')}:
+          </small>
+          <h6>{map(incident =>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`/${locale}/collections/all/database?incident=${incident}`}
+              onClick={() => {
+                this.props.clear();
+              }}
+            >
+              {incident}
+            </a>
+              , i.clusters.incidents)}</h6>
+
+          <small>
             {t('Online Title')}:
           </small>
           <h6>{i.annotations[`online_title_${locale}`]}</h6>
@@ -129,7 +145,7 @@ export default class Unit extends Component {
           <div className="modal-body">
             <div className="modal-header">
               <button onClick={this.props.clear} className="btn btn-clear float-right" />
-              {t('Verified Observation')}: {i.annotations.reference_code} /
+              {t('Verified Observation')}: {i.reference_code} /
               <a href="/">{t('Syrian Archive')}</a>
               {this.props.subtitle ?
                 <span>
@@ -141,6 +157,7 @@ export default class Unit extends Component {
             <div className="content">
               {content}
             </div>
+            <small>{i.id}</small>
             <div className="modal-footer">
               <button onClick={this.props.clear} className="btn">
                 {t('Close')}

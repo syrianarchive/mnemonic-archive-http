@@ -81,6 +81,7 @@ export const unsetIncident = () => ({type: 'UNSET_INCIDENT'});
 
 export const retrieveIncident = id =>
   dispatch => {
+    console.log('gettinnggg incidennnt');
     const current = store.getState().incident;
     console.log(id);
     // only ping the api if the filters have changed.

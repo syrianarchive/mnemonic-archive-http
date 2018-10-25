@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-import {map} from 'lodash/fp';
+import {map, compact} from 'lodash/fp';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 
@@ -85,15 +85,6 @@ export default class DatabaseComponent extends Component {
           <h5><small>{ t('Limited to 100 results')}</small></h5>
         </div>
 
-        <div className="filter">
-          <h5>{t('Type of Violation')}</h5>
-          <Select
-            name="type_of_violation"
-            value={filters.type_of_violation}
-            options={map(f => ({label: t(f), value: f}), possibilities.type_of_violation)}
-            onChange={this.typechange}
-          />
-        </div>
 
         <div className="filter">
           <h5>{t('Collection')}</h5>
@@ -130,7 +121,7 @@ export default class DatabaseComponent extends Component {
             value={filters.location}
             options={map(w => ({
               value: w.search_name_ar,
-              label: w.readable_location[locale]}), possibilities.locations)}
+              label: w.readable_location[locale]}), compact(possibilities.locations))}
             onChange={v => this.selectchange('location', v)}
           />
         </div>

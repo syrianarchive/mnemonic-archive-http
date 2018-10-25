@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 
 import DatabaseComponent from '../components/DatabaseComponent';
 
-import {updateFilters, resetFilters, selectUnit, retrieveUnit, unsetUnit} from '../redux/actions';
+import {updateFilters, resetFilters, selectUnit, retrieveUnit, unsetUnit, retrieveIncident} from '../redux/actions';
 
 const mapStateToProps = (state) => ({
   filters: state.database.filters,
@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
   getUnit: (id) => dispatch(retrieveUnit(id)),
   selectUnit: (u) => dispatch(selectUnit(u)),
   clearUnit: () => dispatch(unsetUnit()),
+  getIncident: (id) => dispatch(retrieveIncident(id)),
 });
 
 const Database = withRouter(connect(
