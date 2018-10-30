@@ -217,9 +217,11 @@ export default class DatabaseComponent extends Component {
     const vlist = makeIncidents(reverse(sort(visibleIncidents)));
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
 
-    const hoverunit = (!isEmpty(this.props.selectedIncident) ?
+    const hu = (!isEmpty(this.props.selectedIncident) ?
       this.props.selectedIncident :
       this.state.hoverUnit);
+
+    const hoverunit = (hu.lat && hu.lon) ? hu : undefined;
 
     const individual = !isEmpty(this.props.selectedIncident);
 

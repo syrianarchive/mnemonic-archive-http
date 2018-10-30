@@ -61,7 +61,7 @@ const collection = (state = defaultCollection, action) => {
     case 'INITIATE':
       return {};
     case 'UPDATE_INCIDENT_FILTERS':
-      return merge(state, {filters: action.filters});
+      return set('filters', action.filters, state);
     case 'UPDATE_COLLECTION':
       return set('ds', action.units, state);
     case 'REQUEST_COLLECTION':
