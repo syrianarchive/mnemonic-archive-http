@@ -93,7 +93,7 @@ export default class DatabaseComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const a = pick(['selectedIncident', 'updating', 'selectedUnit']);
+    const a = pick(['selectedIncident', 'incidents', 'updating', 'selectedUnit']);
     return !(isEqual(a(nextProps), a(this.props)) && isEqual(this.state, nextState));
   }
 
