@@ -22,7 +22,7 @@ export default class App extends Component {
             <Route path="/:locale/database" component={Database} />
 
             <Route
-              path="/:locale/collections/russian-airstrikes/civilian-database"
+              path="/:locale/collections/russian-airstrikes/civiliandatabase"
               render={(props) =>
                 <Collection
                   {...props}
@@ -31,7 +31,7 @@ export default class App extends Component {
               }
             />
             <Route
-              path="/:locale/collections/russian-airstrikes/civilian-database.html"
+              path="/:locale/collections/russian-airstrikes/civiliandatabase.html"
               render={(props) =>
                 <Collection
                   {...props}
