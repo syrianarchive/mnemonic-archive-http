@@ -62,7 +62,7 @@ export default class DatabaseComponent extends Component {
         cols = ['Chemical weapons'];
         break;
       case 'russian-airstrikes':
-        cols = ['Civilian casualties as a result of alleged russian attacks', 'Russian airstrikes in Syria'];
+        cols = ['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure'];
         break;
       case 'russian-mod-airstrikes':
         cols = ['Attacks claimed by Russian Ministry of Defense'];
