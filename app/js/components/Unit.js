@@ -58,21 +58,25 @@ export default class Unit extends Component {
         </div>
         <div className="col-6 col-sm-12 meta">
 
-          <small>
-            {t('Incidents')}:
-          </small>
-          <h6>{map(incident =>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/${locale}/collections/all/database?incident=${incident}`}
-              onClick={() => {
-                this.props.clear();
-              }}
-            >
-              {incident}
-            </a>
-              , i.clusters.incidents)}</h6>
+          {!this.props.subtitle ?
+            <div>
+              <small>
+                {t('Incidents')}:
+              </small>
+              <h6>{map(incident =>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`/${locale}/collections/all/database?incident=${incident}`}
+                  onClick={() => {
+                    this.props.clear();
+                  }}
+                >
+                  {incident}
+                </a>
+                  , i.clusters.incidents)}</h6>
+            </div>
+              : ''}
 
           <small>
             {t('Online Title')}:

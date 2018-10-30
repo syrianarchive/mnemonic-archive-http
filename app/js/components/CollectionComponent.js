@@ -55,22 +55,8 @@ export default class DatabaseComponent extends Component {
 
 
   componentWillMount() {
-    const collection = this.props.match.params.collection;
-    let cols = [];
-    switch (collection) {
-      case 'chemical-weapons':
-        cols = ['Chemical weapons'];
-        break;
-      case 'russian-airstrikes':
-        cols = ['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure'];
-        break;
-      case 'russian-mod-airstrikes':
-        cols = ['Attacks claimed by Russian Ministry of Defense'];
-        break;
-      default:
-        cols = [];
-    }
-    this.props.update({collections: cols});
+    const collection = this.props.collections;
+    this.props.update({collections: collection});
   }
 
   componentDidMount() {
