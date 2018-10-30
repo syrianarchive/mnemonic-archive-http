@@ -99,11 +99,13 @@ const defaultIncident = {
 
 const incident = (state = defaultIncident, action) => {
   switch (action.type) {
-    case 'SELECT_INCIDENT':
-      return merge(state, {
-        id: action.incident.incident_code,
-        meat: action.incident
-      });
+    case 'SELECT_INCIDENT': // eslint-disable-line
+      const i = set('id', action.incident.incident_code, state);
+      return set('meat', action.incident, i);
+      // return merge(state, {
+      //   id: action.incident.incident_code,
+      //   meat: action.incident
+      // });
     case 'UNSET_INCIDENT':
       return merge(defaultIncident, {id: ''});
     case 'REQUEST_INCIDENT':

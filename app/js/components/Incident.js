@@ -41,6 +41,7 @@ export default class Incident extends Component {
   componentWillReceiveProps(nextProps) {
   // You don't have to do this check first, but it can help prevent an unneeded render
     console.log('receiviiiiinnggg proooopss');
+    console.log(nextProps.incident);
     if (nextProps.incident !== this.props.incident) {
       this.setState({units: []}, () =>
         Promise.each(
