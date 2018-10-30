@@ -23,23 +23,60 @@ export default class App extends Component {
 
             <Route
               path="/:locale/collections/russian-airstrikes/civilian-database"
-              collections={['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure']}
-              component={Collection}
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure']}
+                />
+              }
             />
             <Route
               path="/:locale/collections/russian-airstrikes/civilian-database.html"
-              collections={['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure']}
-              component={Collection}
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure']}
+                />
+              }
             />
 
             <Route
               path="/:locale/collections/russian-airstrikes/russianMoDdatabase"
-              collections={['Attacks claimed by Russian Ministry of Defense']}
-              component={Collection}
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={['Attacks claimed by Russian Ministry of Defense']}
+                />
+              }
+            />
+            <Route
+              path="/:locale/collections/russian-airstrikes/russianMoDdatabase.html"
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={['Attacks claimed by Russian Ministry of Defense']}
+                />
+              }
             />
 
-            <Route path="/:locale/collections/chemical-weapons/database" collections={['Chemical weapons']} component={Collection} />
-            <Route path="/:locale/collections/chemical-weapons/database.html" collections={['Chemical weapons']} component={Collection} />
+            <Route
+              path="/:locale/collections/chemical-weapons/database"
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={['Chemical weapons']}
+                />
+              }
+            />
+            <Route
+              path="/:locale/collections/chemical-weapons/database.html"
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={['Chemical weapons']}
+                />
+              }
+            />
 
             <Route path="/:locale/" component={Home} />
           </Switch>
