@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {map, intersectionBy, size, uniqBy, concat, isEmpty, filter, xorBy, sortBy, reverse} from 'lodash/fp';
+import {map, intersectionBy, size, pick, isEqual, uniqBy, concat, isEmpty, filter, xorBy, sortBy, reverse} from 'lodash/fp';
 import moment from 'moment';
 
 import {params} from '../params';
@@ -14,6 +14,16 @@ import Slider from './CollectionRangeComponent';
 
 import translator from '../../../translations';
 
+const filterByRange = (incidents, range) =>
+  filter((d) =>
+    (moment(d.annotations.incident_date || d.annotations.ru_upload) >= moment(range[0])
+    && moment(d.annotations.incident_date || d.annotations.ru_upload) <= moment(range[1]))
+    , incidents);
+
+const filterByMapVisible = (incidents, visible) => (size(visible) > 0
+      ? intersectionBy('id', incidents, visible)
+      : incidents);
+
 export default class DatabaseComponent extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +37,13 @@ export default class DatabaseComponent extends Component {
     this.updateFrontentView = this.updateFrontentView.bind(this);
 
     this.state = {
+      incidents: [],
+      nolocationIncidents: [],
+      locationIncidents: [],
+      visiblebyrange: [],
+      visiblebymap: [],
+      visible: [],
+      invisible: [],
       searchterm: params.filters.term || this.props.filters.term,
       typing: false,
       hoverUnit: false,
@@ -36,15 +53,48 @@ export default class DatabaseComponent extends Component {
     };
   }
 
+
+  componentWillMount() {
+    const collection = this.props.collections;
+    this.props.update({collections: collection});
+  }
+
   componentDidMount() {
     // stuff in url gets priority over stuff from localstorage
+
     const h = params.incident;
     if (h) {
       this.props.getIncident(h);
     } else {
       this.props.clearIncident();
     }
-    this.props.update(params.filters);
+  }
+
+  componentWillReceiveProps(nextProps) {
+  // You don't have to do this check first, but it can help prevent an unneeded render
+    if (nextProps.incidents !== this.state.incidents) {
+      const visiblebyrange = filterByRange(this.state.locationIncidents, this.state.range);
+      const visiblebymap =
+        filterByMapVisible(this.state.locationIncidents, this.state.visibleMarkers);
+      const locationIncidents = filter(i => i.lat && i.lon, nextProps.incidents);
+      const nolocationIncidents = filter(i => !i.lat && !i.lon, nextProps.incidents);
+      this.setState({
+        incidents: nextProps.incidents,
+        locationIncidents,
+        nolocationIncidents,
+        visiblebyrange,
+        visiblebymap,
+        visible: intersectionBy('id', visiblebyrange, visiblebymap),
+        invisible: (size(this.state.visibleMarkers) > 0
+              ? uniqBy('id', concat(xorBy('id', nextProps.incidents, visiblebymap), nolocationIncidents))
+              : nolocationIncidents)
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const a = pick(['selectedIncident', 'incidents', 'updating', 'selectedUnit']);
+    return !(isEqual(a(nextProps), a(this.props)) && isEqual(this.state, nextState));
   }
 
   setSort(field) {
@@ -65,18 +115,41 @@ export default class DatabaseComponent extends Component {
     this.setState({typing: b});
   }
 
+
   visible(codes) {
-    this.setState({visibleMarkers: codes});
+    const visible = this.state.visibleMarkers;
+    if (codes !== visible) {
+      const visiblebymap = filterByMapVisible(this.state.locationIncidents, codes);
+      this.setState({
+        visibleMarkers: codes,
+        visiblebymap,
+        visible: intersectionBy('id', this.state.visiblebyrange, visiblebymap),
+        invisible: (size(codes) > 0
+              ? uniqBy('id', concat(xorBy('id', this.props.incidents, visiblebymap), this.state.nolocationIncidents))
+              : this.state.nolocationIncidents)
+      });
+    }
   }
 
+
   range(range) {
-    this.setState({range});
+    if (range !== this.state.range) {
+      const visiblebyrange = filterByRange(this.state.locationIncidents, range);
+      this.setState({
+        range,
+        visiblebyrange,
+        visible: intersectionBy('id', visiblebyrange, this.state.visiblebymap),
+        invisible: (size(this.state.visibleMarkers) > 0
+              ? uniqBy('id', concat(xorBy('id', this.state.incidents, this.state.visiblebymap), this.state.nolocationIncidents))
+              : this.state.nolocationIncidents)
+      });
+    }
   }
 
   hover(unit) {
     timeMeOut(() => {
       this.setState({hoverUnit: unit});
-    }, 30);
+    }, 1);
   }
 
   updateFrontentView() { // eslint-disable-line
@@ -96,25 +169,21 @@ export default class DatabaseComponent extends Component {
 
   render() {
     const updating = this.props.updating || this.state.typing;
-    const visible = this.state.visibleMarkers;
 
-    const incidents = this.props.incidents;
+    // const incidents = this.state.incidents;
+    const locationIncidents = this.state.locationIncidents;
+    // const nolocationIncidents = this.state.nolocationIncidents;
 
-    const locationIncidents = filter(i => i.lat && i.lon, incidents);
-    const nolocationIncidents = filter(i => !i.lat && !i.lon, incidents);
+    // const visible = this.state.visibleMarkers;
+    //
+    //
+    // const visiblebyrange = this.state.visiblebyrange;
+    // const visiblebymap = this.state.visiblebymap;
 
-    const visiblebymap = size(visible) > 0
-          ? intersectionBy('id', incidents, visible)
-          : locationIncidents;
+    const visibleIncidents = this.state.visible;
 
-    const visibleIncidents =
-      filter((d) =>
-        (moment(d.annotations.incident_date) >= moment(this.state.range[0])
-        && moment(d.annotations.incident_date) <= moment(this.state.range[1])), visiblebymap); // eslint-disable-line
+    const invisibleIncidents = this.state.invisible;
 
-    const invisibleIncidents = size(visible) > 0
-          ? uniqBy('id', concat(xorBy('id', incidents, visible), nolocationIncidents))
-          : nolocationIncidents;
 
     const makeIncidents = (is) => map(i =>
                                       <div // eslint-disable-line
@@ -148,28 +217,34 @@ export default class DatabaseComponent extends Component {
     const vlist = makeIncidents(reverse(sort(visibleIncidents)));
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
 
-    console.log('visible', size(vlist));
-    console.log('invisible', size(ilist));
+    const hu = (!isEmpty(this.props.selectedIncident) ?
+      this.props.selectedIncident :
+      this.state.hoverUnit);
+
+    const hoverunit = (hu.lat && hu.lon) ? hu : undefined;
+
+    const individual = !isEmpty(this.props.selectedIncident);
 
     const leafletMap = (
       <CollectionMapComponent
         incidents={locationIncidents}
         visible={this.visible}
         visibleIncidents={visibleIncidents}
-        hoverUnit={this.state.hoverUnit}
+        hoverUnit={hoverunit}
         updateFrontentView={this.updateFrontentView}
         selector={this.props.selectIncident}
         updateRange={this.range}
+        individual={individual}
       />);
 
-    const singleMap = (
-      <CollectionMapComponent
-        incidents={[this.props.selectedIncident]}
-        visibleIncidents={[this.props.selectedIncident]}
-        visible={() => {}}
-        updateFrontentView={() => {}}
-        updateRange={() => {}}
-      />);
+    // const singleMap = (
+    //   <CollectionMapComponent
+    //     incidents={[this.props.selectedIncident]}
+    //     visibleIncidents={[this.props.selectedIncident]}
+    //     visible={() => {}}
+    //     updateFrontentView={() => {}}
+    //     updateRange={() => {}}
+    //   />);
 
 
     if (!isEmpty(this.props.selectedIncident)) {
@@ -187,7 +262,7 @@ export default class DatabaseComponent extends Component {
               />
             </div>
             <div className="col-4 col-sm-12">
-              {singleMap}
+              {leafletMap}
             </div>
           </div>
 

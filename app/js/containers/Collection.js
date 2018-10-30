@@ -3,11 +3,12 @@ import {withRouter} from 'react-router-dom';
 
 import CollectionComponent from '../components/CollectionComponent';
 
-import {updateFilters, resetFilters, unsetUnit, selectIncident, retrieveIncident, unsetIncident, retrieveUnit} from '../redux/actions';
+import {updateIncidentFilters, resetFilters, unsetUnit, selectIncident, retrieveIncident, unsetIncident, retrieveUnit} from '../redux/actions';
 
 const mapStateToProps = (state) => ({
   filters: state.database.filters,
   stats: state.database.stats,
+  possibilities: state.database.possibilities,
   updating: state.collection.updating,
   incidents: state.collection.ds,
   meta: state.meta,
@@ -15,8 +16,8 @@ const mapStateToProps = (state) => ({
   selectedUnit: state.unit.meat,
 });
 
-const mapDispatchToProps = dispatch => ({
-  update: (f) => dispatch(updateFilters(f)),
+const mapDispatchToProps = (dispatch) => ({
+  update: (f) => dispatch(updateIncidentFilters(f)),
   reset: () => dispatch(resetFilters()),
   getIncident: (id) => dispatch(retrieveIncident(id)),
   selectIncident: (u) => dispatch(selectIncident(u)),

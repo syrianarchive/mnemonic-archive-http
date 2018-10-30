@@ -8,6 +8,12 @@ import {params} from '../params';
 const defaultDb = {
   updating: true,
   ds: [],
+  possibilities: {
+    type_of_violation: [],
+    locations: [],
+    collections: [],
+    weapons: [],
+  },
   filters: params.filters || {
     term: '',
     type_of_violation: '',
@@ -22,6 +28,9 @@ const defaultDb = {
 const defaultCollection = {
   updating: true,
   ds: [],
+  filters: {
+    collections: [],
+  }
 };
 
 
@@ -36,7 +45,10 @@ const database = (state = defaultDb, action) => {
     case 'UPDATE_UNITS':
       return set('ds', action.units, state);
     case 'UPDATE_STATS':
-      return merge(state, {stats: action.stats});
+      return merge(state, {
+        stats: action.stats.stats,
+        possibilities: action.stats.possibilities,
+      });
     case 'REQUEST_UNITS':
       return merge(state, {updating: action.received});
     default:
@@ -48,6 +60,8 @@ const collection = (state = defaultCollection, action) => {
   switch (action.type) {
     case 'INITIATE':
       return {};
+    case 'UPDATE_INCIDENT_FILTERS':
+      return set('filters', action.filters, state);
     case 'UPDATE_COLLECTION':
       return set('ds', action.units, state);
     case 'REQUEST_COLLECTION':
@@ -85,11 +99,13 @@ const defaultIncident = {
 
 const incident = (state = defaultIncident, action) => {
   switch (action.type) {
-    case 'SELECT_INCIDENT':
-      return merge(state, {
-        id: action.incident.incident_code,
-        meat: action.incident
-      });
+    case 'SELECT_INCIDENT': // eslint-disable-line
+      const i = set('id', action.incident.incident_code, state);
+      return set('meat', action.incident, i);
+      // return merge(state, {
+      //   id: action.incident.incident_code,
+      //   meat: action.incident
+      // });
     case 'UNSET_INCIDENT':
       return merge(defaultIncident, {id: ''});
     case 'REQUEST_INCIDENT':

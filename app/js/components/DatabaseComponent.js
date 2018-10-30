@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import {map, isEmpty} from 'lodash/fp';
 
-import ListEvidence from './ListEvidence';
+import ListEvidence from './ListObservation';
 import Unit from './Unit';
 import Filters from './Filters';
 
@@ -42,6 +42,7 @@ export default class DatabaseComponent extends Component {
       selectedUnit,
       meta,
       units,
+      getIncident,
     } = this.props;
 
     const us = map(i =>
@@ -50,7 +51,7 @@ export default class DatabaseComponent extends Component {
 
     return (
       <div className="container database">
-        <Unit unit={selectedUnit} clear={clearUnit} />
+        <Unit unit={selectedUnit} clear={clearUnit} getIncident={getIncident} />
 
         <div className="columns stats">
           <div className="col-3" />
@@ -71,6 +72,7 @@ export default class DatabaseComponent extends Component {
               filters={this.props.filters}
               meta={this.props.meta}
               reset={this.props.reset}
+              possibilities={this.props.possibilities}
             />
           </div>
 

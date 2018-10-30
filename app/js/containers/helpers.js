@@ -1,5 +1,5 @@
 /* global locale */
-import {find} from 'lodash/fp';
+import {find, getOr} from 'lodash/fp';
 import locations from '../../../../locations.json';
 
 
@@ -26,4 +26,9 @@ const finda = a =>
 export const location = (arloc) =>
   (locale === 'ar' ? arloc : finda(arloc));
 
-export default {unitTitle, timeMeOut, location};
+export const unitLoc = i => (getOr(undefined, `location_info.readable_location.${locale}`, i) ||
+    getOr(undefined, 'clusters.locations.0', i)
+);
+
+
+export default {unitTitle, timeMeOut, location, unitLoc};

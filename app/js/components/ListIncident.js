@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {size} from 'lodash/fp';
 import {location, incidentTitle} from '../containers/helpers';
 
-export default class ListEvidence extends Component {
+export default class ListObservation extends Component {
   render() {
     const i = this.props.incident;
     if (i.annotations === undefined) {

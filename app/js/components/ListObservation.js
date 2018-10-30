@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {unitTitle, location} from '../containers/helpers';
+import {unitTitle, unitLoc} from '../containers/helpers';
 import t from '../../../translations';
 
-export default class ListEvidence extends Component {
+export default class ListObservation extends Component {
   render() {
     const i = this.props.unit;
     return (
@@ -14,7 +14,7 @@ export default class ListEvidence extends Component {
             {i.annotations.reference_code}
           </small>
         </div>
-        <div className="col-2 col-sm-12"><small>{location(i.clusters.locations)}</small></div>
+        <div className="col-2 col-sm-12"><small>{unitLoc(i)}</small></div>
         <div className="col-1 col-sm-12">
           <button className="btn" onClick={this.props.selector}>
             {t('view')}

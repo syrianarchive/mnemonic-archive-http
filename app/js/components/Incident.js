@@ -4,7 +4,7 @@ import Promise from 'bluebird';
 import Unit from './Unit';
 import CardUnit from './CardUnit';
 import t from '../../../translations';
-import {location, incidentTitle, incidentSummary} from '../containers/helpers';
+import {unitLoc, incidentTitle, incidentSummary} from '../containers/helpers';
 
 import {api} from '../api';
 
@@ -25,7 +25,7 @@ export default class Incident extends Component {
       this.props.clear();
     };
     this.props.scroll();
-    if (isEmpty(this.state.units) && this.props.incident && !isEmpty(this.props.incident.units)) {
+    if (this.props.incident && !isEmpty(this.props.incident.units)) {
       Promise.each(
         this.props.incident.units,
         (uid) => api.get(`units/${uid}`)
@@ -35,6 +35,22 @@ export default class Incident extends Component {
             })
       )
       .catch(console.log);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.incident !== this.props.incident) {
+      this.setState({units: []}, () =>
+        Promise.each(
+          this.props.incident.units,
+          (uid) => api.get(`units/${uid}`)
+              .then(u => this.setState({units: concat(this.state.units, u)}))
+              .catch(() => {
+                console.log(`failed retrieving ${uid}`);
+              })
+        )
+        .catch(console.log)
+      );
     }
   }
 
@@ -64,11 +80,17 @@ export default class Incident extends Component {
 
     const confidence = (c) => {
       switch (c) {
-        case 1:
+        case 1 :
           return 'This incident is unlikely to have occurred';
-        case 2:
+        case '1' :
+          return 'This incident is unlikely to have occurred';
+        case 2 :
           return 'This incident likely to have occurred';
-        case 3:
+        case '2' :
+          return 'This incident likely to have occurred';
+        case 3 :
+          return 'This incident has a high likelihood of having occurred';
+        case '3' :
           return 'This incident has a high likelihood of having occurred';
         default:
           return 'This incident is very unlikely to have occurred';
@@ -90,10 +112,10 @@ export default class Incident extends Component {
           <br /><br />
 
 
-          <span className="lbl">{i.incident_code}</span>
+          <span className="lbl">{i.id}</span>
 
           <h3>{incidentTitle(i) || 'Chemical Attack'}</h3>
-          <h6>{i.incident_date} {i.incident_time}</h6>
+          <h6>{i.annotations.incident_date} {i.annotations.incident_time}</h6>
 
           <hr />
 
@@ -102,7 +124,7 @@ export default class Incident extends Component {
               {t('Confidence')}:
             </small>
             <h5>
-              {confidence(i.confidence)}
+              {confidence(i.annotations.confidence)}
             </h5>
           </div>
 
@@ -111,7 +133,7 @@ export default class Incident extends Component {
               {t('Location')}:
             </small>
             <h5>
-              {location(i.location)}
+              {unitLoc(i)}
             </h5>
           </div>
 
@@ -124,7 +146,7 @@ export default class Incident extends Component {
               {t('Precise Location')}:
             </small>
             <h5>
-              {i.latitude} {i.longitude}
+              {i.annotations.latitude} {i.annotations.longitude}
             </h5>
           </div>
 
@@ -133,7 +155,7 @@ export default class Incident extends Component {
               {t('Weapons Used')}:
             </small>
             <h5>
-              {compact(i.weapons_used).join(', ')}
+              {compact(i.clusters.weapons).join(', ')}
             </h5>
           </div>
 
@@ -142,7 +164,7 @@ export default class Incident extends Component {
               {t('Collections')}:
             </small>
             <h5>
-              {compact(i.collections).join(', ')}
+              {compact(i.clusters.collections).join(', ')}
             </h5>
           </div>
 
@@ -151,12 +173,12 @@ export default class Incident extends Component {
               {t('Type of Violation')}:
             </small>
             <h5>
-              {compact(mapW((k, v) => (k ? t(v) : ''), i.type_of_violation)).join(', ')}
+              {compact(mapW((k, v) => (k ? t(v) : ''), i.annotations.type_of_violation)).join(', ')}
             </h5>
           </div>
 
 
-          {!isEmpty(i.fr_title) ?
+          {!isEmpty(i.annotations.fr_title) ?
             <div>
               <small>
                 {t('Dataset')}:
@@ -167,12 +189,12 @@ export default class Incident extends Component {
                 Foreign Affairs
               </p>
               <p>
-                {i.fr_title}
+                {i.annotations.fr_title}
               </p>
             </div>
           : ''}
 
-          {!isEmpty(i.un_title) ?
+          {!isEmpty(i.annotations.un_title) ?
             <div>
               <small>
                 {t('Dataset')}:
@@ -184,7 +206,7 @@ export default class Incident extends Component {
                 Arab Republic
               </p>
               <p>
-                {i.un_title}
+                {i.annotations.un_title}
               </p>
             </div>
           : ''}
@@ -199,8 +221,8 @@ export default class Incident extends Component {
           {map(u =>
             <CardUnit
               unit={u}
-              key={u.reference_code}
-              get={() => this.props.getUnit(u.reference_code)}
+              key={u.aid}
+              get={() => this.props.getUnit(u.aid)}
             />
           , us)}
 

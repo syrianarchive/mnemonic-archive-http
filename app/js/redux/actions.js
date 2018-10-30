@@ -1,5 +1,5 @@
 // import Promise from 'bluebird';
-import {merge, isEqual, isEmpty, pick} from 'lodash/fp';
+import {merge, isEqual, isEmpty, pick, set} from 'lodash/fp';
 
 import {store} from '../store';
 
@@ -14,15 +14,14 @@ export const updateCollection = units => ({type: 'UPDATE_COLLECTION', units});
 
 const callApi = (path, filters, dispatch, requestFunc, updateFunc) => {
   dispatch(requestFunc(true));
-  dispatch({
-    type: 'UPDATE_FILTERS',
-    filters,
-  });
 
   return api.post(path, filters)
     .then(r => {
       dispatch(updateFunc(r.units));
-      dispatch(updateStats(r.stats));
+      dispatch(updateStats({
+        stats: r.stats,
+        possibilities: r.possibilities
+      }));
       dispatch(requestFunc(false));
       return r;
     });
@@ -32,14 +31,35 @@ export const updateFilters = filters =>
   dispatch => {
     const current = store.getState();
     const f = merge(current.database.filters, filters);
+    dispatch({
+      type: 'UPDATE_FILTERS',
+      filters: f,
+    });
     // only ping the api if the filters have changed.
     if (!isEqual(f, current.database.filters) || isEmpty(current.database.ds)) {
       callApi('units', f, dispatch, requestUnits, updateUnits);
     }
-    if (!isEqual(f, current.database.filters) || isEmpty(current.database.ds)) {
-      callApi('incidents', pick('term', f), dispatch, requestCollection, updateCollection);
-    }
   };
+
+export const updateIncidentFilters = filters =>
+  dispatch => {
+    const current = store.getState();
+    let f = merge(current.collection.filters, filters);
+    if (filters.collections) {
+      f = set('collections', filters.collections, f);
+    }
+    dispatch({
+      type: 'UPDATE_FILTERS',
+      filters: pick(['term'], f),
+    });
+
+    dispatch({
+      type: 'UPDATE_INCIDENT_FILTERS',
+      filters: f,
+    });
+    callApi('incidents', f, dispatch, requestCollection, updateCollection);
+  };
+
 
 export const resetFilters = () =>
   dispatch => api.post('units', {})
@@ -61,6 +81,7 @@ export const unsetIncident = () => ({type: 'UNSET_INCIDENT'});
 
 export const retrieveIncident = id =>
   dispatch => {
+    console.log('gettinnggg incidennnt');
     const current = store.getState().incident;
     console.log(id);
     // only ping the api if the filters have changed.

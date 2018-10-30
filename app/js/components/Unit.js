@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {isEmpty, map, compact} from 'lodash/fp';
 import t from '../../../translations';
 
-import {unitTitle, location} from '../containers/helpers';
+import {unitTitle, unitLoc} from '../containers/helpers';
 // import {mediaUrl} from '../../../../env';
 
 const mapW = map.convert({cap: false});
@@ -58,6 +58,26 @@ export default class Unit extends Component {
         </div>
         <div className="col-6 col-sm-12 meta">
 
+          {!this.props.subtitle ?
+            <div>
+              <small>
+                {t('Incidents')}:
+              </small>
+              <h6>{map(incident =>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`/${locale}/collections/all/database?incident=${incident}`}
+                  onClick={() => {
+                    this.props.clear();
+                  }}
+                >
+                  {incident}
+                </a>
+                  , i.clusters.incidents)}</h6>
+            </div>
+              : ''}
+
           <small>
             {t('Online Title')}:
           </small>
@@ -78,7 +98,7 @@ export default class Unit extends Component {
             {t('Location')}:
           </small>
           <h6>
-            {location(i.clusters.locations)}
+            {unitLoc(i)}
           </h6>
 
           <small>
@@ -129,7 +149,7 @@ export default class Unit extends Component {
           <div className="modal-body">
             <div className="modal-header">
               <button onClick={this.props.clear} className="btn btn-clear float-right" />
-              {t('Verified Observation')}: {i.annotations.reference_code} /
+              {t('Verified Observation')}: {i.reference_code} /
               <a href="/">{t('Syrian Archive')}</a>
               {this.props.subtitle ?
                 <span>
@@ -141,6 +161,7 @@ export default class Unit extends Component {
             <div className="content">
               {content}
             </div>
+            <small>{i.id}</small>
             <div className="modal-footer">
               <button onClick={this.props.clear} className="btn">
                 {t('Close')}
