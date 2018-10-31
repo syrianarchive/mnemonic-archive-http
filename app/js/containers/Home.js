@@ -110,7 +110,7 @@ export default class Investigations extends Component {
             </h5>
             {map(v =>
               <div className="frontvio">
-                <h6><a href={`/${locale}/database?type_of_violation=${v}`}>
+                <h6><a href={'#'}>
                   {t(v)}
                 </a></h6>
               </div>
