@@ -78,6 +78,25 @@ export default class App extends Component {
               }
             />
 
+            <Route
+              path="/:locale/collections/all/database"
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={[]}
+                />
+              }
+            />
+            <Route
+              path="/:locale/collections/all/database.html"
+              render={(props) =>
+                <Collection
+                  {...props}
+                  collections={[]}
+                />
+              }
+            />
+
             <Route path="/:locale/" component={Home} />
           </Switch>
         </div>
