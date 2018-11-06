@@ -29,6 +29,9 @@ home
           {{ contents|safe }}
         </div>
 
+	{% block sycustom %}
+	{% endblock %}
+	
         {% set items = latest  | sort(true, true, 'date') %}
         <div class="container investigations">
           <div class="limiter columns">
