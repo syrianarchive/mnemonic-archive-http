@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
   selectedUnit: state.unit.meat,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   update: (f) => dispatch(updateIncidentFilters(f)),
   reset: () => dispatch(resetFilters()),
   getIncident: (id) => dispatch(retrieveIncident(id)),

@@ -55,22 +55,8 @@ export default class DatabaseComponent extends Component {
 
 
   componentWillMount() {
-    const collection = this.props.match.params.collection;
-    let cols = [];
-    switch (collection) {
-      case 'chemical-weapons':
-        cols = ['Chemical weapons'];
-        break;
-      case 'russian-airstrikes':
-        cols = ['Civilian casualties as a result of alleged russian attacks', 'Russian airstrikes in Syria'];
-        break;
-      case 'russian-mod-airstrikes':
-        cols = ['Attacks claimed by Russian Ministry of Defense'];
-        break;
-      default:
-        cols = [];
-    }
-    this.props.update({collections: cols});
+    const collection = this.props.collections;
+    this.props.update({collections: collection});
   }
 
   componentDidMount() {
@@ -107,7 +93,7 @@ export default class DatabaseComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const a = pick(['selectedIncident', 'updating', 'selectedUnit']);
+    const a = pick(['selectedIncident', 'incidents', 'updating', 'selectedUnit']);
     return !(isEqual(a(nextProps), a(this.props)) && isEqual(this.state, nextState));
   }
 
@@ -231,9 +217,11 @@ export default class DatabaseComponent extends Component {
     const vlist = makeIncidents(reverse(sort(visibleIncidents)));
     const ilist = makeIncidents(reverse(sort(invisibleIncidents)));
 
-    const hoverunit = (!isEmpty(this.props.selectedIncident) ?
+    const hu = (!isEmpty(this.props.selectedIncident) ?
       this.props.selectedIncident :
       this.state.hoverUnit);
+
+    const hoverunit = (hu.lat && hu.lon) ? hu : undefined;
 
     const individual = !isEmpty(this.props.selectedIncident);
 

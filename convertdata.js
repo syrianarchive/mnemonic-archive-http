@@ -119,7 +119,7 @@ Metalsmith(__dirname)
           const b2f = `${c.path.substring(1)}/index.html`;
           ff.push(f[b2f]);
         });
-        //console.log(ff);
+        // console.log(ff);
         v.siblings = filter(filter(compact(ff), gg => gg.path !== 'en/404.html'), gg => !(gg.snippet)); //eslint-disable-line
         v.sibs = reduce(filter(compact(ff), gg => gg.path !== 'en/404.html'),//eslint-disable-line
           (a, o) => {

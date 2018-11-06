@@ -39,8 +39,6 @@ export default class Incident extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-  // You don't have to do this check first, but it can help prevent an unneeded render
-    console.log('receiviiiiinnggg proooopss');
     if (nextProps.incident !== this.props.incident) {
       this.setState({units: []}, () =>
         Promise.each(
@@ -82,11 +80,17 @@ export default class Incident extends Component {
 
     const confidence = (c) => {
       switch (c) {
-        case 1:
+        case 1 :
           return 'This incident is unlikely to have occurred';
-        case 2:
+        case '1' :
+          return 'This incident is unlikely to have occurred';
+        case 2 :
           return 'This incident likely to have occurred';
-        case 3:
+        case '2' :
+          return 'This incident likely to have occurred';
+        case 3 :
+          return 'This incident has a high likelihood of having occurred';
+        case '3' :
           return 'This incident has a high likelihood of having occurred';
         default:
           return 'This incident is very unlikely to have occurred';
