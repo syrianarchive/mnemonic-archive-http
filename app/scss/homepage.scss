@@ -28,7 +28,6 @@
   background-color: white;
   padding: 2rem;
   margin-bottom: 2rem;
-  margin-top: 3rem;
   color: black;
   border-bottom: 4px solid $primary-color;
   font-size: 1.8rem;
@@ -41,8 +40,10 @@
   }
 }
 
-.right-section {
-  margin-top: -1rem;
+.right-section h5:first-child {
+  background-color: orange;
+  position: absolute;
+  z-index: 30;
 }
 
 .home .title {
