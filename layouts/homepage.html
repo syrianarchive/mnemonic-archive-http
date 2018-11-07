@@ -29,9 +29,6 @@ home
           {{ contents|safe }}
         </div>
 
-	{% block sycustom %}
-	{% endblock %}
-	
         {% set items = latest  | sort(true, true, 'date') %}
         <div class="container investigations">
           <div class="limiter columns">
@@ -48,15 +45,22 @@ home
 
 
       </div>
-      <div class = "col-6 col-sm-12 flx">
-        {% for post in siblings  | sort(true, true, 'date')%}
+      <div class="col-6 col-sm-12 right-section">
+	<h5>{{ "Latest Release" |t(locale)}}</h5>
+	{% block latestrelease %}
+	{% endblock %}
+	<h5>{{ "Sections" |t(locale)}}</h5>
+	<div class = "col-12 col-sm-12 flx">
+          {% for post in siblings  | sort(true, true, 'date')%}
           {% if post.locale === locale and post.title != title %}
-            <div class="fll">
-                {% include 'includes/card.html' %}
-              </div>
+          <div class="fll">
+            {% include 'includes/card.html' %}
+          </div>
           {% endif %}
-        {% endfor %}
+          {% endfor %}
+	</div>
       </div>
+      
     </div>
 
   <!-- <div class="columns latestinfo">

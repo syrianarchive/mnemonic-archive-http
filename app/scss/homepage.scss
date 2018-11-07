@@ -28,6 +28,7 @@
   background-color: white;
   padding: 2rem;
   margin-bottom: 2rem;
+  margin-top: 3rem;
   color: black;
   border-bottom: 4px solid $primary-color;
   font-size: 1.8rem;
@@ -38,6 +39,10 @@
   @include breakpoint(medium){
     font-size:1.15rem;
   }
+}
+
+.right-section {
+  margin-top: -1rem;
 }
 
 .home .title {
