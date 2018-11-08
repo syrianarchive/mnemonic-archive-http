@@ -7,6 +7,7 @@ import multiLanguage from 'metalsmith-multi-language';
 import {each, find, merge, omit, concat, compact, keys, pick, filter, reduce} from 'lodash';
 import filetree from 'metalsmith-filetree';
 import ignore from 'metalsmith-ignore';
+import publish from 'metalsmith-publish';
 
 import nunjucks from 'nunjucks';
 
@@ -57,6 +58,9 @@ Metalsmith(__dirname)
     '.git/**/.*',
     '.gitignore',
   ]))
+  .use(publish({
+    draft: false
+  }))
   .metadata({
     sitename: siteName,
     siteurl: siteUrl,
