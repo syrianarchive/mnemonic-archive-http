@@ -51,9 +51,9 @@ createSupportLink();
 function mobileTopTitles() {
   let homePageLink = '/';
   const homeLink = document.createElement('A');
-  let homeLinkText = document.createTextNode(translations.en['Site Name']);
+  let homeLinkText = document.createTextNode(translations.en['site name']);
   if (siteLang === undefined) {
-    homeLinkText = document.createTextNode(translations.ar['Site Name']);
+    homeLinkText = document.createTextNode(translations.ar['site name']);
     homePageLink = '/ar';
   }
   homeLink.appendChild(homeLinkText);
