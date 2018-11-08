@@ -41,7 +41,11 @@
 }
 
 .right-section h5:first-child {
-  background-color: orange;
+  background-color: $orange;
+  color: white;
+  padding: .5rem;
+  padding-left: 2.5rem;
+  font-size: 1.7rem;
   position: absolute;
   z-index: 30;
 }
