@@ -7,7 +7,6 @@ import multiLanguage from 'metalsmith-multi-language';
 import {each, find, merge, omit, concat, compact, keys, pick, filter, reduce} from 'lodash';
 import filetree from 'metalsmith-filetree';
 import ignore from 'metalsmith-ignore';
-import publish from 'metalsmith-publish';
 
 import nunjucks from 'nunjucks';
 
@@ -58,9 +57,6 @@ Metalsmith(__dirname)
     '.git/**/.*',
     '.gitignore',
   ]))
-  .use(publish({
-    draft: false
-  }))
   .metadata({
     sitename: siteName,
     siteurl: siteUrl,
@@ -75,12 +71,13 @@ Metalsmith(__dirname)
   .use(markdown())
   .use((f, m, d) => {
     each(f, (v, k) => {
+      if (v.drafts) delete f[k]; // eslint-disable-line
       if (k.includes('html')) {
         k = k.replace('.html', '') // eslint-disable-line
         if (k === 'ar/index') {
           k = 'index_ar'; //eslint-disable-line
           f[`${k}.html`] = merge({}, v); // eslint-disable-line
-          delete f['ar/index.html']; // eslint-disable-line
+          delete f['ar/index.html'];  // eslint-disable-line
         }
         if ((!f[`${k}_ar.html`] && !k.includes('_ar'))) {
           f[`${k}_ar.html`] = merge({}, v); // eslint-disable-line
