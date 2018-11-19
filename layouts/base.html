@@ -9,15 +9,20 @@
 
   <meta name="description" content="{{title}} - {{desc}}">
 
-  <meta name="twitter:card" content="{{desc}} | {{ "Site Name" |t(locale)}}">
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="{{ "Twitter Username" |t(locale)}}">
   <meta name="twitter:creator" content="{{ "Twitter Username" |t(locale)}}">
   <meta name="twitter:url" content="{{ "Site URL" |t(locale)}}{{url}}">
-  <meta name="twitter:image" content="{{ "Site URL" |t(locale)}}{{image}}">
   <meta property="og:url" content="{{ "Site URL" |t(locale)}}{{url}}">
   <meta property="og:title" content="{{title}} | {{ "Site Name" |t(locale)}}">
   <meta property="og:description" content="{{desc}} | {{ "Site Name" |t(locale)}}">
-  <meta property="og:image" content="{{ "Site URL" |t(locale)}}{{image}}">
+  {% if socialMediaImage  %}
+  <meta name="twitter:image" content="{{ "Site URLS" |t(locale)}}{{socialMediaImage}}">
+  <meta property="og:image" content="{{ "Site URLS" |t(locale)}}{{socialMediaImage}}">
+  {% else %}
+  <meta name="twitter:image" content="{{ "Site URLS" |t(locale)}}{{image}}">
+  <meta property="og:image" content="{{ "Site URLS" |t(locale)}}{{image}}">
+  {%endif%}
 
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
