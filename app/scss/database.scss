@@ -74,3 +74,27 @@
   margin: 1em;
   color:#666;
 }
+
+/* optimization subheader of database for mobile */
+
+.container.subheader .nav {
+  @include breakpoint(medium) {
+    all: initial;
+    * {
+      all: unset;
+    }
+    
+  }
+  .navbar .navbar-section:first-child {
+    @include breakpoint(medium) {
+      display: none;
+    }
+  }
+  .navbar .navbar-section {
+    a:link, a:active, a:visited, a:hover {
+      color: $highlight-color;
+      margin-right: .2rem;
+      cursor:pointer
+    }
+  }
+}
