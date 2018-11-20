@@ -42,19 +42,29 @@
 }
 .dbwrapper{
   padding-top: 0;
-    padding-bottom: 0;
+  padding-bottom: 0;
 
   .columns{
     padding:2rem;
+  }
+  .columns .btn {
+    @include breakpoint(medium) {
+      margin-top: 1rem;
+    }
   }
 }
 
 
 
-.stats{
-   padding-top: 1rem;
-    padding-bottom: 1rem;
+.stats {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   color:$accent-color;
+  .col-3 {
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
 }
 
 .dtitle{
@@ -66,7 +76,11 @@
     color: #111;
     padding: .2rem;
     line-height: 3rem;
-  }
+   }
+   @include breakpoint(medium) {
+     padding-left: 0;
+     padding-right: 0;
+   }
 }
 
 
@@ -98,3 +112,4 @@
     }
   }
 }
+
