@@ -19,8 +19,8 @@ inves-page
         <div class="col-8 col-sm-12 investigation">
           {% include 'includes/breadcrumbs.html' %}
           <h1>{{ title }}</h1>
-          <i><small>{{date|string|truncate(15, false, '') }}</small></i>
-          
+          <i><small>{{(date or "")|string|truncate(15, false, '') }}</small></i>
+
           <div class="desc">
             {{desc}}
           </div>
