@@ -119,3 +119,9 @@
   }
 }
 
+.collection-homepage {
+  display: none;
+  @include breakpoint(medium) {
+    display: block;
+  }
+}
