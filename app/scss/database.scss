@@ -1,16 +1,22 @@
-.unit{
+.unit {
   background-color: white;
   video{
     width: 100%;
     height: auto;
     margin-bottom: 2em;
     margin-top: 2rem;
+    @include breakpoint(medium) {
+      margin-bottom: 0;
+    }
   }
   h2{
     margin-bottom: 2em;
   }
   .meta{
     padding: 2rem;
+    @include breakpoint(medium) {
+      padding: .6rem;
+    }
   }
 
   .meta small.warning{
@@ -19,15 +25,15 @@
     margin-top:-1em;
     position: absolute;
     padding: .3em;
+    @include breakpoint(medium) {
+      position: static;
+    }
   }
 
   .meta small {
     background-color: $highlight-color;
     margin-top:2rem;
   }
-
-
-
 }
 
 .database{
