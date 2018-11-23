@@ -49,4 +49,8 @@ p a{
     background-color:$primary-color;
     color:white;
   }
+  @include breakpoint(medium) {
+    border:none;
+    font-size: 1.3rem;
+  }
 }
