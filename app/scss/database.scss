@@ -1,16 +1,22 @@
-.unit{
+.unit {
   background-color: white;
   video{
     width: 100%;
     height: auto;
     margin-bottom: 2em;
     margin-top: 2rem;
+    @include breakpoint(medium) {
+      margin-bottom: 0;
+    }
   }
   h2{
     margin-bottom: 2em;
   }
   .meta{
     padding: 2rem;
+    @include breakpoint(medium) {
+      padding: .6rem;
+    }
   }
 
   .meta small.warning{
@@ -19,15 +25,15 @@
     margin-top:-1em;
     position: absolute;
     padding: .3em;
+    @include breakpoint(medium) {
+      position: static;
+    }
   }
 
   .meta small {
     background-color: $highlight-color;
     margin-top:2rem;
   }
-
-
-
 }
 
 .database{
@@ -42,19 +48,29 @@
 }
 .dbwrapper{
   padding-top: 0;
-    padding-bottom: 0;
+  padding-bottom: 0;
 
   .columns{
     padding:2rem;
+  }
+  .columns .btn {
+    @include breakpoint(medium) {
+      margin-top: 1rem;
+    }
   }
 }
 
 
 
-.stats{
-   padding-top: 1rem;
-    padding-bottom: 1rem;
+.stats {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   color:$accent-color;
+  .col-3 {
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
 }
 
 .dtitle{
@@ -66,11 +82,46 @@
     color: #111;
     padding: .2rem;
     line-height: 3rem;
-  }
+   }
+   @include breakpoint(medium) {
+     padding-left: 0;
+     padding-right: 0;
+   }
 }
 
 
 .noresults{
   margin: 1em;
   color:#666;
+}
+
+/* optimization subheader of database for mobile */
+
+.container.subheader .nav {
+  @include breakpoint(medium) {
+    all: initial;
+    * {
+      all: unset;
+    }
+    
+  }
+  .navbar .navbar-section:first-child {
+    @include breakpoint(medium) {
+      display: none;
+    }
+  }
+  .navbar .navbar-section {
+    a:link, a:active, a:visited, a:hover {
+      color: $highlight-color;
+      margin-right: .2rem;
+      cursor:pointer
+    }
+  }
+}
+
+.collection-homepage {
+  display: none;
+  @include breakpoint(medium) {
+    display: block;
+  }
 }

@@ -1,11 +1,19 @@
 
-.modal-container .modal-body{
+.modal-container .modal-body {
   max-height: 100000px;
+  @include breakpoint(medium) {
+    padding: 0;
+  }
+}
+
+.modal-body > small {
+  word-wrap: break-word;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  font-size: 1rem;
 }
 
 .modal {
-
-
   top: 0;
   bottom: none !important;
   position:fixed;
@@ -43,7 +51,18 @@
   h3 {font-size: 1.8rem}
   h4 {font-size: 1.6rem}
   h5 { font-size: 1.4rem}
-  h6 {font-size: 1.2rem}
+  h6 {
+    font-size: 1.2rem;
+    /* @include breakpoint(medium) { */
+    /*   font-size: 1rem; */
+    /* } */
+  } 
+  @include breakpoint(medium) {
+    width:100%;
+    h1,h2,h3,h4,h5,h6,p {
+      font-size: 1rem;
+    }
+  }
 }
 
 .modal-header{

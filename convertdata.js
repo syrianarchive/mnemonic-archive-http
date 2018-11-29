@@ -71,7 +71,7 @@ Metalsmith(__dirname)
   .use(markdown())
   .use((f, m, d) => {
     each(f, (v, k) => {
-      if (v.drafts) delete f[k]; // eslint-disable-line
+      if (v.drafts && process.env.NODE_ENV === 'production') delete f[k]; // eslint-disable-line
       if (k.includes('html')) {
         k = k.replace('.html', '') // eslint-disable-line
         if (k === 'ar/index') {
