@@ -133,7 +133,7 @@ Metalsmith(__dirname)
           {}); //eslint-disable-line
         console.log(keys(v.sibs));
         v.all = f;
-        v.name = v.url.replace(/\//g,'_');
+        v.name = v.url.replace(/[/.]/g,'_');
       }
     });
     d();
