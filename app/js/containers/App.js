@@ -96,6 +96,12 @@ export default class App extends Component {
                 />
               }
             />
+            <Route
+              path="/:locale/about/donate"
+              component={() => {
+                window.location = 'https://www.patreon.com/syrianarchive';
+              }}
+            />
 
             <Route path="/:locale/" component={Home} />
           </Switch>
