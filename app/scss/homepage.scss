@@ -163,12 +163,13 @@
   padding-left: 3rem;
   padding-bottom: 0;
   @include breakpoint(medium) {
-    padding-top: 0;
+    padding-top: .5rem;
     padding-left: .35rem;
     padding-right: 0; 
   }
 }
 .mailing-list label {
+  font-size: 1.1rem;
   color: #999;
 }
 .mailing-list .email {

@@ -194,12 +194,16 @@ td {
 
 .footer-nav {
   padding-left: 2rem;
+  @include breakpoint(medium) {
+    padding: 0 1rem .4rem 0;
+  }
 }
 .mailing-list {
   padding-left: 0;
   padding-right: 3rem;
   @include breakpoint(medium) {
-    padding-right: 0;
+    padding: 0;
+    padding-top: .5rem;
   }
 }
 .mailing-list .btn {
