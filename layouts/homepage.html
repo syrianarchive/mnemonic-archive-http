@@ -29,6 +29,9 @@ home
           {{ contents|safe }}
         </div>
 
+	{% block latestreleasemobile %}
+	{% endblock %}
+
         {% set items = latest  | sort(true, true, 'date') %}
         <div class="container investigations">
           <div class="limiter columns">
@@ -46,8 +49,8 @@ home
 
       </div>
       <div class="col-6 col-sm-12 right-section">
-	<h5>{{ "Latest Release" |t(locale)}}</h5>
-	{% block latestrelease %}
+	
+	{% block latestreleasedesktop %}
 	{% endblock %}
 	<h5>{{ "Sections" |t(locale)}}</h5>
 	<div class = "col-12 col-sm-12 flx">
