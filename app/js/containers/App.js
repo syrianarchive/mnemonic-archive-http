@@ -79,7 +79,7 @@ export default class App extends Component {
             />
 
             <Route
-              path="/:locale/collections/all/database"
+              path="/:locale/collections/all"
               render={(props) =>
                 <Collection
                   {...props}

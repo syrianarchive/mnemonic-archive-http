@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import Metalsmith from 'metalsmith';
 import collections from 'metalsmith-collections';
 // import layouts from 'metalsmith-layouts';
@@ -13,6 +14,8 @@ import nunjucks from 'nunjucks';
 import t from './translations';
 
 import {siteName, siteUrl, siteDescription, generatorName, generatorUrl, contentSource } from '../config';
+
+dotenv.config();
 
 const lo = (u, l) => u.replace(/^.{3}/g, `/${l}/`);
 
@@ -130,7 +133,7 @@ Metalsmith(__dirname)
           {}); //eslint-disable-line
         console.log(keys(v.sibs));
         v.all = f;
-        v.name = v.url.replace(/\//g,'_');
+        v.name = v.url.replace(/[/.]/g,'_');
       }
     });
     d();

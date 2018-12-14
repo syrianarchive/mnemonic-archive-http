@@ -69,7 +69,7 @@ td li {
 }
 
 
-/* Convert tables to list on mobile */
+/* Convert tables to lists on mobile */
 /* Maybe we have to move this part to a sperate file */
 
 @include breakpoint(medium){
@@ -107,7 +107,7 @@ td li {
     border: none;
     border-bottom: 1px solid #eee; 
     position: relative;
-    padding-left: 50%;
+    /* padding-left: 50%; */
   }
   
   td:before { 
@@ -116,10 +116,17 @@ td li {
     white-space: nowrap;
     font-weight: bold;
   }
- 
-  td:nth-of-type(1):before { content: "Field Description:"; }
-  td:nth-of-type(2):before { content: "Workflow:"; }
-  td:nth-of-type(3):before { content: "Field Type:"; }
-  td:nth-of-type(4):before { content: "Population Method:"; }
-  td:nth-of-type(5):before { content: "Purpose:"; }
+  
+.en_tools_methods_methodology_metadata_schema_page table {
+    td:nth-of-type(1):before { content: "Field Description:"; }
+    td:nth-of-type(2):before { content: "Workflow:"; }
+    td:nth-of-type(3):before { content: "Field Type:"; }
+    td:nth-of-type(4):before { content: "Population Method:"; }
+    td:nth-of-type(5):before { content: "Purpose:"; }  
+}
+.en_collections_russian-airstrikes_pattern_of_attack_htmlpage table {
+  td:nth-of-type(1):before { content: "Category:"; }
+  td:nth-of-type(2):before { content: "Number of incidents:"; }
+  td:nth-of-type(3):before { content: "Number of videos:"; }
+}
 }

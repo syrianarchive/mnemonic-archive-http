@@ -125,3 +125,11 @@
     display: block;
   }
 }
+
+.en_collections_all_page, .ar_collections_all_page {
+  > .contents {
+    display: none;
+  }
+  .collection .collectionsearch {top:6.4rem}
+  .collection .mapcol {top: 6.4rem}
+}

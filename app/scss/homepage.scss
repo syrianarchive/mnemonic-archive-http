@@ -40,7 +40,7 @@
   }
 }
 
-.right-section h5:first-child {
+.latestrelease-desktop h5, .latestrelease-mobile h5 {
   background-color: $orange;
   color: white;
   padding: .5rem;
@@ -50,8 +50,24 @@
   z-index: 30;
 }
 
-.right-section h5:nth-child(2) {
-  text-align: center;  
+.right-section h5 {
+  @include breakpoint(medium) {
+    font-size:1.5rem
+  }
+}
+
+.latestrelease-mobile {
+  display: none;
+  @include breakpoint(medium) {
+    display: block;
+  }
+}
+
+.latestrelease-desktop{
+  display: block;
+  @include breakpoint(medium) {
+    display: none;
+  }
 }
 
 .home .title {
@@ -147,12 +163,13 @@
   padding-left: 3rem;
   padding-bottom: 0;
   @include breakpoint(medium) {
-    padding-top: 0;
+    padding-top: .5rem;
     padding-left: .35rem;
     padding-right: 0; 
   }
 }
 .mailing-list label {
+  font-size: 1.1rem;
   color: #999;
 }
 .mailing-list .email {
@@ -164,10 +181,31 @@
 .mailing-list .btn {
   margin-top: -.3rem;
 }
-.btn.btn-link.supportlink {
-  
+.footer .supportlink {
+  @include breakpoint(medium) {
+    font-size:1.3rem;    
+  }
 }
+
 .footer-nav {
   padding-top: 0;
   padding-bottom: 2rem;
+  @include breakpoint(medium) {
+    padding-bottom: 0;
+    .btn {
+      font-size: 1.1rem;
+      padding: 0;
+      padding-left: .4rem;
+      height: 2.4rem;
+    }
+    .navbar {
+      padding-bottom: 0;
+    }
+    .navbar .navbar-section:nth-child(2) {
+      display: none;
+    }
+    .navbar .navbar-section {
+      display: inline-table;
+    }
+  }
 }
