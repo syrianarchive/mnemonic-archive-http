@@ -26,6 +26,7 @@ coverage
 
 # Tide config file
 jsconfig.json
+.tern-config
 
 .idea
 *.swp
