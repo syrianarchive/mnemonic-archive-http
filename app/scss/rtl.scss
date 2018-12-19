@@ -82,6 +82,15 @@ body {
   }
 }
 
+.col-3 .card a .card-title .tcontent, .col-4 .card a .card-title .tcontent {
+  font-size: 1.7rem;
+  line-height: 2;
+  @include breakpoint(medium){
+    font-size: 1.1rem;
+    line-height: normal;
+  }
+}
+
 .maintext{
   margin-left:2rem;
   margin-right:-2rem;
