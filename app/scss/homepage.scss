@@ -10,16 +10,27 @@
 /* rules for newhomepage  */
 .home .container.title.imaged {
   display: none;
+  @include breakpoint(medium) {
+    display: block;
+  }
 }
 
 .home .intro h3 {
   padding-top: 5.5rem;
   font-size: 2rem;
   height: 2rem;
+  @include breakpoint(medium) {
+    padding-top: 0;
+    font-size: medium;
+    height: auto;
+  }
 }
 
 #header-logo {
   padding-right: 1rem;
+  @include breakpoint(medium) {
+    display: none;
+  }
 }
 
 .top > .columns {
@@ -40,7 +51,7 @@
     background-color: rgba(0,0,0,.2);
     color: white;
     @include breakpoint(medium){
-      height: 4rem;
+      height: 2.2rem;
     }
   }
 }
