@@ -31,57 +31,64 @@ home
 
 	{% block latestreleasemobile %}
 	{% endblock %}
-
-        {% set items = latest  | sort(true, true, 'date') %}
-        <div class="container investigations">
-          <div class="limiter columns">
-          {% for post in items  | sort(true, true, 'date')%}
-            {% if post.locale === locale and post.title != title %}
-              <div class="col-12 col-sm-12">
-                  {% include 'includes/card.html' %}
-                </div>
-            {% endif %}
-          {% endfor %}
-          </div>
-        </div>
-
+	<!-- 
+             {% set items = latest  | sort(true, true, 'date') %}
+             <div class="container investigations">
+             <div class="limiter columns">
+             {% for post in items  | sort(true, true, 'date')%}
+             {% if post.locale === locale and post.title != title %}
+             <div class="col-12 col-sm-12">
+             {% include 'includes/card.html' %}
+             </div>
+             {% endif %}
+             {% endfor %}
+             </div>
+             </div>
+	-->
 
 
       </div>
       <div class="col-6 col-sm-12 right-section">
-	
-	{% block latestreleasedesktop %}
-	{% endblock %}
-	<h5>{{ "Sections" |t(locale)}}</h5>
-	<div class = "col-12 col-sm-12 flx">
-          {% for post in siblings  | sort(true, true, 'date')%}
-          {% if post.locale === locale and post.title != title %}
-          <div class="fll">
-            {% include 'includes/card.html' %}
-          </div>
-          {% endif %}
-          {% endfor %}
-	</div>
-      </div>
+			
+			{% block latestreleasedesktop %}
+			{% endblock %}
+			<!-- 
+	               <h5>{{ "Sections" |t(locale)}}</h5>
+	               <div class = "col-12 col-sm-12 flx">
+                       {% for post in siblings  | sort(true, true, 'date')%}
+                       {% if post.locale === locale and post.title != title %}
+                       <div class="fll">
+	               {% include 'includes/card.html' %}
+                       </div>
+                       {% endif %}
+                       {% endfor %}
+	               </div> -->
+
+                        </div>
+
+      {% block homepageMap %}
+      {% endblock %}
       
     </div>
 
-  <!-- <div class="columns latestinfo">
-    <div class = "col-6 col-sm-12">
-        {% if locale === 'ar' %}
-          <span>آخر التحقيقات</span>
-        {% else %}
-          <span>Latest Investigations</span>
-        {% endif %}
-    </div>
-    <div class = "col-6 col-sm-12">
-           {% if locale === 'ar' %}
-          <span> الأقسام</span>
-        {% else %}
-          <span>More</span>
-        {% endif %}
-    </div>
-  </div> -->
+    <!-- <div class="columns latestinfo">
+	 <div class = "col-6 col-sm-12">
+         {% if locale === 'ar' %}
+         <span>آخر التحقيقات</span>
+         {% else %}
+         <span>Latest Investigations</span>
+         {% endif %}
+	 </div>
+	 <div class = "col-6 col-sm-12">
+         {% if locale === 'ar' %}
+         <span> الأقسام</span>
+         {% else %}
+         <span>More</span>
+         {% endif %}
+	 </div>
+	 </div> -->
+
+
 
 
 
