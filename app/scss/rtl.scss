@@ -184,6 +184,9 @@ td {
 
   .intro .columns h3 {
     bottom: .7rem;
+    @include breakpoint(medium){
+      bottom: 0;
+    }
   }
 
   .ar_tools_methods_methodology_metadata_schema_page table {

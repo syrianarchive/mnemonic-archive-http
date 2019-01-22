@@ -5,7 +5,7 @@ home
 {% endblock %}
 
 {% block title %}
-<h1><i class="fa fa-bars menu-button" id="menuButton"></i> </h1>
+<h1>{{ title }}<i class="fa fa-bars menu-button" id="menuButton"></i> </h1>
 
 <div class="desc">
   </div>
@@ -52,7 +52,7 @@ home
 	
 	{% block latestreleasedesktop %}
 	{% endblock %}
-	<h5>{{ "Sections" |t(locale)}}</h5>
+	<!-- <h5>{{ "Sections" |t(locale)}}</h5> -->
 	<div class = "col-12 col-sm-12 flx">
           {% for post in siblings  | sort(true, true, 'date')%}
           {% if post.locale === locale and post.title != title %}

@@ -76,6 +76,7 @@
 
 #header-logo {
   margin-right: .7rem;
+  max-width: none;
   @include breakpoint(medium) {
     display: none;
   }
@@ -84,9 +85,11 @@
 .home .title h1 {
   font-family: 'Lato';
   font-size: 6rem;
+  display: none;
   @include breakpoint(medium){
     font-size: 1.8rem;
     margin-bottom: 0;
+    display: block;
   }
 }
 
@@ -118,11 +121,12 @@
   margin-bottom: 0;
   @include breakpoint(medium){
     position: relative;
-    bottom: 1.5rem;
+    /* bottom: 1.5rem; */
+    font-size: 1rem;
   }
-  @media (max-width: 319px){
-    font-size: 1.1rem;
-  }
+  /* @media (max-width: 319px){ */
+  /*   font-size: 1.1rem; */
+  /* } */
   
 }
 
@@ -218,4 +222,8 @@
       display: inline-table;
     }
   }
+}
+
+.home .investigations .limiter > .col-12:first-child {
+  display: none;
 }
