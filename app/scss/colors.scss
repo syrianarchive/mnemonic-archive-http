@@ -10,10 +10,10 @@ p a{
 }
 
 .contents .columns {
-  background-color: #ebeceb;
+  /* background-color: #ebeceb; */
 }
 .frontstats .columns{
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .database{
@@ -24,17 +24,17 @@ p a{
 }
 
 .top .columns{
-  background-color: rgba(0,20,0,.05);
+  /* background-color: rgba(0,20,0,.05); */
 }
 .top {
   background-color: #ffffff !important;
 }
 .footer .columns{
-  background-color: rgba(255,255,255,.05);
+  /* background-color: rgba(255,255,255,.05); */
 }
 
 .title .columns{
-  background-color: rgba(0,0,0,.1);
+  /* background-color: rgba(0,0,0,.1); */
   @include breakpoint(medium){
     background-color: transparent;
     min-height: 0vh !important;

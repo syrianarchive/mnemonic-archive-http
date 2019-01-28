@@ -117,7 +117,7 @@ a.home-page-link:active
   background-position: center center;
   background-size: cover;
   background-image: url('/assets/main_back.jpg');
-  box-shadow: inset 0 -220px 220px -20px rgba(50,50,50,.9);
+  /* box-shadow: inset 0 -220px 220px -20px rgba(50,50,50,.9); */
   @include breakpoint(medium){
     height: 8rem;
   }
@@ -144,7 +144,7 @@ a.hb.btn.btn-link {
   color:  $primary-color;
   // font-family: 'Merriweather', serif;
   font-size: 1em;
-  // text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+  /* // text-shadow: 1px 1px 1px rgba(0,0,0,.2); */
   font-weight: bold;
   text-transform:uppercase;
   margin-left:-.9rem;
