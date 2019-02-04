@@ -1,7 +1,8 @@
 
 .home .container.title .columns{
   align-items: center;
-  min-height: 35vh;
+  /* min-height: 35vh; */
+  height: 40h;
   @include breakpoint(medium){
     min-height: 23vh;
   }
@@ -9,16 +10,12 @@
 
 /* rules for newhomepage  */
 .home .container.title.imaged {
-  display: none;
-  @include breakpoint(medium) {
-    display: block;
-  }
+
 }
 
 .home .intro h3 {
-  padding-top: 5.5rem;
   font-size: 2rem;
-  height: 2rem;
+  height: 1rem;
   @include breakpoint(medium) {
     padding-top: 0;
     font-size: medium;
@@ -158,18 +155,20 @@
   text-align:center;
 }
 
-.home .investigations .limiter > .col-12 {
-  display:none;
-  &:first-child{
-    display: block;
-  }
-  &:nth-child(2){
-    display: block;
-  }
-  &:nth-child(3){
-    display: block;
-  }
-}
+/* JUST DELETE THIS  */
+
+/* .home .investigations .limiter > .col-12 { */
+/*   display:none; */
+/*   &:first-child{ */
+/*     display: block; */
+/*   } */
+/*   &:nth-child(2){ */
+/*     display: block; */
+/*   } */
+/*   &:nth-child(3){ */
+/*     display: block; */
+/*   } */
+/* } */
 
 .home .maincontent p{
   display:block;

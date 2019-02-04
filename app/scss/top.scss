@@ -34,10 +34,10 @@
 
 .top{
   position: absolute;
-  background-color: #ffffff;
+  background-color: $primary-color;
   z-index: 40;
   position: fixed;
-  border-top: 3px solid $primary-color;
+  /* border-top: 3px solid $primary-color; */
 
   .columns {
     padding-top: 1rem;
@@ -45,7 +45,7 @@
   }
 
   a, .btn.btn-link{
-    color: $dark-color;
+    color: $light-text;
     @include breakpoint(medium){
       display: block;
       text-align: left;
@@ -141,7 +141,7 @@ a.home-page-link:active
 
 
 a.hb.btn.btn-link {
-  color:  $primary-color;
+  color:  $light-text;
   // font-family: 'Merriweather', serif;
   font-size: 1em;
   /* // text-shadow: 1px 1px 1px rgba(0,0,0,.2); */
