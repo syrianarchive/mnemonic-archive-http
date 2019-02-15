@@ -51,7 +51,6 @@ article .maincontent{
             width: 65px;
             text-align: center;
             color: #2a98b7;
-            text-transform: uppercase
         }
          blockquote {
           margin-left: 0;
@@ -60,9 +59,11 @@ article .maincontent{
             border: none;
             margin-top: 0px;
             margin-bottom: 15px;
+            text-transform: none;
             p {
               margin-bottom: 0px;
               padding-bottom: 0px;
+              text-transform: none
             }
         }
       }
