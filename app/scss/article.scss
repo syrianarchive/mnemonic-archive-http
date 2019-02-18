@@ -24,11 +24,57 @@ article .maincontent{
     margin-bottom: 1em;
     color:black;
   }
-
+  .pressList {
+    p {
+      font-weight: bold;
+      padding-left: 15px;
+      max-width: none;
+      text-transform: uppercase
+    }
+    strong {
+      color: #fb8520;
+    }
+    ul {
+      li {
+        &:before{
+          content: none;
+        }
+        h3 {
+          margin-right: 5px;
+          font-family: 'Lato', sans-serif;
+          font-size: 15px;
+            margin-right: 15px;
+            border: 5px solid #2a98b7;
+            padding: 10px;
+            min-height: 65px;
+            width: 65px;
+            text-align: center;
+            color: #2a98b7;
+        }
+         blockquote {
+          margin-left: 0;
+            padding: 1rem 2rem;
+            padding-left: 0px;
+            border: none;
+            margin-top: 0px;
+            margin-bottom: 15px;
+            text-transform: none;
+            p {
+              margin-bottom: 0px;
+              padding-bottom: 0px;
+              text-transform: none
+            }
+        }
+      }
+    }
+  }
 }
 
 article.contents ul li {
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   &:before{
     content: '➤';
     color:teal;
@@ -40,7 +86,6 @@ article.contents ul li {
     padding-bottom: 1em;
   }
 }
-
 article.contents ol{
   margin-bottom: 2em;
   li{
