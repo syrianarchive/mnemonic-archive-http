@@ -97,6 +97,10 @@
 
 /* optimization subheader of database for mobile */
 
+.en_database_page .subheader > .columns, .ar_database_page .subheader > .columns {
+  display: none;
+}
+
 .container.subheader .nav {
   @include breakpoint(medium) {
     all: initial;
