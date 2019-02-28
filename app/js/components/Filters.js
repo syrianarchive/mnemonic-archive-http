@@ -1,4 +1,4 @@
-/* global locale */
+
 
 import React, { Component } from 'react';
 import moment from 'moment';
@@ -120,8 +120,8 @@ export default class DatabaseComponent extends Component {
             name="location"
             value={filters.location}
             options={map(w => ({
-              value: w.search_name_ar,
-              label: w.readable_location[locale]}), compact(possibilities.locations))}
+              value: w,
+              label: w}), compact(possibilities.locations))}
             onChange={v => this.selectchange('location', v)}
           />
         </div>
