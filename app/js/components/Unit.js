@@ -37,13 +37,13 @@ export default class Unit extends Component {
           }
 
           {i.annotations.filename && (i.annotations.filename.includes('.mp4') || i.annotations.filename.includes('.webm') || i.annotations.filename.includes('.ogv')) &&
-          <video src={(i.annotations.sa_link || '')} controls>
+          <video src={(i.annotations.filename || '')} controls>
             {`Sorry, your browser doesnt support embedded videos, but dont worry, you can <a href="videofile.webm">download it</a>
              and watch it with your favorite video player!`}
           </video>
           }
 
-          <h6><br /><a href={(i.annotations.sa_link || '')} download>{t('Download file')} ↓</a></h6>
+          <h6><br /><a href={(i.annotations.filename || '')} download>{t('Download file')} ↓</a></h6>
 
           <small>
             {t('Online Link')}
