@@ -1,6 +1,6 @@
 /* global locale */
 import React, { Component } from 'react';
-import {map} from 'lodash/fp';
+// import {map} from 'lodash/fp';
 import {databaseApiUrl} from '../../../../env';
 
 import t from '../../../translations';
@@ -34,8 +34,8 @@ export default class Investigations extends Component {
 
 
   render() {
-    const vv = this.state.meta.verified ? this.state.meta.verified.toLocaleString() : '';
-    const c = this.state.meta.total ? this.state.meta.total.toLocaleString() : '';
+//    const vv = this.state.meta.verified ? this.state.meta.verified.toLocaleString() : '';
+//    const c = this.state.meta.total ? this.state.meta.total.toLocaleString() : '';
 
     return (
       <div className="container frontstats">
@@ -45,16 +45,16 @@ export default class Investigations extends Component {
           <div className="col-2 col-sm-12">
             <div className="statcol">
               <h3>
-                <b>{c}</b>
+                <b>147051</b>
               </h3> <br />
               <h6>
-                { t('Collected Digital Content')}
+                { t('Collected Video Content')}
               </h6>
 
             </div>
           </div>
 
-          <div className=" col-1 col-sm-12 arrow">
+          <div className=" col-3 col-sm-12 arrow">
             {locale === 'en' ?
               <span className="arrowb">➞</span>
               :
@@ -64,17 +64,17 @@ export default class Investigations extends Component {
 
           <div className="col-2 col-sm-12">
             <div className="statcol">
-              <h2>
-                <b>{vv}</b>
-              </h2> <br />
+              <h3>
+                <b>11486</b>
+              </h3> <br />
               <h6>
-                { t('Verified Digital Content')}
+                { t('Collected Tweets Content')}
               </h6>
 
             </div>
           </div>
 
-          <div className=" col-1 col-sm-12 arrow">
+          <div className=" col-3 col-sm-12 arrow">
             {locale === 'en' ?
               <span className="arrowb">➞</span>
               :
@@ -82,40 +82,40 @@ export default class Investigations extends Component {
              }
           </div>
 
-          <div className="col-1 col-sm-12">
+          <div className="col-2 col-sm-12">
             <div className="statcol">
 
-              <h4>
-                <b>{this.state.meta.weapons.length}</b>
-              </h4> <br />
+              <h2>
+                <b>158537</b>
+              </h2> <br />
               <h6>
-                { t('Identified Weapons')}
+                { t('Collected Digital Units')}
               </h6>
             </div>
           </div>
 
-          <div className=" col-1 col-sm-12 arrow">
-            {locale === 'en' ?
-              <span className="arrowb">➞</span>
-              :
-              <span className="arrowb">⬅</span>
-             }
-          </div>
+          {/* <div className=" col-1 col-sm-12 arrow"> */}
+          {/*   {locale === 'en' ? */}
+          {/*     <span className="arrowb">➞</span> */}
+          {/*     : */}
+          {/*     <span className="arrowb">⬅</span> */}
+          {/*    } */}
+          {/* </div> */}
 
-          <div className="col-4 vvv">
-            <h5>
-              <b>
-                {t('Incidents')}
-              </b>
-            </h5>
-            {map(v =>
-              <div className="frontvio">
-                <h6><a href={'#'}>
-                  {t(v)}
-                </a></h6>
-              </div>
-              , this.state.meta.violationtypes)}
-          </div>
+          {/* <div className="col-4 vvv"> */}
+          {/*   <h5> */}
+          {/*     <b> */}
+          {/*       {t('Incidents')} */}
+          {/*     </b> */}
+          {/*   </h5> */}
+          {/*   {map(v => */}
+          {/*     <div className="frontvio"> */}
+          {/*       <h6><a href={'#'}> */}
+          {/*         {t(v)} */}
+          {/*       </a></h6> */}
+          {/*     </div> */}
+          {/*     , this.state.meta.violationtypes)} */}
+          {/* </div> */}
 
         </div>
 

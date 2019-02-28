@@ -79,7 +79,7 @@
 .arrow{
   font-size:4rem;
   text-align: center;
-  color: #eee;
+  /* color: #eee; */
   @include breakpoint(medium){
     display: none;
   }
