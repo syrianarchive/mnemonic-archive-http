@@ -150,7 +150,7 @@ export default class Unit extends Component {
             <div className="modal-header">
               <button onClick={this.props.clear} className="btn btn-clear float-right" />
               {t('Verified Observation')}: {i.reference_code} /
-              <a href="/">{t('Syrian Archive')}</a>
+              <a href="/">{t('Yemeni Archive')}</a>
               {this.props.subtitle ?
                 <span>
                   <br />
