@@ -27,7 +27,7 @@ export default class Unit extends Component {
             <video
               preload="metadata"
             >
-              <source src={`${(i.annotations.sa_link || '')}`} type="video/mp4" />
+              <source src={`${(i.annotations.filename || '')}`} type="video/mp4" />
               {`Sorry, your browser doesnt support embedded videos, but dont worry, you can <a href="videofile.webm">download it</a>
                and watch it with your favorite video player!`}
             </video>
