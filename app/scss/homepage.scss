@@ -23,12 +23,16 @@
 
 .home .intro h3 {
   font-size: 2rem;
-  height: 1rem;
+  /* height: 1rem; */
   @include breakpoint(medium) {
     padding-top: 0;
     font-size: medium;
     height: auto;
   }
+}
+
+.home .intro h3:first-child {
+  line-height: 0 !important;  
 }
 
 #header-logo {
@@ -52,8 +56,8 @@
 
 .home .homeheader{
   background-color: $primary-color;
+  height: 4rem;
   .columns{
-    /* background-color: rgba(0,0,0,.2); */
     color: white;
     @include breakpoint(medium){
       height: 2.2rem;
@@ -190,7 +194,7 @@
 .home .intro .investigations .columns{
   padding:0;
   .card{
-    margin-left:0;
+    /* margin-left:0; */
   }
 }
 

@@ -1,6 +1,6 @@
 
 .padright{
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
   @include breakpoint(medium){
     padding-right: 0;
   }
@@ -196,6 +196,7 @@ html.fixmod{
     width: 25%;
     border-radius: .8rem;
     line-height: 0;
+    height: 2rem;
   }
 }
 .mailing-list .btn {
