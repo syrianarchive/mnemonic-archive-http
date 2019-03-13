@@ -122,9 +122,15 @@
 
 
   <div class="container footer">
-    <!-- Begin MailChimp Signup Form -->
     <div class="columns mailing-list">
-      <div class="column">
+      <div class="col-1">
+	<a class="btn btn-link" href="/{{locale}}/about/contact">{{ "Contact" |t(locale)}}</a>
+        <a class="btn btn-link" href="/{{locale}}/about/legal/terms_of_use.html">{{ "Terms of Use" |t(locale)}}</a>
+        <a class="btn btn-link" href="/{{locale}}/about/legal/privacy_policy.html">{{ "Privacy Policy" |t(locale)}}</a>
+	<a class="btn btn-link" href="/{{locale}}/about/legal/disclaimer.html">{{ "Disclaimer" |t(locale)}}</a>
+            </div>
+      <div class="col-3"></div>
+      <div class="col-4">
 	<div id="mc_embed_signup">
 	  {% if locale === "ar"%}
 	  <form action="https://syrianarchive.us15.list-manage.com/subscribe/post?u=90e84d0165f6b3bb843951047&amp;id=5f22f184a1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -141,7 +147,7 @@
 	  <form action="https://syrianarchive.us15.list-manage.com/subscribe/post?u=90e84d0165f6b3bb843951047&amp;id=5f22f184a1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 	    <label for="mce-EMAIL">Subscribe to our mailing list</label>
 	    <div id="mc_embed_signup_scroll">
-	      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+	      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your Email Address" required>
 	      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-link supportlink">
 	      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_90e84d0165f6b3bb843951047_5f22f184a1" tabindex="-1" value=""></div>
 	    </div>
@@ -149,34 +155,25 @@
 	  {% endif %}
 	</div>
       </div>
-    </div>
-    <!--End mc_embed_signup-->
+      <div class="col-4 footer-logo">
+	<img id="header-logo" alt="logo" src="/assets/logo.png" width="72px" height="65px"/>
+	<a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}}</a>
+      </div>
+      </div>
 
 
+  </div>
+
+  <div class="container bottom-footer">
     <div class="columns footer-nav">
-      <div class="col-12 nav">
-        <header class="navbar">
-          <section class="navbar-section">
-	    <a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}} / </a>
-
-            <a class="btn btn-link" href="/{{locale}}/about/contact">{{ "Contact" |t(locale)}}</a>
-
-            <a class="btn btn-link" href="/{{locale}}/about/legal/terms_of_use.html">{{ "Terms of Use" |t(locale)}}</a>
-            <a class="btn btn-link" href="/{{locale}}/about/legal/privacy_policy.html">{{ "Privacy Policy" |t(locale)}}</a>
-            <a class="btn btn-link" href="/{{locale}}/about/legal/copyright.html">{{ "Copyright" |t(locale)}}</a>
-            <a class="btn btn-link" href="/{{locale}}/about/legal/disclaimer.html">{{ "Disclaimer" |t(locale)}}</a>
-
-          </section>
-
-          <section class="navbar-section">
-          </section>
-
-          <section class="navbar-section">
-            <a class="btn btn-link" href="{{"donate url" |t(locale)}}">{{ "Donate" |t(locale)}}</a>
-            <a class="btn btn-link" href="{{"facebook url" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
-            <a class="btn btn-link" href="{{"Twitter URL" |t(locale) }}">{{ "Twitter" |t(locale)}}</a>
-          </section>
-        </header>
+      <div class="col-2 navbar">
+        <a class="btn btn-link" href="/{{locale}}/about/legal/copyright.html">{{ "Copyright" |t(locale)}}</a>
+      </div>
+      <div class="col-8"></div>
+      <div class="col-2">
+        <a class="btn btn-link" href="{{"donate url" |t(locale)}}">{{ "Donate" |t(locale)}}</a>
+        <a class="btn btn-link" href="{{"facebook url" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
+        <a class="btn btn-link" href="{{"Twitter URL" |t(locale) }}">{{ "Twitter" |t(locale)}}</a>
       </div>
     </div>
   </div>

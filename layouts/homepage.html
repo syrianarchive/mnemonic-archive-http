@@ -33,23 +33,24 @@ home
 	     {% endblock %} -->
 	
              {% set items = latest  | sort(true, true, 'date') %}
-             <div class="container investigations">
-               <div class="columns">
+        <div class="container investigations">
+	  <h2 class="section-title">Investigations</h2>
+          <div class="columns">
 		 {% for post in items  | sort(true, true, 'date')%}
 		 {% if (post.locale === locale) and (post.title != title) and (loop.index < 4) %}
-		 <div class="col-4 col-sm-4">
-		   {% include 'includes/newcard.html' %}
+			<div class="col-4 col-sm-4">
+			  {% include 'includes/newcard.html' %}
+			</div>
+	{% endif %}
+	{% endfor %}
              </div>
-             {% endif %}
-             {% endfor %}
              </div>
-             </div>
-	
+		
 
 
-      </div>
+            </div>
       <!-- <div class="col-6 col-sm-12 right-section"> -->
-	   
+      
       <!-- {% block latestreleasedesktop %}
 	   {% endblock %}
 
@@ -64,27 +65,32 @@ home
            {% endfor %}
 	   </div> -->
 
-	   <!-- </div> -->
-    
+      <!-- </div> -->
 
-      {% block homepageMap %}
-      {% endblock %}
       
     </div>
 
+    {% block homepageMap %}
+    {% endblock %}
 
-    <!-- <div class="columns lotsacards">
+    <div class="columns">
+      <div class = "col-12 col-sm-12 padright">
+        {% set items = collections  | sort(true, true, 'date') %}
+        <div class="container investigations">
+	  <h2 class="section-title">Collections</h2>
+          <div class="columns">
+	    {% for post in items  | sort(true, true, 'date')%}
+	    {% if (post.locale === locale) and (post.title != title) and (loop.index < 4) %}
+	    <div class="col-4 col-sm-4">
+	      {% include 'includes/newcard.html' %}
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>      
+    </div>
 
-	 <div class="col-6 col-sm-6 padright">
-
-	 </div>
-
-
-	 <div class = "col-6 col-sm-12 flx">
-
-	 </div>
-
-	 </div> -->
 </div>
 
 <!-- <div id="js-root"></div> -->
