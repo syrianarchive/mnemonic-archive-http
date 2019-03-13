@@ -46,6 +46,7 @@
 
   a, .btn.btn-link{
     color: $light-text;
+    font-size: 1.4rem;
     @include breakpoint(medium){
       display: block;
       text-align: left;

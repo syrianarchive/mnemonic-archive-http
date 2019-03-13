@@ -13,6 +13,14 @@
 
 }
 
+.section-title {
+  height: auto;
+  color: $dark-color;
+  border-bottom: 1px $accent-color solid;
+  width: 15%;
+  font-size: 2rem;
+}
+
 .home .intro h3 {
   font-size: 2rem;
   height: 1rem;
@@ -100,7 +108,7 @@
 }
 
 .home .title {
-  /* box-shadow: inset 0 -220px 220px -20px rgba(0,0,0,.5); */
+  box-shadow: inset 0 -60px 220px -20px rgba(0,0,0,.5);
 }
 .home .title h1 {
   font-family: 'Lato';
@@ -194,54 +202,3 @@
   margin-left:0;
 }
 
-.mailing-list {
-  padding-top: 2rem;
-  padding-left: 3rem;
-  padding-bottom: 0;
-  @include breakpoint(medium) {
-    padding-top: .5rem;
-    padding-left: .35rem;
-    padding-right: 0; 
-  }
-}
-.mailing-list label {
-  font-size: 1.1rem;
-  color: #999;
-}
-.mailing-list .email {
-  line-height: 1.9;
-}
-.mailing-list #mc_embed_signup_scroll {
-  padding-top: .5rem;
-}
-.mailing-list .btn {
-  margin-top: -.3rem;
-}
-.footer .supportlink {
-  @include breakpoint(medium) {
-    font-size:1.3rem;    
-  }
-}
-
-.footer-nav {
-  padding-top: 0;
-  padding-bottom: 2rem;
-  @include breakpoint(medium) {
-    padding-bottom: 0;
-    .btn {
-      font-size: 1.1rem;
-      padding: 0;
-      padding-left: .4rem;
-      height: 2.4rem;
-    }
-    .navbar {
-      padding-bottom: 0;
-    }
-    .navbar .navbar-section:nth-child(2) {
-      display: none;
-    }
-    .navbar .navbar-section {
-      display: inline-table;
-    }
-  }
-}

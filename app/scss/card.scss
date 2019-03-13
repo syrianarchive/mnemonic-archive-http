@@ -3,7 +3,7 @@
   margin:2rem;
 }
 
-.card{
+.card {
   background-color:white;
   border: 0rem solid black;
   font-size: 1rem;
@@ -80,9 +80,9 @@
   .homepage-card-body {
     font-size: 1.5rem;
     /* color: $dark-color; */
-    -webkit-box-shadow: 1px 0px 5px 1px rgba(0,0,0,0.64);
-    -moz-box-shadow: 1px 0px 5px 1px rgba(0,0,0,0.64);
-    box-shadow: 1px 0px 5px 1px rgba(0,0,0,0.64);
+    /* -webkit-box-shadow: 1px 0px 5px 1px rgba(0,0,0,0.64); */
+    /* -moz-box-shadow: 1px 0px 5px 1px rgba(0,0,0,0.64); */
+    /* box-shadow: 1px 0px 5px 1px rgba(0,0,0,0.64); */
     height: 9rem;
     @include breakpoint(medium){
       font-size:1rem;
@@ -95,11 +95,14 @@
     h3 {
       color: $accent-color;
       font-size: 1.3rem;
-      padding-top: 2rem;
+      margin-top: 1.5rem;
+      margin-left: .8rem;
     }
   }
 
-  .card-image{
+  /* concider to remove those */
+
+  .card-image {
     max-height:20rem;
     padding:0;
     margin:0;
@@ -113,18 +116,17 @@
       z-index:2;
       margin-bottom:0 !important;
     }
-
   }
 
   .homepage-card-image{
-    height:20rem;
+    height:16rem;
     padding:0;
     margin:0;
     overflow: hidden;
     z-index:3;
     background: linear-gradient(white, black);;
     position:relative;
-    img{
+    img {
       /* border: 0px solid red !important; */
       opacity:.8;
       z-index:2;
@@ -136,6 +138,13 @@
 }
 
 .card .card-image:first-child img {
-        border-top-left-radius: 0rem;
-        border-top-right-radius: 0rem;
-    }
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0rem;
+}
+
+.home .card {
+  box-shadow: .3px 0px 5px 1px rgba(0,0,0,0.64);
+  -webkit-box-shadow: .3px 0px 5px 1px rgba(0,0,0,0.64);
+  -moz-box-shadow: .3px 0px 5px 1px rgba(0,0,0,0.64);
+  margin: 3rem;
+}
