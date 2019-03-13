@@ -2,7 +2,7 @@
 .container.title{
   .columns{
     position:relative;
-    min-height: 50vh;
+    /* min-height: 50vh; */
     .col-12{
       position: absolute;
       color:white;
@@ -131,7 +131,8 @@ a.home-page-link:active
   }
   .desc{
     color:white;
-    margin-bottom: 3rem;
+    width: 90%;
+    /* margin-bottom: 3rem; */
     @include breakpoint(medium){
       margin-bottom: 0;
     }

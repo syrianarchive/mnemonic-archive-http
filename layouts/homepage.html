@@ -6,15 +6,16 @@ home
 
 {% block title %}
 <h1>{{ title }} <i class="fa fa-bars menu-button" id="menuButton"></i> </h1>
-{{ contents|safe }}
+
 <div class="desc">
-  </div>
+  {{ contents|safe }}
+</div>
 {% endblock %}
 
   {% block content %}
 
   <div class="container intro homeheader">
-     <div class="columns ">
+     <div class="columns">
 	 <div class = "col-12 col-sm-12">
            <h3>{{ desc }}</h3>
 	 </div>

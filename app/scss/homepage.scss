@@ -2,7 +2,7 @@
 .home .container.title .columns{
   align-items: center;
   /* min-height: 35vh; */
-  height: 40h;
+  height: 40vh;
   @include breakpoint(medium){
     min-height: 23vh;
   }

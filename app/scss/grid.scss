@@ -162,9 +162,7 @@ html.fixmod{
 
 .mailing-list {
   color: $light-text;
-  padding-top: 2rem;
-  padding-left: 3rem;
-  padding-bottom: 2rem;
+  padding: 2rem 4rem;
   @include breakpoint(medium) {
     padding-top: .5rem;
     padding-left: .35rem;
@@ -182,6 +180,8 @@ html.fixmod{
   border-radius: .8rem;
   border-color: $accent-color;
   margin-bottom: 1rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 
 .mailing-list #mc_embed_signup {
@@ -191,6 +191,8 @@ html.fixmod{
 .mailing-list #mc_embed_signup_scroll {
   padding-top: .5rem;
   .supportlink {
+    font-size: 1rem;
+    font-weight: normal;
     border-color: $accent-color;
     color: $accent-color;
     width: 25%;
@@ -212,9 +214,7 @@ html.fixmod{
 }
 
 .footer-nav {
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-  padding-left: 3rem;
+  padding: 1rem 4rem;
   .col-2 {
     text-align: right;
   }
