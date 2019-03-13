@@ -144,12 +144,13 @@ Metalsmith(__dirname)
 
     f['404.html'] = f['en/404.html']; // eslint-disable-line
     f = omit(f, ['en/404.html', 'ar/404.html']); // eslint-disable-line
-    //console.log(filter(keys(f), fff => fff.includes('404')));
-    //console.log('aaaaaaaaaaaa');
 
+// declare collections of posts
     f['ar/index.html'].latest = f['ar/investigations/index.html'].siblings; // eslint-disable-line
     f['en/index.html'].latest = f['en/investigations/index.html'].siblings; // eslint-disable-line
     f['index.html'].latest = f['en/investigations/index.html'].siblings; // eslint-disable-line
+    f['en/index.html'].collections = f['en/collections/index.html'].siblings; // eslint-disable-line
+    f['ar/index.html'].collections = f['ar/collections/index.html'].siblings; // eslint-disable-line
 
     each(f, (v, k) => {
       if (k.includes('html')) {
