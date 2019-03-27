@@ -18,7 +18,7 @@ let humanviewport = false;
 
 
 const DEFAULT_VIEWPORT = {
-  center: [34.7000, 38.9968],
+  center: [15.369445, 44.191006],
   zoom: 7,
 };
 

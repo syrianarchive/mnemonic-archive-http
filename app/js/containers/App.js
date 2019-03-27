@@ -22,49 +22,11 @@ export default class App extends Component {
             <Route path="/:locale/database" component={Database} />
 
             <Route
-              path="/:locale/collections/russian-airstrikes/civiliandatabase"
-              render={(props) =>
-                <Collection
-                  {...props}
-                  collections={['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure']}
-                />
-              }
-            />
-            <Route
-              path="/:locale/collections/russian-airstrikes/civiliandatabase.html"
-              render={(props) =>
-                <Collection
-                  {...props}
-                  collections={['Civilian casualties as a result of alleged russian attacks', 'Alleged Russian airstrikes on civilian infrastructure']}
-                />
-              }
-            />
-
-            <Route
-              path="/:locale/collections/russian-airstrikes/russianMoDdatabase"
-              render={(props) =>
-                <Collection
-                  {...props}
-                  collections={['Attacks claimed by Russian Ministry of Defense']}
-                />
-              }
-            />
-            <Route
-              path="/:locale/collections/russian-airstrikes/russianMoDdatabase.html"
-              render={(props) =>
-                <Collection
-                  {...props}
-                  collections={['Attacks claimed by Russian Ministry of Defense']}
-                />
-              }
-            />
-
-            <Route
               path="/:locale/collections/chemical-weapons/database"
               render={(props) =>
                 <Collection
                   {...props}
-                  collections={['Chemical weapons']}
+                  collections={['Civilian casualties as a result of alleged coalition attacks']}
                 />
               }
             />
@@ -73,7 +35,7 @@ export default class App extends Component {
               render={(props) =>
                 <Collection
                   {...props}
-                  collections={['Chemical weapons']}
+                  collections={['Civilian casualties as a result of alleged coalition attacks']}
                 />
               }
             />

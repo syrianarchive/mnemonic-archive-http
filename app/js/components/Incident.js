@@ -178,7 +178,7 @@ export default class Incident extends Component {
           </div>
 
 
-          {!isEmpty(i.annotations.fr_title) ?
+          {!isEmpty(i.annotations.title_en) ?
             <div>
               <small>
                 {t('Dataset')}:
@@ -189,7 +189,7 @@ export default class Incident extends Component {
                 Foreign Affairs
               </p>
               <p>
-                {i.annotations.fr_title}
+                {i.annotations.title_en}
               </p>
             </div>
           : ''}
