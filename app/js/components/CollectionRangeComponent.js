@@ -16,7 +16,7 @@ export default class CollectionRangeComponent extends Component {
 
     this.state = {
       units: this.props.units,
-      selectedStartDate: moment('2013-01-01').valueOf(),
+      selectedStartDate: moment('2015-03-19').valueOf(),
       selectedEndDate: moment().valueOf(),
     };
   }

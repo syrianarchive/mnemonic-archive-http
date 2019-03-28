@@ -47,7 +47,7 @@ export default class DatabaseComponent extends Component {
       searchterm: params.filters.term || this.props.filters.term,
       typing: false,
       hoverUnit: false,
-      range: [moment('2013-01-01').valueOf(), moment().valueOf()],
+      range: [moment('2015-03-19').valueOf(), moment().valueOf()],
       visibleMarkers: [],
       sort: params.filters.term || this.props.filters.term ? 'relevance' : 'observationcount'
     };
