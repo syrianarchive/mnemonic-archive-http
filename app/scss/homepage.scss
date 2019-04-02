@@ -224,6 +224,6 @@
   }
 }
 
-.home .investigations .limiter > .col-12:first-child {
+.home .investigations .limiter > .col-12:nth-child(2n) {
   display: none;
 }
