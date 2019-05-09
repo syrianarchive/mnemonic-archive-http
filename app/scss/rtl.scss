@@ -1,14 +1,14 @@
 @import url(//fonts.googleapis.com/earlyaccess/notonaskharabic.css); 
 
-*:not(.popy) {
-  /* font-family: 'Noto Naskh Arabic' !important; */
+* {
+  font-family: 'Noto Naskh Arabic';
 }
 
-body:not(.popy) {
+body {
   direction: rtl;
   text-align: right;
   font-family: 'Noto Naskh Arabic' !important;
-  p, h1, h2, h3, h4, h5, h6{
+  p, h1, h2, h3, h4, h5, h6, ul, il{
     font-family: 'Noto Naskh Arabic' !important;
   }
   article{
