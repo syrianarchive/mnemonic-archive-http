@@ -2,7 +2,11 @@
   font-family: 'Droid Arabic Naskh';
 }
 
-.ar div, .ar section {
+.ar * {
+  direction: rtl;
+}
+
+.ar div, .ar section, .ar_page .top .columns {
   direction: rtl;
 }
 
