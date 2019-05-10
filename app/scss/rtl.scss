@@ -1,19 +1,17 @@
-@import url(//fonts.googleapis.com/earlyaccess/notonaskharabic.css); 
-
 * {
-  font-family: 'Noto Naskh Arabic';
+  font-family: 'Droid Arabic Naskh';
 }
 
 body {
   direction: rtl;
   text-align: right;
-  font-family: 'Noto Naskh Arabic' !important;
+  font-family: 'Droid Arabic Naskh' !important;
   p, h1, h2, h3, h4, h5, h6, ul, il{
-    font-family: 'Noto Naskh Arabic' !important;
+    font-family: 'Droid Arabic Naskh' !important;
   }
   article{
     p, h1, h2, h3, h4, h5, h6{
-      font-family: 'Noto Naskh Arabic' !important;
+      font-family: 'Droid Arabic Naskh' !important;
     }
   }
   ol, ul {margin: 2rem 2rem 2rem 2rem};
@@ -38,7 +36,7 @@ body {
 }
 
 .card a .card-title {
-  font-family: 'Noto Naskh Arabic' !important;
+  font-family: 'Droid Arabic Naskh' !important;
 }
 
 .home .intro .investigations .columns{
