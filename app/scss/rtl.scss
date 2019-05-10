@@ -2,8 +2,12 @@
   font-family: 'Droid Arabic Naskh';
 }
 
-body {
+.ar div, .ar section {
   direction: rtl;
+}
+
+body {
+  /* direction: rtl; */
   text-align: right;
   font-family: 'Droid Arabic Naskh' !important;
   p, h1, h2, h3, h4, h5, h6, ul, il{
