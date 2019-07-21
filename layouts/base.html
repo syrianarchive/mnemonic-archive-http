@@ -118,62 +118,66 @@
     <div id="js-root"></div>
   {% endblock %}
 
+    <div class="container footer">
+      <!-- Begin MailChimp Signup Form -->
+      <div class="columns mailing-list">
+	<div class="column">
+	  <div id="mc_embed_signup">
+	    {% if locale === "ar"%}
+	    <form action="https://sudanesearchive.us3.list-manage.com/subscribe/post?u=58fde0af414890c4c9c855f78&amp;id=6d260feea1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	      <label for="mce-EMAIL">اشترك بقائمتنا البريدية</label>
+	      <div id="mc_embed_signup_scroll">
+		<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="بريدك الإلكتروني" required>
+		<input type="submit" value="اشترك" name="subscribe" id="mc-embedded-subscribe" class="btn btn-link supportlink">
+		<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_58fde0af414890c4c9c855f78_6d260feea1" tabindex="-1" value=""></div>
+	      </div>
+	    </form>
 
+	    {% else %}
 
-  <div class="container footer">
-
-    <!-- Begin Mailchimp Signup Form -->
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
-    <style type="text/css">
-     #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-     /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-	We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-    </style>
-    <div id="mc_embed_signup">
-      <form action="https://sudanesearchive.us3.list-manage.com/subscribe/post?u=58fde0af414890c4c9c855f78&amp;id=6d260feea1" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-	<div id="mc_embed_signup_scroll">
-	  <h2>Subscribe to our mailinglist</h2>
-	  <div class="mc-field-group">
-	    <label for="mce-EMAIL">Email Address </label>
-	    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+	    <form action="https://yemeniarchive.us20.list-manage.com/subscribe/post?u=33c5e46faabbb68f5599ebb3b&amp;id=cc970d52e0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	      <label for="mce-EMAIL">Subscribe to our mailing list</label>
+	      <div id="mc_embed_signup_scroll">
+		<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+		<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-link supportlink">
+		<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_33c5e46faabbb68f5599ebb3b_cc970d52e0" tabindex="-1" value=""></div>
+	      </div>
+	    </form>
+	    {% endif %}
 	  </div>
-	  <div id="mce-responses" class="clear">
-            <div class="response" id="mce-error-response" style="display:none"></div>
-            <div class="response" id="mce-success-response" style="display:none"></div>
-	  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-	  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_58fde0af414890c4c9c855f78_6d260feea1" tabindex="-1" value=""></div>
-	  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
 	</div>
-      </form>
-    </div><!--End mc_embed_signup-->
+      </div>
+      <!--End mc_embed_signup-->
 
-    <div class="columns footer-nav">
-      <div class="col-12 nav">
-        <header class="navbar">
-          <section class="navbar-section">
-	    <a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}} / </a>
 
-            <a class="btn btn-link" href="/{{locale}}/about/contact">{{ "Contact" |t(locale)}}</a>
+      <div class="columns footer-nav">
+	<div class="col-12 nav">
+          <header class="navbar">
+            <section class="navbar-section">
+	      <a class="btn btn-link hb" href="/{{locale}}">{{ "Site Name" |t(locale)}} / </a>
 
-            <a class="btn btn-link" href="/{{locale}}/about/legal/terms_of_use.html">{{ "Terms of Use" |t(locale)}}</a>
-            <a class="btn btn-link" href="/{{locale}}/about/legal/privacy_policy.html">{{ "Privacy Policy" |t(locale)}}</a>
-            <a class="btn btn-link" href="/{{locale}}/about/legal/copyright.html">{{ "Copyright" |t(locale)}}</a>
-            <a class="btn btn-link" href="/{{locale}}/about/legal/disclaimer.html">{{ "Disclaimer" |t(locale)}}</a>
+              <a class="btn btn-link" href="/{{locale}}/about/contact">{{ "Contact" |t(locale)}}</a>
 
-          </section>
+              <a class="btn btn-link" href="/{{locale}}/about/legal/terms_of_use.html">{{ "Terms of Use" |t(locale)}}</a>
+              <a class="btn btn-link" href="/{{locale}}/about/legal/privacy_policy.html">{{ "Privacy Policy" |t(locale)}}</a>
+              <a class="btn btn-link" href="/{{locale}}/about/legal/copyright.html">{{ "Copyright" |t(locale)}}</a>
+              <a class="btn btn-link" href="/{{locale}}/about/legal/disclaimer.html">{{ "Disclaimer" |t(locale)}}</a>
 
-          <section class="navbar-section">
-          </section>
+            </section>
 
-          <section class="navbar-section">
-            <!-- <a class="btn btn-link" href="{{"donate url" |t(locale)}}">{{ "Donate" |t(locale)}}</a> -->
-            <a class="btn btn-link" href="{{"facebook url" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
-            <a class="btn btn-link" href="{{"Twitter URL" |t(locale) }}">{{ "Twitter" |t(locale)}}</a>
-          </section>
-        </header>
+            <section class="navbar-section">
+            </section>
+
+            <section class="navbar-section">
+              <!-- <a class="btn btn-link" href="{{"donate url" |t(locale)}}">{{ "Donate" |t(locale)}}</a> -->
+              <a class="btn btn-link" href="{{"facebook url" |t(locale)}}">{{ "Facebook" |t(locale)}}</a>
+              <a class="btn btn-link" href="{{"Twitter URL" |t(locale) }}">{{ "Twitter" |t(locale)}}</a>
+            </section>
+          </header>
+	</div>
       </div>
     </div>
-  </div>
+
 
   {% block bundlejs %}
     <script src="/assets/app.bundle.js"></script>
