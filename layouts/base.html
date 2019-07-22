@@ -73,16 +73,22 @@
           </section>
 
           <section class="navbar-section">
+	    {% if locale === "en"%}
             <a class="btn btn-link" href="{{ url | l("ar")}}">
-              {% if locale === "ar"%}<b>{%endif%}
-              ع
-              {% if locale === "ar"%}</b>{%endif%}
+              <b>
+		ع
+	      </b>
+	      {%endif%}
             </a>
+	    {% if locale === "ar"%}
             <a class="btn btn-link" href="{{ url | l("en")}}">
-              {% if locale === "en"%}<b>{%endif%}
-              en
-              {% if locale === "en"%}</b>{%endif%}
+              <b>
+		en
+              </b>
             </a>
+	    {%endif%}
+	    <a class="btn btn-link" href="https://www.facebook.com/sudanesearchive"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+	    <a class="btn btn-link" href="https://twitter.com/Sudan_Archive"><i class="fa fa-twitter" aria-hidden="true"></i></a>
           </section>
 
         </header>
