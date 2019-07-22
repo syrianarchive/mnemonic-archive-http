@@ -45,7 +45,7 @@ export default class Investigations extends Component {
           <div className="col-2 col-sm-12">
             <div className="statcol">
               <h3>
-                <b>147051</b>
+                <b>16504</b>
               </h3> <br />
               <h6>
                 { t('Collected Video Content')}
@@ -56,16 +56,16 @@ export default class Investigations extends Component {
 
           <div className=" col-3 col-sm-12 arrow">
             {locale === 'en' ?
-              <span className="arrowb">➞</span>
+              <span className="arrowb">|</span>
               :
-              <span className="arrowb">⬅</span>
+              <span className="arrowb">|</span>
              }
           </div>
 
           <div className="col-2 col-sm-12">
             <div className="statcol">
               <h3>
-                <b>11486</b>
+                <b>31044</b>
               </h3> <br />
               <h6>
                 { t('Collected Tweets Content')}
@@ -76,9 +76,9 @@ export default class Investigations extends Component {
 
           <div className=" col-3 col-sm-12 arrow">
             {locale === 'en' ?
-              <span className="arrowb">➞</span>
+              <span className="arrowb">|</span>
               :
-              <span className="arrowb">⬅</span>
+              <span className="arrowb">|</span>
              }
           </div>
 
@@ -86,10 +86,10 @@ export default class Investigations extends Component {
             <div className="statcol">
 
               <h2>
-                <b>158537</b>
+                <b>9000</b>
               </h2> <br />
               <h6>
-                { t('Collected Digital Units')}
+                { t('Collected Telegram Content')}
               </h6>
             </div>
           </div>
