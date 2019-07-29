@@ -1,12 +1,20 @@
 * {
-  font-family: 'Droid Arabic Naskh' !important;
+  font-family: 'Droid Arabic Naskh';
+}
+
+.ar * {
+  direction: rtl;
+}
+
+.ar div, .ar section, .ar_page .top .columns {
+  direction: rtl;
 }
 
 body {
-  direction: rtl;
+  /* direction: rtl; */
   text-align: right;
   font-family: 'Droid Arabic Naskh' !important;
-  p, h1, h2, h3, h4, h5, h6{
+  p, h1, h2, h3, h4, h5, h6, ul, il{
     font-family: 'Droid Arabic Naskh' !important;
   }
   article{
@@ -184,9 +192,6 @@ td {
 
   .intro .columns h3 {
     bottom: .7rem;
-    @include breakpoint(medium){
-      bottom: 0;
-    }
   }
 
   .ar_tools_methods_methodology_metadata_schema_page table {
@@ -243,11 +248,7 @@ td {
   padding-right: 2.5rem;
 }
 
-#header-logo {
-  margin-left: .7rem;
-  margin-right: 0;
-}
-
 i, icon {
   font: normal normal normal 14px/1 FontAwesome !important;
 }
+
