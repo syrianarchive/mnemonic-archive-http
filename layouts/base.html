@@ -31,15 +31,15 @@
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/droid-arabic-naskh" type="text/css"/>
   {%endif%}
 
-  <script type="text/javascript">
-    const locale = "{{locale}}";
-    {% block extraheadjs %}
-    {% endblock %}
-  </script>
+    <script type="text/javascript">
+     const locale = "{{locale}}";
+     {% block extraheadjs %}
+     {% endblock %}
+    </script>
 
-  <link rel="stylesheet"  href="/assets/styles.bundle.css" />
+    <link rel="stylesheet"  href="/assets/styles.bundle.css" />
 </head>
-<body class="{{name}}page">
+<body class="{{name}}page {{locale}}">
 
   <div class="container top" id="menuBox">
     <div class="columns">
