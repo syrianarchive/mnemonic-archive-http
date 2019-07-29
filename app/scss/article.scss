@@ -68,6 +68,16 @@ td li {
   margin-left: 25px;
 }
 
+article {
+  th {
+    background-color: #f2f3f2;
+  }
+  th, td {
+    border: 1px solid black;
+    text-align: center;
+  }
+}
+
 
 /* Convert tables to lists on mobile */
 /* Maybe we have to move this part to a sperate file */
