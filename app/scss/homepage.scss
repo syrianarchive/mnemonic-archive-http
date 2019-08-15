@@ -138,7 +138,7 @@
 .home .investigations .limiter > .col-12 {
   display:none;
   &:first-child{
-    display: block;
+    display: none;
   }
   &:nth-child(2){
     display: block;
