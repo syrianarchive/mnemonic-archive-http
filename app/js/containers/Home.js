@@ -21,8 +21,8 @@ export default class Investigations extends Component {
   }
 
   getMeta() {
-    return fetch(
-      `${databaseApiUrl}/meta`, // eslint-disable-line
+    return fetch( // eslint-disable-line
+      `${databaseApiUrl}/meta`,
       {
         method: "get",
         headers: {
