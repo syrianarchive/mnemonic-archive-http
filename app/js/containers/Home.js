@@ -1,9 +1,9 @@
 /* global locale */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import {map} from 'lodash/fp';
-import {databaseApiUrl} from '../../../../env';
+import { databaseApiUrl } from "../../../../env";
 
-import t from '../../../translations';
+import t from "../../../translations";
 
 export default class Investigations extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Investigations extends Component {
     this.state = {
       meta: {
         weapons: []
-      },
+      }
     };
   }
 
@@ -21,76 +21,69 @@ export default class Investigations extends Component {
   }
 
   getMeta() {
-    return fetch(`${databaseApiUrl}/meta`, // eslint-disable-line
+    return fetch(
+      `${databaseApiUrl}/meta`, // eslint-disable-line
       {
-        method: 'get',
+        method: "get",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         }
-      })
+      }
+    )
       .then(r => r.json())
-      .then(r => this.setState({meta: r}));
+      .then(r => this.setState({ meta: r }));
   }
 
-
   render() {
-//    const vv = this.state.meta.verified ? this.state.meta.verified.toLocaleString() : '';
-//    const c = this.state.meta.total ? this.state.meta.total.toLocaleString() : '';
+    //    const vv = this.state.meta.verified ? this.state.meta.verified.toLocaleString() : '';
+    //    const c = this.state.meta.total ? this.state.meta.total.toLocaleString() : '';
 
     return (
       <div className="container frontstats">
-
         <div className="columns">
-
           <div className="col-2 col-sm-12">
             <div className="statcol">
               <h3>
-                <b>147051</b>
-              </h3> <br />
-              <h6>
-                { t('Collected Video Content')}
-              </h6>
-
+                <b>401,525</b>
+              </h3>{" "}
+              <br />
+              <h6>{t("Collected Video Content")}</h6>
             </div>
           </div>
 
           <div className=" col-3 col-sm-12 arrow">
-            {locale === 'en' ?
+            {locale === "en" ? (
               <span className="arrowb">➞</span>
-              :
+            ) : (
               <span className="arrowb">⬅</span>
-             }
+            )}
           </div>
 
           <div className="col-2 col-sm-12">
             <div className="statcol">
               <h3>
-                <b>11486</b>
-              </h3> <br />
-              <h6>
-                { t('Collected Tweets Content')}
-              </h6>
-
+                <b>112,108</b>
+              </h3>{" "}
+              <br />
+              <h6>{t("Collected Tweets Content")}</h6>
             </div>
           </div>
 
           <div className=" col-3 col-sm-12 arrow">
-            {locale === 'en' ?
+            {locale === "en" ? (
               <span className="arrowb">➞</span>
-              :
+            ) : (
               <span className="arrowb">⬅</span>
-             }
+            )}
           </div>
 
           <div className="col-2 col-sm-12">
             <div className="statcol">
-
               <h2>
-                <b>158537</b>
-              </h2> <br />
-              <h6>
-                { t('Collected Digital Units')}
-              </h6>
+                <b>513,633</b>
+              </h2>
+              <br />
+              <h6>{t("Collected Digital Units")}</h6>
             </div>
           </div>
 
@@ -116,9 +109,7 @@ export default class Investigations extends Component {
           {/*     </div> */}
           {/*     , this.state.meta.violationtypes)} */}
           {/* </div> */}
-
         </div>
-
       </div>
     );
   }
